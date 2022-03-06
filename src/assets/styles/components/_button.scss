@@ -1,0 +1,7 @@
+.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+  @apply rounded-xl #{!important};
+
+  &[color="primary"] {
+    @apply bg-red-500 hover:bg-red-700;
+  }
+}
