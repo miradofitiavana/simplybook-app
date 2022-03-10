@@ -1,0 +1,31 @@
+<div
+	[class.navigation-item-has-subtitle]="!!item.subtitle"
+	[ngClass]="item.classes?.wrapper"
+	class="flex items-center w-full px-3 py-0.5 text-gray-300 cursor-pointer">
+
+	<ng-container *ngIf="item.link">
+		<a
+			[matTooltip]="item.tooltip || ''"
+			[routerLinkActive]="'bg-white bg-opacity-12 text-white'"
+			[routerLink]="[item.link]"
+			class="flex items-center gap-3 w-full p-3 rounded-button hover:text-white hover:bg-white hover:bg-opacity-12">
+
+			<ng-container *ngIf="item.icon">
+				<mat-icon
+					[ngClass]="item.classes?.icon"
+					class="navigation-item-icon">{{item.icon}}</mat-icon>
+			</ng-container>
+
+			<div class="navigation-item-title-wrapper">
+				<div [ngClass]="item.classes?.title" class="item-title text-sm uppercase font-bold">
+					{{item.title}}
+				</div>
+				<ng-container *ngIf="item.subtitle">
+					<div [ngClass]="item.classes?.subtitle" class="text-xs">
+						{{item.subtitle}}
+					</div>
+				</ng-container>
+			</div>
+		</a>
+	</ng-container>
+</div>
