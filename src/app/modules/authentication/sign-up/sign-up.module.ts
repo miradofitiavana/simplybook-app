@@ -11,6 +11,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
+import {SignUpViewerModule} from "../../../components/sign-up-viewer/sign-up-viewer.module";
 
 const routes: Routes = [
   {
@@ -23,19 +24,20 @@ const routes: Routes = [
   declarations: [
     SignUpComponent
   ],
-    imports: [
-        SharedModule,
-        RouterModule.forChild(routes),
-        MatFormFieldModule,
-        MatInputModule,
-        MatCheckboxModule,
-        MatProgressSpinnerModule,
-        MatButtonModule,
-        MatIconModule,
-        MatChipsModule,
-        MatAutocompleteModule,
-        MatSelectModule,
-    ]
+  imports: [
+    SharedModule,
+    RouterModule.forChild(routes),
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatIconModule,
+    MatChipsModule,
+    MatAutocompleteModule,
+    MatSelectModule,
+    SignUpViewerModule
+  ]
 })
 export class SignUpModule {
 }
