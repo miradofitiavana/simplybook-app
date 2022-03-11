@@ -18,19 +18,32 @@ export class NavigationComponent implements OnInit, OnDestroy {
       title: "Applications",
       children: [
         {
-          id: 'accueil',
-          title: 'Accueil',
+          id: 'dashboard',
+          title: 'Tableau de bord',
           type: 'basic',
           icon: 'dashboard',
           link: '/dashboard',
         },
         {
-          id: 'mon-profil',
+          id: 'profile',
           title: 'Mon Profil',
-          subtitle: '3 upcoming events',
           type: 'basic',
-          icon: 'perm_identity',
-          link: '/mon-profil',
+          icon: 'account_circle',
+          link: '/profile',
+        }, {
+          id: 'mes-reservations',
+          title: 'Mes Réservations',
+          subtitle: '3 rendez-vous à venir',
+          type: 'basic',
+          icon: 'today',
+          link: '/booking',
+        },
+        {
+          id: 'mes-options',
+          title: 'Mes Options',
+          type: 'basic',
+          icon: 'view_module',
+          link: '/options',
         }
       ]
     }

@@ -1,7 +1,40 @@
-.mat-button, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
-  @apply rounded-xl #{!important};
+.mat-button, .mat-button-base, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
+  @apply rounded-button #{!important};
+  @apply py-1 #{!important};
+  @apply px-4 #{!important};
+  transition: .3s all;
+  min-height: 48px;
+
+  .mat-button-focus-overlay {
+    background-color: rgb(148, 163, 184, .2) !important;
+    transition: .3s all;
+  }
+
+  &:not(.mat-icon-button) {
+    .mat-icon {
+      font-size: 20px;
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &:not([color]) {
+    &:hover {
+      .mat-button-focus-overlay {
+        opacity: 1 !important;
+      }
+    }
+  }
 
   &[color="primary"] {
-    @apply bg-red-500 hover:bg-red-700;
+    @apply text-white bg-blue-500 hover:bg-blue-700 disabled:bg-blue-200;
   }
+
+  &[color="gray"] {
+    @apply text-white bg-gray-800 hover:bg-gray-900 disabled:bg-gray-200;
+  }
+}
+
+.mat-icon-button {
+  padding: 0 !important;
 }

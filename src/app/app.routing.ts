@@ -3,7 +3,7 @@ import {LayoutComponent} from "./layout/layout.component";
 
 export const appRoutes: Routes = [
 
-  {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
+  {path: '', pathMatch: 'full', redirectTo: 'sign-in'},
 
   {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'dashboard'},
 
@@ -16,10 +16,13 @@ export const appRoutes: Routes = [
       layout: 'classic'
     },
     children: [
-      // 	{ path: 'login', loadChildren: () => import('app/main/auth/login/login.module').then(m => m.LoginModule) },
       {
         path: 'dashboard',
         loadChildren: () => import('app/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
       },
     ]
   },
@@ -33,12 +36,14 @@ export const appRoutes: Routes = [
       layout: 'empty'
     },
     children: [
-      // {
-      //   path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.SignInModule)
-      // },
-      // {
-      //   path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.SignUpModule)
-      // },
+      {
+        path: 'sign-in',
+        loadChildren: () => import('app/modules/authentication/sign-in/sign-in.module').then(m => m.SignInModule)
+      },
+      {
+        path: 'sign-up',
+        loadChildren: () => import('app/modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule)
+      },
       // {
       //   path: 'profile',
       //   loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
@@ -46,5 +51,5 @@ export const appRoutes: Routes = [
     ]
   },
 
-  {path: '**', redirectTo: 'dashboard'},
+  {path: '**', redirectTo: 'sign-in'},
 ];

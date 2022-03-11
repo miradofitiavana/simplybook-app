@@ -1,0 +1,113 @@
+<div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0">
+  <div
+    class="bg-white md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-2/3 xl:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
+    <div class="w-full max-w-96 sm:w-96 mx-auto sm:mx-0">
+      <!-- Title -->
+      <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Inscrire votre entreprise</div>
+      <div class="flex items-baseline mt-0.5 font-medium">
+        <div>Vous avez déjà votre Espace ?</div>
+        <a
+          [routerLink]="['/sign-in']"
+          class="ml-1 text-primary-500 hover:underline transition-all duration-300 font-bold">Connectez-vous
+        </a>
+      </div>
+
+      <!-- Sign Up form -->
+      <form
+        [formGroup]="signUpForm"
+        autocomplete="off" class="mt-8">
+
+        <!-- Name field -->
+        <mat-form-field class="w-full">
+          <mat-label>Login société (partie de l'URL, ne peut être modifié)</mat-label>
+          <input
+            [formControlName]="'permalink'"
+            id="name" matInput
+            placeholder="ex: login">
+          <mat-error *ngIf="signUpForm.get('permalink').hasError('required')">
+            Oups, vous avez oublié de remplir votre login
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Adresse email</mat-label>
+          <input
+            [formControlName]="'email'"
+            autocomplete="new-email" id="email" matInput
+            placeholder="ex: societe@email.com">
+          <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+            Veuillez entrer votre adresse email
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('email').hasError('email')">
+            Veuillez entrer une adresse email valide.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Veuillez choisir la catégorie de votre entreprise</mat-label>
+          <mat-select formControlName="categories" multiple>
+
+            <mat-select-trigger>
+              <mat-chip-list>
+                <mat-chip (removed)="onCategorieRemoved(categorie)"
+                          *ngFor="let categorie of signUpForm.get('categories').value" [removable]="true">
+                  {{ categorie.categorie }}
+                  <mat-icon matChipRemove>cancel</mat-icon>
+                </mat-chip>
+              </mat-chip-list>
+            </mat-select-trigger>
+
+            <mat-option *ngFor="let categorie of allCategories" [value]="categorie">{{categorie.categorie}}</mat-option>
+
+          </mat-select>
+          <mat-error *ngIf="signUpForm.get('categories').hasError('required')">
+            Veuillez choisir au moins une catégorie. Si vous n'en trouvez aucune qui ne corresponde, veuillez
+            sélectionner 'Autres'.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Titre de votre page de réservation (nom de l'entreprise, par exemple)</mat-label>
+          <input formControlName="nom" matInput placeholder="Quel est le nom de votre activité?">
+          <mat-error *ngIf="signUpForm.get('nom').hasError('required')">
+            Veuillez entrer le nom de votre entreprise.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="w-full">
+          <mat-label>Une brève description</mat-label>
+          <textarea #description cdkTextareaAutosize formControlName="description" matInput
+                    placeholder="Parlez de ce que vous faites, ce que vous vendez, etc."
+                    rows="3"></textarea>
+          <mat-hint align="start">Ecrivez une description jusqu'à 255 caractères.</mat-hint>
+          <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+          <mat-error *ngIf="signUpForm.get('description').hasError('maxLength')">
+            Vous n'avez droit qu'à 255 caractères.
+          </mat-error>
+          <mat-error *ngIf="signUpForm.get('description').hasError('required')">
+            Décrivez votre entreprise à vos clients, vous pourrez toujours modifier par la suite :)
+          </mat-error>
+        </mat-form-field>
+
+        <button (click)="signUp()" [disabled]="signUpForm.disabled" class="fuse-mat-button-large w-full mt-6"
+                color="primary" mat-flat-button>
+          <span *ngIf="!signUpForm.disabled">
+            Créez votre compte
+          </span>
+          <mat-progress-spinner class="mx-auto"
+            *ngIf="signUpForm.disabled"
+            [diameter]="24"
+            [mode]="'indeterminate'"></mat-progress-spinner>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div
+    class="relative hidden md:flex flex-auto items-center justify-center w-1/3 xl:w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
+    <div class="w-full max-w-96 sm:w-96 mx-auto sm:mx-0">
+      <div class="w-12">
+        <img alt="Simplybook" src="https://fakeimg.pl/350x200/ff0000/000">
+      </div>
+    </div>
+  </div>
+</div>

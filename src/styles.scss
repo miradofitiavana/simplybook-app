@@ -5,6 +5,8 @@
 
 @include mat.core(global.$simplybook-app-config);
 @include mat.core-theme(light.$simplybook-app-theme);
+//@include mat.progress-spinner-theme(light.$simplybook-app-theme);
+@include mat.chips-theme(light.$simplybook-app-theme);
 //@include mat.button-theme(light.$simplybook-app-theme);
 
 @tailwind base;
@@ -16,7 +18,7 @@ html, body {
 }
 
 body {
-  margin: 0;
+  @apply m-0 bg-gray-100;
 }
 
 @import "./assets/styles/all-styles";

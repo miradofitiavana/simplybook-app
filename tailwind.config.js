@@ -4,9 +4,14 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'warning': '#dc2626',
+        'default': '#cbd5e1'
+      },
       borderRadius: {
         'container': "15px",
-        'button': "5px"
+        'menu': "5px",
+        'button': "30px"
       },
       opacity: {
         12: '0.12',
