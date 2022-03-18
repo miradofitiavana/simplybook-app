@@ -1,0 +1,38 @@
+@layer components {
+  .app-content {
+    @apply w-full max-w-screen-xl mx-auto px-6 sm:px-8;
+  }
+
+  .app-data-scroll {
+    .mat-drawer-content{
+      overflow: hidden;
+      display: flex;
+      position: absolute;
+    }
+  }
+
+  .mat-paginator-sticky {
+    @apply sticky bottom-0 z-10 bg-white border-t;
+
+    .mat-form-field {
+      .mat-form-field-wrapper {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+
+      .mat-form-field-flex {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+@layer base {
+  .text-primary {
+    @apply text-gray-800;
+  }
+
+  .text-secondary {
+    @apply text-gray-500;
+  }
+}

@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
+import {AuthService} from "../../../core/auth/auth.service";
 
 const routes: Routes = [
   {
@@ -27,6 +28,9 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatButtonModule,
     MatInputModule
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class SignInModule {

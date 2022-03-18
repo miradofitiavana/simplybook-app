@@ -8,7 +8,7 @@
 			[matTooltip]="item.tooltip || ''"
 			[routerLinkActive]="'bg-white bg-opacity-12 text-white'"
 			[routerLink]="[item.link]"
-			class="flex items-center gap-3 w-full p-3 rounded-menu hover:text-white hover:bg-white hover:bg-opacity-12">
+			class="basic-item-link flex items-center gap-3 w-full p-3 rounded-menu hover:text-white hover:bg-white hover:bg-opacity-12">
 
 			<ng-container *ngIf="item.icon">
 				<mat-icon
@@ -17,7 +17,7 @@
 			</ng-container>
 
 			<div class="navigation-item-title-wrapper">
-				<div [ngClass]="item.classes?.title" class="item-title text-sm uppercase font-bold">
+				<div [ngClass]="item.classes?.title" class="item-title text-sm  font-bold">
 					{{item.title}}
 				</div>
 				<ng-container *ngIf="item.subtitle">

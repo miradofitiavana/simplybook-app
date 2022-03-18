@@ -4,6 +4,8 @@ module.exports = {
   ],
   theme: {
     extend: {
+      color: {
+      },
       minHeight: {
         1: '1rem',
         2: '2rem',
@@ -30,6 +32,9 @@ module.exports = {
         38: '0.38',
         87: '0.87'
       },
+      spacing: {
+        '160': '40rem',
+      }
     },
   },
   plugins: [],

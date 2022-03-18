@@ -1,9 +1,10 @@
 <div class="navigation-wrapper">
   <div class="navigation-header">
-    <ng-content select="[navigationHeader]"></ng-content>
+    <ng-content select="[navigationHeader]">
+    </ng-content>
   </div>
 
-  <div #navigationContent class="navigation-content">
+  <div #navigationContent class="navigation-content overflow-auto">
     <div class="navigation-content-header">
       <ng-content select="[navigationContentHeader]"></ng-content>
     </div>
@@ -13,12 +14,14 @@
         <ng-container *ngIf="item.type === 'group'">
           <navigation-group
             [item]="item"
-            [name]="name"></navigation-group>
+            [name]="name"
+          ></navigation-group>
         </ng-container>
         <ng-container *ngIf="item.type === 'collapsable'">
           <navigation-collapsable
             [item]="item"
-            [name]="name"></navigation-collapsable>
+            [name]="name"
+          ></navigation-collapsable>
         </ng-container>
         <ng-container *ngIf="item.type === 'basic'">
           <navigation-basic

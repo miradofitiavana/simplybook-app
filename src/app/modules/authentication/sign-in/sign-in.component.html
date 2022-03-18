@@ -40,10 +40,8 @@
             mat-icon-button
             matSuffix
             type="button">
-            <mat-icon *ngIf="passwordField.type === 'password'" [svgIcon]="'heroicons_solid:eye'"
-                      class="icon-size-5"></mat-icon>
-            <mat-icon *ngIf="passwordField.type === 'text'" [svgIcon]="'heroicons_solid:eye-off'"
-                      class="icon-size-5"></mat-icon>
+            <mat-icon *ngIf="passwordField.type === 'password'">eye</mat-icon>
+            <mat-icon *ngIf="passwordField.type === 'text'">eye-off</mat-icon>
           </button>
           <mat-error>
             Le mot de passe est obligatoire.

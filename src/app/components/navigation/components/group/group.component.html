@@ -31,6 +31,12 @@
         [name]="name"></navigation-basic>
     </ng-container>
 
+    <ng-container *ngIf="item.type === 'collapsable'">
+      <navigation-collapsable
+        [item]="item"
+        [name]="name"></navigation-collapsable>
+    </ng-container>
+
     <ng-container *ngIf="item.type === 'group'">
       <navigation-group
         [item]="item"

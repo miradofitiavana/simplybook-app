@@ -21,8 +21,28 @@ export const appRoutes: Routes = [
         loadChildren: () => import('app/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
+        path: 'booking',
+        loadChildren: () => import('app/modules/booking/booking.module').then(m => m.BookingModule)
+      },
+      {
         path: 'profile',
         loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
+      },
+    ]
+  },
+
+  {
+    path: 'admin',
+    // canActivate: [NoAuthGuard],
+    // canActivateChild: [NoAuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'classic'
+    },
+    children: [
+      {
+        path: 'gestion/categories',
+        loadChildren: () => import('app/modules/admin/categorie/categorie.module').then(m => m.CategorieModule),
       },
     ]
   },

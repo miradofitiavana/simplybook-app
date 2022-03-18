@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../core/auth/auth.service";
 
 @Component({
   selector: 'sign-in',
@@ -17,7 +18,8 @@ export class SignInComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     // private _authService: AuthService,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _authService:AuthService
   ) {
   }
 
@@ -41,38 +43,38 @@ export class SignInComponent implements OnInit {
     this.showAlert = false;
 
     // Sign in
-    // this._authService.signIn(this.signInForm.value)
-    //   .subscribe(
-    //     () => {
-    //
-    //       // Set the redirect url.
-    //       // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-    //       // to the correct page after a successful sign in. This way, that url can be set via
-    //       // routing file and we don't have to touch here.
-    //       const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
-    //
-    //       // Navigate to the redirect url
-    //       this._router.navigateByUrl(redirectURL);
-    //
-    //     },
-    //     (response) => {
-    //       console.log(response);
-    //       // Re-enable the form
-    //       this.signInForm.enable();
-    //
-    //       // Reset the form
-    //       // this.signInNgForm.resetForm();
-    //
-    //       // Set the alert
-    //       this.alert = {
-    //         type: 'error',
-    //         message: response.error.message
-    //       };
-    //
-    //       // Show the alert
-    //       this.showAlert = true;
-    //     }
-    //   );
+    this._authService.signIn(this.signInForm.value)
+      .subscribe(
+        () => {
+
+          // Set the redirect url.
+          // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
+          // to the correct page after a successful sign in. This way, that url can be set via
+          // routing file and we don't have to touch here.
+          const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
+
+          // Navigate to the redirect url
+          this._router.navigateByUrl(redirectURL);
+
+        },
+        (response) => {
+          console.log(response);
+          // Re-enable the form
+          this.signInForm.enable();
+
+          // Reset the form
+          // this.signInNgForm.resetForm();
+
+          // Set the alert
+          // this.alert = {
+          //   type: 'error',
+          //   message: response.error.message
+          // };
+
+          // Show the alert
+          this.showAlert = true;
+        }
+      );
   }
 
 }
