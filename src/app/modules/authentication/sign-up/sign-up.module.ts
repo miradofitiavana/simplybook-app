@@ -12,11 +12,15 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {SignUpViewerModule} from "../../../components/sign-up-viewer/sign-up-viewer.module";
+import {SignUpResolver} from "./sign-up.resolver";
 
 const routes: Routes = [
   {
     path: '',
     component: SignUpComponent,
+    resolve: {
+      categories: SignUpResolver
+    }
   }
 ];
 

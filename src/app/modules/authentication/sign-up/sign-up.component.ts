@@ -14,11 +14,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
   signUpForm: FormGroup;
   showAlert: boolean = false;
 
-  public allCategories: Categorie[] = [
-    {categorie: 'A.N. Engineer', id: 1, descr: "description"},
-    {categorie: 'Some Other', id: 2, descr: "description"},
-    {categorie: 'Prof. Engineering', id: 3, descr: "description"},
-  ];
+  public allCategories: Categorie[] = [];
 
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -28,6 +24,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    let datas = this._activatedRoute.snapshot.data;
+    this.allCategories = datas['categories'];
+
     this.signUpForm = this._formBuilder.group({
       permalink: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
