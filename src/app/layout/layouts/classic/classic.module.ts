@@ -10,23 +10,25 @@ import {SharedModule} from "../../../shared/shared.module";
 import {ToolbarComponent} from "../../../components/toolbar/toolbar.component";
 import {ProgressBarModule} from "../../../components/progress-bar/progress-bar.module";
 import {NavigationModule} from "../../../components/navigation/navigation.module";
+import {WorkspaceModule} from "../../../components/workspace/workspace.module";
 
 @NgModule({
   declarations: [
     ClassicLayoutComponent,
     ToolbarComponent
   ],
-  imports: [
-    HttpClientModule,
-    RouterModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatIconModule,
-    MatMenuModule,
-    SharedModule,
-    ProgressBarModule,
-    NavigationModule,
-  ],
+    imports: [
+        HttpClientModule,
+        RouterModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatIconModule,
+        MatMenuModule,
+        SharedModule,
+        ProgressBarModule,
+        NavigationModule,
+        WorkspaceModule,
+    ],
   exports: [
     ClassicLayoutComponent
   ],
