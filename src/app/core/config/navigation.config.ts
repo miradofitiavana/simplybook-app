@@ -41,6 +41,14 @@ export const navigations: NavigationItem[] = [
         hidden: false,
       },
       {
+        id: 'subscription',
+        title: 'Abonnements et Historiques',
+        type: 'basic',
+        icon: 'all_out',
+        link: '/subscription',
+        hidden: false,
+      },
+      {
         id: 'profile',
         title: 'Mon Profil',
         type: 'basic',

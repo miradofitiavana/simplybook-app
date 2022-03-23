@@ -8,6 +8,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 
 const routes: Routes = [
   {
@@ -28,6 +29,7 @@ const routes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
+    GooglePlaceModule
   ],
   providers: [
     StructureService

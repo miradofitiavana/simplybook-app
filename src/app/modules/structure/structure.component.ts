@@ -1,6 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Societe} from "../../core/models/societe.types";
+import {GooglePlaceDirective} from "ngx-google-places-autocomplete";
+import {Address} from "ngx-google-places-autocomplete/objects/address";
+import {Options} from "ngx-google-places-autocomplete/objects/options/options";
 
 @Component({
   selector: 'structure',
@@ -12,7 +15,31 @@ export class StructureComponent implements OnInit, OnDestroy {
   societeForm: FormGroup;
   societe: Societe = null;
 
+  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
+  options: Options = {
+    bounds: null,
+    types: [],
+    fields: null,
+    strictBounds: false,
+    origin: null,
+    componentRestrictions: {country: 'FR'}
+  };
+
   constructor() {
+  }
+
+  public handleAddressChange(result: Address) {
+    this.societeForm.get('autocomplete').setValue(result.formatted_address);
+    this.societeForm.get('adresse').setValue(result.name);
+    result.address_components.forEach(value => {
+      if (value.types.indexOf('postal_code') > -1) {
+        this.societeForm.get('code_postal').setValue(value.long_name);
+      }
+      if (value.types.indexOf('locality') > -1) {
+        this.societeForm.get('ville').setValue(value.long_name);
+      }
+    });
+    this.societeForm.get('autocomplete').reset();
   }
 
   ngOnInit(): void {

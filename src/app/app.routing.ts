@@ -39,6 +39,10 @@ export const appRoutes: Routes = [
         loadChildren: () => import('app/modules/options/options.module').then(m => m.OptionsModule)
       },
       {
+        path: 'subscription',
+        loadChildren: () => import('app/modules/subscription/subscription.module').then(m => m.SubscriptionModule)
+      },
+      {
         path: 'unauthorized',
         loadChildren: () => import('app/modules/errors/error-403/error-403.module').then(m => m.Error403Module)
       },

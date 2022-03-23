@@ -16,7 +16,6 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    // private _authService: AuthService,
     private _formBuilder: FormBuilder,
     private _router: Router,
     private _authService:AuthService

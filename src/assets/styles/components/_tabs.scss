@@ -1,0 +1,31 @@
+.mat-tab-group {
+  .mat-tab-header {
+    top: 0;
+    z-index: 1000;
+    position: sticky !important;
+    position: -webkit-sticky !important; /* macOS/iOS Safari */
+    @apply bg-white;
+
+    .mat-tab-label {
+      @apply h-16 transition-all duration-300 bg-transparent;
+
+      &-active {
+        @apply bg-gray-100 opacity-100;
+      }
+    }
+  }
+
+  &.group-rounded {
+    .mat-tab-header {
+      @apply bg-gray-100;
+
+      .mat-tab-labels {
+        @apply gap-4 px-8 py-4 app-content;
+        .mat-tab-label {
+          @apply mat-button bg-gray-800 text-white h-12;
+        }
+      }
+    }
+  }
+
+}

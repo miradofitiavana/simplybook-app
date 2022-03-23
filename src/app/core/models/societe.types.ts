@@ -1,3 +1,5 @@
+import {Categorie} from "./categorie.types";
+
 export interface Societe {
   uuid?: string;
   permalink: string;
@@ -9,4 +11,5 @@ export interface Societe {
   descr: string;
   created_at: Date;
   updated_at: Date;
+  categories: Categorie[];
 }

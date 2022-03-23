@@ -11,18 +11,19 @@
     </ng-container>
     <ng-container headerRight>
       <button color="primary" mat-raised-button>
-        <mat-icon>add</mat-icon>
-        <span class="ml-2">Nouvelle catégorie</span>
+        <mat-icon>save</mat-icon>
+        <span class="ml-2">Enregistrer</span>
       </button>
     </ng-container>
   </page-header>
 
-  <div class="bg-transparent my-8 flex-1 flex flex-col justify-between">
+  <div class="bg-transparent overflow-auto py-8 flex-1 flex flex-col justify-between">
     <div class="app-content">
       <div [formGroup]="societeForm" class="flex flex-row flex-wrap bg-white rounded-container p-4">
         <mat-form-field appearance="fill" class="w-full">
           <mat-label>Login société (partie de l'URL, ne peut être modifié)</mat-label>
-          <input formControlName="permalink" matInput placeholder="Login société (partie de l'URL, ne peut être modifié)"/>
+          <input formControlName="permalink" matInput
+                 placeholder="Login société (partie de l'URL, ne peut être modifié)"/>
           <mat-error *ngIf="societeForm.get('permalink').hasError('required')">
             Oups, vous avez oublié de remplir votre login
           </mat-error>
@@ -30,7 +31,8 @@
 
         <mat-form-field appearance="fill" class="w-full">
           <mat-label>Titre de votre page de réservation (nom de l'entreprise, par exemple)</mat-label>
-          <input formControlName="nom" matInput placeholder="Titre de votre page de réservation (nom de l'entreprise, par exemple)"/>
+          <input formControlName="nom" matInput
+                 placeholder="Titre de votre page de réservation (nom de l'entreprise, par exemple)"/>
           <mat-error *ngIf="societeForm.get('nom').hasError('required')">
             Veuillez entrer le nom de votre entreprise.
           </mat-error>
@@ -38,7 +40,9 @@
 
         <mat-form-field appearance="fill" class="w-full">
           <mat-label>Autocomplete</mat-label>
-          <input formControlName="autocomplete" matInput placeholder="Saisissez l'adresse de votre société."/>
+          <input #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" [options]='options'
+                 formControlName="autocomplete" matInput ngx-google-places-autocomplete
+                 placeholder="Saisissez l'adresse de votre société."/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" class="w-full">
