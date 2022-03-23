@@ -4,12 +4,14 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AuthService} from 'app/core/auth/auth.service';
 import {AuthUtils} from 'app/core/auth/auth.utils';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {
   }
 
@@ -29,6 +31,8 @@ export class AuthInterceptor implements HttpInterceptor {
           this._authService.signOut();
 
           location.reload();
+        } else if (error instanceof HttpErrorResponse && error.status === 403) {
+          this._router.navigateByUrl('/unauthorized');
         }
         return throwError(error);
       })

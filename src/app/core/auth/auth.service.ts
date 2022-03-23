@@ -7,6 +7,7 @@ import {AuthUtils} from "./auth.utils";
 import {Login} from "../models/login.types";
 import {catchError} from "rxjs/operators";
 import {UserService} from "../user/user.service";
+import {NavigationService} from "../../components/navigation/navigation.service";
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -15,7 +16,8 @@ export class AuthService {
   constructor(
     private _httpClient: HttpClient,
     private _cookieService: CookieService,
-    private _userService: UserService
+    private _userService: UserService,
+    private _navigationService: NavigationService
   ) {
   }
 
@@ -67,24 +69,41 @@ export class AuthService {
   }
 
   signInUsingToken(): Observable<any> {
-    return this._httpClient.post(`${API}/refresh-access-token`, {
-      access_token: this.accessToken
-    }).pipe(
+    return this._httpClient.get(`${API}/refresh`).pipe(
       catchError(() => {
         return of(false);
       }),
       switchMap((response: any) => {
         this.accessToken = response.access_token;
+        this.typeToken = response.token_type;
         this._authenticated = true;
+
         this._userService.user = response.user;
 
+        let decode = AuthUtils._decodeToken(response.access_token);
+        this._navigationService.updateNavigation(decode.scopes);
         return of(true);
       })
     );
   }
 
   signUp(societe: { nom: string; prenom: string; email: string }): Observable<any> {
-    return this._httpClient.post(`${API}/register`, societe);
+    if (this._authenticated) {
+      return throwError('User is already logged in.');
+    }
+
+    return this._httpClient.post(`${API}/register`, societe).pipe(
+      switchMap((response: Login) => {
+        this.accessToken = response.access_token;
+        this.typeToken = response.token_type;
+        this._authenticated = true;
+
+        this._userService.user = response.user;
+
+        console.log(AuthUtils._decodeToken(response.access_token));
+        return of(response);
+      })
+    );
   }
 
   signOut(): void {

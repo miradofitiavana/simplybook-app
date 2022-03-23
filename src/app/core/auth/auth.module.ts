@@ -2,6 +2,7 @@ import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from 'app/core/auth/auth.service';
 import {AuthInterceptor} from 'app/core/auth/auth.interceptor';
+import {NavigationService} from "../../components/navigation/navigation.service";
 
 @NgModule({
   imports: [

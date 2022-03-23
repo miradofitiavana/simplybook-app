@@ -6,7 +6,8 @@ export interface NavigationItem {
     | 'basic'
     | 'collapsable'
     | 'group';
-  hidden?: (item: NavigationItem) => boolean;
+  // hidden?: (item: NavigationItem) => boolean;
+  hidden?:boolean;
   active?: boolean;
   disabled?:boolean;
   link?: string;

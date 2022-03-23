@@ -33,7 +33,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
 		paths.forEach((path) => {
 			if (path.routeConfig && path.routeConfig.data && path.routeConfig.data['layout']) {
 				this.layout = path.routeConfig.data['layout'];
-				console.log(path.routeConfig.data);
 			}
 		});
 	}

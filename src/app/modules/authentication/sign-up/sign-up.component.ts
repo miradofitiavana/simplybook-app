@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Categorie} from "../../../core/models/categorie.types";
+import {AuthService} from "../../../core/auth/auth.service";
 
 @Component({
   selector: 'sign-up',
@@ -11,6 +12,7 @@ import {Categorie} from "../../../core/models/categorie.types";
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
+  @ViewChild('signUpNgForm') signUpNgForm: NgForm;
   signUpForm: FormGroup;
   showAlert: boolean = false;
 
@@ -19,7 +21,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
-    private _router: Router
+    private _router: Router,
+    private _authService: AuthService
   ) {
   }
 
@@ -28,10 +31,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
     this.allCategories = datas['categories'];
 
     this.signUpForm = this._formBuilder.group({
-      permalink: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      nom_societe: ['', Validators.required],
       categories: ['', Validators.required],
-      nom: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
       description: ['', [Validators.required, Validators.maxLength(255)]],
     });
   }
@@ -44,7 +47,30 @@ export class SignUpComponent implements OnInit, OnDestroy {
       return;
     }
     this.signUpForm.disable();
-    this.showAlert = false;
+
+    let formValue = this.signUpForm.value;
+    if (formValue?.categories) {
+      let formCategories = formValue?.categories;
+      let ids_categories = [];
+      formCategories.forEach((value: Categorie) => {
+        ids_categories.push(value.id);
+      });
+      formValue.categories = ids_categories;
+    }
+
+    this._authService.signUp(this.signUpForm.value)
+      .subscribe(
+        (response) => {
+          this._router.navigateByUrl('/signed-in-redirect')
+            .then(r => {
+
+            });
+        },
+        (response) => {
+          this.signUpForm.enable();
+          this.signUpNgForm.resetForm();
+        }
+      );
   }
 
   onCategorieRemoved(categorie: Categorie): void {

@@ -13,6 +13,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {SignUpViewerModule} from "../../../components/sign-up-viewer/sign-up-viewer.module";
 import {SignUpResolver} from "./sign-up.resolver";
+import {CategorieService} from "../../admin/categorie/categorie.service";
 
 const routes: Routes = [
   {
@@ -41,6 +42,9 @@ const routes: Routes = [
     MatAutocompleteModule,
     MatSelectModule,
     SignUpViewerModule
+  ],
+  providers: [
+    CategorieService
   ]
 })
 export class SignUpModule {

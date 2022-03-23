@@ -1,16 +1,18 @@
 import {Routes} from '@angular/router';
 import {LayoutComponent} from "./layout/layout.component";
+import {AuthGuard} from "./core/auth/guards/auth.guard";
+import {NoAuthGuard} from './core/auth/guards/noAuth.guard';
 
 export const appRoutes: Routes = [
 
-  {path: '', pathMatch: 'full', redirectTo: 'sign-in'},
+  {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
 
   {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'dashboard'},
 
   {
     path: '',
-    // canActivate: [NoAuthGuard],
-    // canActivateChild: [NoAuthGuard],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'classic'
@@ -28,13 +30,25 @@ export const appRoutes: Routes = [
         path: 'profile',
         loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
       },
+      {
+        path: 'structure',
+        loadChildren: () => import('app/modules/structure/structure.module').then(m => m.StructureModule)
+      },
+      {
+        path: 'options',
+        loadChildren: () => import('app/modules/options/options.module').then(m => m.OptionsModule)
+      },
+      {
+        path: 'unauthorized',
+        loadChildren: () => import('app/modules/errors/error-403/error-403.module').then(m => m.Error403Module)
+      },
     ]
   },
 
   {
     path: 'admin',
-    // canActivate: [NoAuthGuard],
-    // canActivateChild: [NoAuthGuard],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'classic'
@@ -49,8 +63,8 @@ export const appRoutes: Routes = [
 
   {
     path: '',
-    // canActivate: [NoAuthGuard],
-    // canActivateChild: [NoAuthGuard],
+    canActivate: [NoAuthGuard],
+    canActivateChild: [NoAuthGuard],
     component: LayoutComponent,
     data: {
       layout: 'empty'

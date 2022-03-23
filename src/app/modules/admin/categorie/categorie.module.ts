@@ -20,7 +20,7 @@ const routes: Routes = [
     path: '',
     component: CategorieComponent,
     resolve: {
-      ...CategorieService
+      categories: CategorieService
     }
   }
 ];

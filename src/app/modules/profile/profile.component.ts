@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'profile',
@@ -6,7 +6,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./profile.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   constructor() {
   }
@@ -14,4 +14,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy(): void {
+  }
 }

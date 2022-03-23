@@ -10,9 +10,8 @@ import {
   UrlSegment,
   UrlTree
 } from '@angular/router';
-import {Observable, of} from 'rxjs';
+import {Observable, of, switchMap} from 'rxjs';
 import {AuthService} from 'app/core/auth/auth.service';
-import {switchMap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +40,10 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad {
       .pipe(
         switchMap((authenticated) => {
           if (authenticated) {
-            this._router.navigate(['']).then(r => {
-            });
+            this._router.navigate(['']);
 
             return of(false);
           }
-
           return of(true);
         })
       );
