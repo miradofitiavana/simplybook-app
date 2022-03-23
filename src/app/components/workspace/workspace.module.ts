@@ -2,8 +2,9 @@ import {NgModule} from '@angular/core';
 import {WorkspaceComponent} from './workspace.component';
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../shared/shared.module";
-import {WorkspaceService} from "./workspace.service";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {UserService} from "../../core/user/user.service";
+import {WorkspaceService} from "../../core/societe/workspace.service";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     WorkspaceComponent
   ],
   providers: [
-    WorkspaceService
+    WorkspaceService,
+    UserService
   ]
 })
 export class WorkspaceModule {

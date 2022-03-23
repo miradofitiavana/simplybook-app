@@ -12,8 +12,9 @@
   </mat-icon>
 
   <ul class="workspace__list">
-    <li class="workspace__item workspace__item--active" matTooltip="Info about the action"
-        matTooltipClass="workspace__tooltip" matTooltipPosition="right"
+    <li *ngFor="let societe of societes" [matTooltip]="societe.nom" (click)="selectWorkspace(societe)"
+        class="workspace__item workspace__item--active" matTooltipClass="workspace__tooltip"
+        matTooltipPosition="right"
         style="background-image: url('https://app.joinly.com/assets/img/logo-placeholder.png');"></li>
     <li class="workspace__item workspace__item--add">
       <mat-icon>add</mat-icon>
