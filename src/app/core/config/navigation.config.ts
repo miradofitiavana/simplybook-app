@@ -37,13 +37,13 @@ export const navigations: NavigationItem[] = [
         by_society: true,
       },
       {
-        id: 'options',
-        title: 'Mes Options',
+        id: 'settings',
+        title: 'Paramètres',
         type: 'basic',
         icon: 'view_module',
-        link: '/options',
+        link: '/settings',
         hidden: false,
-        by_society: false,
+        by_society: true,
       },
       {
         id: 'subscription',

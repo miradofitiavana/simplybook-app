@@ -1,0 +1,45 @@
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+  <page-header [withActions]="true">
+    <ng-container headerTitle>
+      Paramètres
+    </ng-container>
+    <ng-container headerSubtitle>
+      <div class="leading-6 truncate text-secondary">Gérez ici vos préférences, les horaires d'ouverture et/ou de
+        fermeture de votre entreprise et bien d'autres...
+      </div>
+    </ng-container>
+    <ng-container headerRight>
+    </ng-container>
+  </page-header>
+
+  <div class="bg-transparent flex-1 flex flex-col justify-between overflow-auto bg-white w-full shadow-xl">
+    <mat-tab-group class="group-rounded">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>event_note</mat-icon>
+          <span class="ml-3">Planning pour la semaine</span>
+        </ng-template>
+        <ng-template matTabContent>
+          <div class="app-content pb-8">
+            <div class="bg-white rounded-container shadow p-4" style="height: 800px;">
+              a
+            </div>
+          </div>
+        </ng-template>
+      </mat-tab>
+      <mat-tab>
+        <ng-template mat-tab-label>
+          <mat-icon>today</mat-icon>
+          <span class="ml-3">Planning des jours spéciaux</span>
+        </ng-template>
+        <ng-template matTabContent>
+          <div class="app-content pb-8">
+            <div class="bg-white rounded-container shadow p-4" style="height: 800px;">
+              b
+            </div>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>

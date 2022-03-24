@@ -1,0 +1,80 @@
+<form [formGroup]="weekForm">
+
+  <div class="flex items-center mb-4" formGroupName="lundi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Lundi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('lundi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="mardi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Mardi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('mardi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="mercredi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Mercredi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('mercredi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="jeudi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Jeudi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('jeudi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="vendredi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Vendredi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('vendredi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="samedi">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Samedi</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('samedi').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="flex items-center mb-4" formGroupName="dimanche">
+    <div class="max-w-36 w-36 mr-6 overflow-hidden">
+      <mat-slide-toggle formControlName="isActive">
+        <span class="font-bold text-lg">Dimanche</span>
+      </mat-slide-toggle>
+    </div>
+    <ngx-slider [options]="weekForm.get('dimanche').get('isActive').value ? options : disabledOptions"
+                formControlName="values"></ngx-slider>
+  </div>
+
+  <div class="w-full text-right mt-4">
+    <button (click)="saveSettingsWeek()" color="primary" mat-raised-button type="submit">
+      <mat-icon>save</mat-icon>
+      <span class="ml-2">Enregistrer</span>
+    </button>
+  </div>
+
+</form>

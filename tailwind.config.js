@@ -4,8 +4,7 @@ module.exports = {
   ],
   theme: {
     extend: {
-      color: {
-      },
+      color: {},
       minHeight: {
         1: '1rem',
         2: '2rem',
@@ -17,6 +16,10 @@ module.exports = {
         2: '2rem',
         4: '4rem',
         5: '5rem',
+      },
+      maxWidth: {
+        28: '7rem',
+        36: '9rem'
       },
       colors: {
         'warning': '#dc2626',

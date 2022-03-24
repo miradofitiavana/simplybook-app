@@ -35,8 +35,8 @@ export const appRoutes: Routes = [
         loadChildren: () => import('app/modules/structure/structure.module').then(m => m.StructureModule)
       },
       {
-        path: 'options',
-        loadChildren: () => import('app/modules/options/options.module').then(m => m.OptionsModule)
+        path: 'settings/:uuid',
+        loadChildren: () => import('app/modules/settings/settings.module').then(m => m.SettingsModule)
       },
       {
         path: 'subscription',

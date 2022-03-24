@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { OptionsService } from './options.service';
+import { SettingsService } from './settings.service';
 
 describe('OptionsService', () => {
-  let service: OptionsService;
+  let service: SettingsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(OptionsService);
+    service = TestBed.inject(SettingsService);
   });
 
   it('should be created', () => {
