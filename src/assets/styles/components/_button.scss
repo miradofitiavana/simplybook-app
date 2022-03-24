@@ -18,7 +18,7 @@
     }
   }
 
-  &:not([color]) {
+  &:not([color]):not(.mat-button-disabled) {
     &:hover {
       .mat-button-focus-overlay {
         opacity: 1 !important;
@@ -42,6 +42,11 @@
     min-width: 0 !important;
     line-height: 1 !important;
     min-height: 0 !important;
+  }
+
+  &.mat-button-disabled {
+    color: #00000042;
+    background: #0000;
   }
 }
 

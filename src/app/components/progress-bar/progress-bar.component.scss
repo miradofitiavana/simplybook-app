@@ -9,7 +9,11 @@ progress-bar {
   mat-progress-bar {
 
     .mat-progress-bar-buffer {
-      background-color: #C5C6CB !important;
+      @apply bg-gray-100;
+    }
+
+    .mat-progress-bar-fill {
+      @apply bg-blue-500;
     }
   }
 }

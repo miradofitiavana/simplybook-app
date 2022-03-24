@@ -12,6 +12,8 @@ import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import {MatSelectModule} from "@angular/material/select";
 import {MatChipsModule} from "@angular/material/chips";
 import {StructureResolver} from "./structure.resolver";
+import {MatTabsModule} from "@angular/material/tabs";
+import {StructureInfosComponent} from "./infos/infos.component";
 
 const routes: Routes = [
   {
@@ -26,7 +28,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    StructureComponent
+    StructureComponent,
+    StructureInfosComponent
   ],
   imports: [
     SharedModule,
@@ -38,7 +41,8 @@ const routes: Routes = [
     MatInputModule,
     GooglePlaceModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatTabsModule
   ],
   providers: [
     StructureService

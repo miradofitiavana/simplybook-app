@@ -25,7 +25,6 @@ import {WorkspaceModule} from "../../../components/workspace/workspace.module";
         MatIconModule,
         MatMenuModule,
         SharedModule,
-        ProgressBarModule,
         NavigationModule,
         WorkspaceModule,
     ],
