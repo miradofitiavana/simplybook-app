@@ -23,7 +23,7 @@ export const appRoutes: Routes = [
         loadChildren: () => import('app/modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'booking',
+        path: 'booking/:uuid',
         loadChildren: () => import('app/modules/booking/booking.module').then(m => m.BookingModule)
       },
       {
@@ -31,7 +31,7 @@ export const appRoutes: Routes = [
         loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
       },
       {
-        path: 'structure',
+        path: 'structure/:uuid',
         loadChildren: () => import('app/modules/structure/structure.module').then(m => m.StructureModule)
       },
       {

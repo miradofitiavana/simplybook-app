@@ -14,11 +14,14 @@ export class WorkspaceService {
 
   set workspace(uuid: string) {
     this._workspace.next(uuid);
-    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid));//, 30, "/", environment.cookies.domain, true, 'None');
   }
 
   get workspace$(): Observable<string> {
     return this._workspace.asObservable();
+  }
+
+  set currentWorkspace(uuid: string) {
+    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid));//, 30, "/", environment.cookies.domain, true, 'None');
   }
 
   get currentWorkspace(): string | null {

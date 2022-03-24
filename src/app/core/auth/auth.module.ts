@@ -2,11 +2,12 @@ import {NgModule, Optional, SkipSelf} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthService} from 'app/core/auth/auth.service';
 import {AuthInterceptor} from 'app/core/auth/auth.interceptor';
-import {NavigationService} from "../../components/navigation/navigation.service";
+import {MessageAPIModule} from "../../shared/message-api/message-api.module";
 
 @NgModule({
   imports: [
-    HttpClientModule
+    HttpClientModule,
+    MessageAPIModule
   ],
   providers: [
     AuthService,
@@ -14,7 +15,8 @@ import {NavigationService} from "../../components/navigation/navigation.service"
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+
   ]
 })
 export class AuthModule {

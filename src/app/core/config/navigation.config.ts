@@ -6,6 +6,7 @@ export const navigations: NavigationItem[] = [
     type: "group",
     title: "Applications",
     hidden: false,
+    by_society: false,
     children: [
       {
         id: 'dashboard',
@@ -14,6 +15,7 @@ export const navigations: NavigationItem[] = [
         icon: 'dashboard',
         link: '/dashboard',
         hidden: false,
+        by_society: false,
       },
       {
         id: 'booking',
@@ -23,6 +25,7 @@ export const navigations: NavigationItem[] = [
         icon: 'today',
         link: '/booking',
         hidden: false,
+        by_society: true,
       },
       {
         id: 'structure',
@@ -31,6 +34,7 @@ export const navigations: NavigationItem[] = [
         icon: 'settings',
         link: '/structure',
         hidden: false,
+        by_society: true,
       },
       {
         id: 'options',
@@ -39,6 +43,7 @@ export const navigations: NavigationItem[] = [
         icon: 'view_module',
         link: '/options',
         hidden: false,
+        by_society: false,
       },
       {
         id: 'subscription',
@@ -47,6 +52,7 @@ export const navigations: NavigationItem[] = [
         icon: 'all_out',
         link: '/subscription',
         hidden: false,
+        by_society: false,
       },
       {
         id: 'profile',
@@ -55,6 +61,7 @@ export const navigations: NavigationItem[] = [
         icon: 'account_circle',
         link: '/profile',
         hidden: false,
+        by_society: false,
       }
     ]
   },
@@ -63,6 +70,7 @@ export const navigations: NavigationItem[] = [
     type: "group",
     title: "Administration",
     hidden: false,
+    by_society: false,
     children: [
       {
         id: 'gestion-diverses',
@@ -70,6 +78,7 @@ export const navigations: NavigationItem[] = [
         type: 'collapsable',
         icon: 'account_circle',
         hidden: false,
+        by_society: false,
         children: [
           {
             id: 'gestion-categorie',
@@ -77,13 +86,7 @@ export const navigations: NavigationItem[] = [
             type: 'basic',
             link: "/admin/gestion/categories",
             hidden: false,
-          },
-          {
-            id: 'gestion-categorie',
-            title: 'Gestion catégories',
-            type: 'basic',
-            link: "/profile",
-            hidden: false,
+            by_society: false,
           }
         ]
       }

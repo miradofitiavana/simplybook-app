@@ -7,10 +7,11 @@ export interface NavigationItem {
     | 'collapsable'
     | 'group';
   // hidden?: (item: NavigationItem) => boolean;
-  hidden?:boolean;
+  hidden?: boolean;
   active?: boolean;
-  disabled?:boolean;
+  disabled?: boolean;
   link?: string;
+  by_society: boolean;
   classes?: {
     title?: string;
     subtitle?: string;

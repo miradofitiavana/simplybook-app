@@ -29,6 +29,9 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
         this.societes = value.societes;
         if (!this._workspaceService.currentWorkspace && this.societes.length > 0) {
           this._workspaceService.workspace = this.societes[0].uuid;
+          this._workspaceService.currentWorkspace = this.societes[0].uuid;
+        } else {
+          this._workspaceService.workspace = this._workspaceService.currentWorkspace;
         }
       });
 

@@ -9,11 +9,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
+import {MatSelectModule} from "@angular/material/select";
+import {MatChipsModule} from "@angular/material/chips";
+import {StructureResolver} from "./structure.resolver";
 
 const routes: Routes = [
   {
     path: '',
     component: StructureComponent,
+    resolve: {
+      data: StructureService,
+      categories: StructureResolver
+    }
   }
 ];
 
@@ -29,7 +36,9 @@ const routes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
-    GooglePlaceModule
+    GooglePlaceModule,
+    MatSelectModule,
+    MatChipsModule
   ],
   providers: [
     StructureService

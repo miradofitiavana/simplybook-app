@@ -8,6 +8,7 @@ import {NavigationBasicComponent} from "./components/basic/basic.component";
 import {NavigationService} from "./navigation.service";
 import {NavigationGroupComponent} from "./components/group/group.component";
 import {NavigationCollapsableComponent} from "./components/collapsable/collapsable.component";
+import {WorkspaceService} from "../../core/societe/workspace.service";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {NavigationCollapsableComponent} from "./components/collapsable/collapsab
     RouterModule
   ],
   providers: [
-    NavigationService
+    NavigationService,
+    WorkspaceService
   ]
 })
 export class NavigationModule {
