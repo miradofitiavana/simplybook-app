@@ -1,52 +1,62 @@
-.mat-button, .mat-button-base, .mat-raised-button, .mat-icon-button, .mat-stroked-button, .mat-flat-button, .mat-fab, .mat-mini-fab {
-  @apply rounded-button #{!important};
-  @apply py-1 #{!important};
-  @apply px-4 #{!important};
-  transition: .3s all;
-  min-height: 48px;
-
-  .mat-button-focus-overlay {
-    background-color: rgb(148, 163, 184, .2) !important;
+.mat-button,
+.mat-button-base,
+.mat-raised-button,
+.mat-icon-button,
+.mat-stroked-button,
+.mat-flat-button,
+.mat-fab,
+.mat-mini-fab {
+  &:not(.mat-calendar-next-button),
+  &:not(.mat-calendar-previous-button) {
+    @apply rounded-button #{!important};
+    @apply py-1 #{!important};
+    @apply px-4 #{!important};
     transition: .3s all;
-  }
+    min-height: 48px;
 
-  &:not(.mat-icon-button) {
-    .mat-icon {
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
+    .mat-button-focus-overlay {
+      background-color: rgb(148, 163, 184, .2) !important;
+      transition: .3s all;
     }
-  }
 
-  &:not([color]):not(.mat-button-disabled) {
-    &:hover {
-      .mat-button-focus-overlay {
-        opacity: 1 !important;
+    &:not(.mat-icon-button) {
+      .mat-icon {
+        font-size: 20px;
+        height: 20px;
+        width: 20px;
       }
     }
-  }
 
-  &[color="default"] {
-    @apply text-black bg-default hover:bg-gray-200 disabled:bg-gray-100;
-  }
+    &:not([color]):not(.mat-button-disabled) {
+      &:hover {
+        .mat-button-focus-overlay {
+          opacity: 1 !important;
+        }
+      }
+    }
 
-  &[color="primary"] {
-    @apply text-white bg-blue-500 hover:bg-blue-700 disabled:bg-blue-200;
-  }
+    &[color="default"] {
+      @apply text-black bg-default hover:bg-gray-200 disabled:bg-gray-100;
+    }
 
-  &[color="gray"] {
-    @apply text-white bg-gray-800 hover:bg-gray-900 disabled:bg-gray-200;
-  }
+    &[color="primary"] {
+      @apply text-white bg-blue-500 hover:bg-blue-700 disabled:bg-blue-200;
+    }
 
-  &.mat-button-mini {
-    min-width: 0 !important;
-    line-height: 1 !important;
-    min-height: 0 !important;
-  }
+    &[color="gray"] {
+      @apply text-white bg-gray-800 hover:bg-gray-900 disabled:bg-gray-200;
+    }
 
-  &.mat-button-disabled {
-    color: #00000042;
-    background: #0000;
+    &.mat-button-mini {
+      min-width: 0 !important;
+      line-height: 1 !important;
+      min-height: 0 !important;
+    }
+
+    &.mat-button-disabled {
+      color: #00000042;
+      background: #0000;
+    }
   }
 }
 

@@ -7,9 +7,9 @@
 
   .mat-form-field-flex {
     @apply relative flex items-stretch rounded-menu border-default bg-white;
-    min-height: 48px;
-    padding: 0 16px;
-    border-width: 1px;
+    min-height: 48px !important;
+    padding: 0 16px !important;
+    border-width: 1px !important;
   }
 
   .mat-form-field-infix {
