@@ -1,20 +1,20 @@
 import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MatDrawer} from "@angular/material/sidenav";
 import {Subject} from "rxjs";
-import {LabelType, Options} from "@angular-slider/ngx-slider";
 
 @Component({
-  selector: 'settings',
-  templateUrl: './settings.component.html',
+  selector: 'configurations',
+  templateUrl: './configurations.component.html',
+  styleUrls: ['./configurations.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class SettingsComponent implements OnInit, OnDestroy {
+export class ConfigurationsComponent implements OnInit, OnDestroy {
 
   @ViewChild('drawer') drawer: MatDrawer;
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'week';
+  selectedPanel: string = 'special';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -27,13 +27,13 @@ export class SettingsComponent implements OnInit, OnDestroy {
         id: 'week',
         icon: 'event_note',
         title: 'Planning pour la semaine',
-        description: 'Configurez votre calendrier hebdomadaire par défaut. Si vous êtes fermé à un jour précis, définissez le jour dans "Planning des jours spéciaux".'
+        description: 'Configurez votre calendrier hebdomadaire par défaut. Définissez les cas exceptionnels dans "Planning des jours spéciaux".'
       },
       {
         id: 'special',
         icon: 'today',
         title: 'Planning des jours spéciaux',
-        description: 'Configurez ici votre calendrier annuel. Cliquez sur une date pour en définir les horaires.'
+        description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
       }
     ];
   }
@@ -59,5 +59,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   trackByFn(index: number, item: any): any {
     return item.id || index;
   }
+
 
 }

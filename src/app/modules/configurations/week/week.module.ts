@@ -1,32 +1,34 @@
 import {NgModule} from '@angular/core';
-
-import {SettingsWeekComponent} from './week.component';
+import {WeekComponent} from './week.component';
+import {LoadingModule} from "../../../components/loading/loading.module";
 import {SharedModule} from "../../../shared/shared.module";
-import {SettingsWeekService} from "./week.service";
-import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {SettingsWeekSliderModule} from "../../../components/settings-week-slider/settings-week-slider.module";
+import {NgxSliderModule} from "@angular-slider/ngx-slider";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterModule} from "@angular/router";
 
 @NgModule({
+  declarations: [
+    WeekComponent
+  ],
   imports: [
     SharedModule,
     MatSlideToggleModule,
     SettingsWeekSliderModule,
     NgxSliderModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule,
+    LoadingModule
   ],
   exports: [
-    SettingsWeekComponent
-  ],
-  declarations: [
-    SettingsWeekComponent
+    WeekComponent
   ],
   providers: [
-    SettingsWeekService
-  ],
+    WeekComponent
+  ]
 })
-export class SettingsWeekModule {
+export class WeekModule {
 }

@@ -1,21 +1,25 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LabelType, Options} from "@angular-slider/ngx-slider";
+import {FormControl, FormGroup} from "@angular/forms";
 import {SettingsWeek} from "../../../core/models/settings-week.types";
+import {ActivatedRoute} from "@angular/router";
+import {WeekService} from "./week.service";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'settings-week',
-  templateUrl: 'week.component.html',
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './week.component.html',
+  styleUrls: ['./week.component.scss']
 })
+export class WeekComponent implements OnInit, OnDestroy {
 
-export class SettingsWeekComponent implements OnInit, OnDestroy {
-
-  disabled: boolean = false;
   options: Options = {
     floor: 0,
     ceil: 24,
     step: 1,
+    noSwitching: true,
+    minRange: 1,
+    pushRange: true,
     ticksArray: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24],
     translate: (value: number, label: LabelType): string => {
       switch (label) {
@@ -28,50 +32,65 @@ export class SettingsWeekComponent implements OnInit, OnDestroy {
       }
     }
   };
-
   disabledOptions: Options = {
     ...this.options,
     disabled: true
   }
 
   weekForm: FormGroup;
-  week: SettingsWeek = {
-    uuid: "",
-    lundi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    mardi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    mercredi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    jeudi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    vendredi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    samedi: {
-      isActive: true,
-      values: [9, 18]
-    },
-    dimanche: {
-      isActive: false,
-      values: [9, 18]
-    },
-  };
+  week: SettingsWeek = null;
+  saving: boolean = false;
+  private _unsubscribeAll: Subject<any>;
 
-  constructor() {
-
+  constructor(
+    private _route: ActivatedRoute,
+    private _weekService: WeekService
+  ) {
+    this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit() {
+    this._weekService.getHoraires(this._route.snapshot.params['uuid'])
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(
+        value => {
+          this.week = value;
+        },
+        error => {
+        },
+        () => {
+          this.initForm();
+        }
+      );
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribeAll.next(null);
+    this._unsubscribeAll.complete();
+  }
+
+  saveSettingsWeek(): void {
+    if (this.weekForm.invalid) {
+      return;
+    }
+
+    this.saving = true;
+    this._weekService.updateHoraires(this.week.uuid, this.weekForm.value)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(
+        value => {
+          this.week = value.datas;
+        },
+        error => {
+        },
+        () => {
+          this.saving = false;
+          this.initForm();
+        }
+      );
+  }
+
+  private initForm(): void {
     this.weekForm = new FormGroup({
       uuid: new FormControl(this.week?.uuid),
       lundi: new FormGroup({
@@ -103,12 +122,5 @@ export class SettingsWeekComponent implements OnInit, OnDestroy {
         values: new FormControl(this.week?.dimanche.values),
       })
     });
-  }
-
-  ngOnDestroy(): void {
-  }
-
-  saveSettingsWeek() :void{
-
   }
 }

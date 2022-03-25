@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { SettingsService } from './settings.service';
+import { WeekService } from './week.service';
 
-describe('OptionsService', () => {
-  let service: SettingsService;
+describe('WeekService', () => {
+  let service: WeekService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SettingsService);
+    service = TestBed.inject(WeekService);
   });
 
   it('should be created', () => {

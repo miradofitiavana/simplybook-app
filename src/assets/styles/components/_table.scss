@@ -24,4 +24,14 @@ table {
       }
     }
   }
+
+  &.table-v2 {
+    th {
+      @apply bg-gray-50;
+    }
+
+    td {
+      @apply bg-gray-100;
+    }
+  }
 }

@@ -34,17 +34,21 @@
 
     <mat-drawer-content class="flex flex-col">
       <div class="flex-auto px-6 pt-9 pb-12 md:p-8 md:pb-12 lg:p-12">
+
         <div class="flex items-center">
-          <div class="ml-2 lg:ml-0 text-2xl font-bold tracking-tight leading-none">
+          <div class="ml-2 lg:ml-0 text-3xl font-bold tracking-tight leading-none">
             {{getPanelInfo(selectedPanel).title}}
           </div>
         </div>
 
-        <div class="mt-8">
+        <div class="pt-8 h-full">
           <ng-container [ngSwitch]="selectedPanel">
-            <!-- Account -->
             <ng-container *ngSwitchCase="'week'">
               <settings-week></settings-week>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'special'">
+              <settings-special></settings-special>
             </ng-container>
           </ng-container>
         </div>

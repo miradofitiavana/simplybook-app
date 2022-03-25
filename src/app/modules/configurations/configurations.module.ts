@@ -1,25 +1,26 @@
 import {NgModule} from '@angular/core';
-import {SettingsComponent} from './settings.component';
-import {SharedModule} from "../../shared/shared.module";
-import {SettingsService} from "./settings.service";
+import {ConfigurationsComponent} from './configurations.component';
 import {RouterModule, Routes} from "@angular/router";
+import {SharedModule} from "../../shared/shared.module";
+import {ConfigurationsService} from "./configurations.service";
 import {MatTabsModule} from "@angular/material/tabs";
 import {PageHeaderModule} from "../../components/page-header/page-header.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
-import {SettingsWeekModule} from "./week/week.module";
+import {WeekModule} from "./week/week.module";
+import {SpecialModule} from "./special/special.module";
 
 const routes: Routes = [
   {
     path: '',
-    component: SettingsComponent,
+    component: ConfigurationsComponent,
   }
 ];
 
 @NgModule({
   declarations: [
-    SettingsComponent
+    ConfigurationsComponent
   ],
   imports: [
     SharedModule,
@@ -29,12 +30,12 @@ const routes: Routes = [
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
-
-    SettingsWeekModule
+    WeekModule,
+    SpecialModule,
   ],
   providers: [
-    SettingsService
+    ConfigurationsService
   ]
 })
-export class SettingsModule {
+export class ConfigurationsModule {
 }

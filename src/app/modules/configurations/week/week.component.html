@@ -1,4 +1,4 @@
-<form [formGroup]="weekForm">
+<form *ngIf="weekForm; else loading" [formGroup]="weekForm">
 
   <div class="flex items-center mb-4" formGroupName="lundi">
     <div class="max-w-36 w-36 mr-6 overflow-hidden">
@@ -71,10 +71,14 @@
   </div>
 
   <div class="w-full text-right mt-4">
-    <button (click)="saveSettingsWeek()" color="primary" mat-raised-button type="submit">
+    <button (click)="saveSettingsWeek()" [disabled]="saving" color="primary" mat-raised-button type="submit">
       <mat-icon>save</mat-icon>
       <span class="ml-2">Enregistrer</span>
     </button>
   </div>
 
 </form>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>
