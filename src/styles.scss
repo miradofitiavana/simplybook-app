@@ -10,6 +10,7 @@
 //@include mat.progress-spinner-theme(light.$simplybook-app-theme);
 @include mat.chips-theme(light.$simplybook-app-theme);
 @include mat.slide-toggle-theme(light.$simplybook-app-theme);
+@include mat.datepicker-theme(light.$simplybook-app-theme);
 //@include mat.button-theme(light.$simplybook-app-theme);
 
 @tailwind base;

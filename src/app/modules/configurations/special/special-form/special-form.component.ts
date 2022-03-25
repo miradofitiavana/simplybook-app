@@ -16,6 +16,11 @@ export class SpecialFormComponent implements OnInit {
     {value: 'ouverture', viewValue: 'Ouverture'},
     {value: 'fermeture', viewValue: 'Fermeture'}
   ];
+  statuts: Array<any> = [
+    {value: 'active', viewValue: 'Actif'},
+    {value: 'inactive', viewValue: 'Inactif'},
+    {value: 'draft', viewValue: 'Brouillon'}
+  ];
 
   constructor(
     public matDialogRef: MatDialogRef<SpecialFormComponent>,

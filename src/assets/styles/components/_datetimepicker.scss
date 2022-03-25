@@ -1,0 +1,14 @@
+.mat-datepicker-content {
+  .ngx-mat-timepicker-table {
+    width: 100%;
+
+    .mat-form-field {
+      max-width: none !important;
+      width: auto !important;
+
+      .mat-form-field-wrapper {
+        margin: 0;
+      }
+    }
+  }
+}

@@ -18,7 +18,42 @@
         Veuillez seléctionner le type de votre journée spéciale.
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <input [ngxMatDatetimePicker]="picker1" formControlName="dateFrom"
+             matInput placeholder="Choose a date">
+      <mat-datepicker-toggle [for]="$any(picker1)" matSuffix></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker1></ngx-mat-datetime-picker>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <input [ngxMatDatetimePicker]="picker2" formControlName="dateTo"
+             matInput placeholder="Choose a date">
+      <mat-datepicker-toggle [for]="$any(picker2)" matSuffix></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #picker2></ngx-mat-datetime-picker>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Statut</mat-label>
+      <mat-select formGroupName="statut" placeholder="Statut de la journée spéciale">
+        <mat-option *ngFor="let type of statuts" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formSpecial.get('statut').hasError('required')">
+        Veuillez seléctionner le statut de votre journée spéciale.
+      </mat-error>
+    </mat-form-field>
   </div>
+
+  <!--  <ngx-mat-timepicker-->
+  <!--    formControlName="dateFrom" [disabled]="disabled"-->
+  <!--    [showSpinners]="showSpinners"-->
+  <!--    [stepHour]="stepHour" [stepMinute]="stepMinute"-->
+  <!--    [stepSecond]="stepSecond"-->
+  <!--    [showSeconds]="showSeconds">-->
+  <!--  </ngx-mat-timepicker>
+  -->
 
   <div class="flex items-center justify-end" mat-dialog-actions>
     <button mat-flat-button>
