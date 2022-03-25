@@ -1,0 +1,29 @@
+<form [formGroup]="formSpecial">
+  <div class="items-center justify-between" mat-dialog-title>
+    <span>{{title}}</span>
+    <button (click)="closeDialog()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Type de la journée spéciale</mat-label>
+      <mat-select formGroupName="type" placeholder="Type de la journée spéciale">
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="formSpecial.get('type').hasError('required')">
+        Veuillez seléctionner le type de votre journée spéciale.
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="flex items-center justify-end" mat-dialog-actions>
+    <button mat-flat-button>
+      Enregistrer
+    </button>
+  </div>
+
+</form>

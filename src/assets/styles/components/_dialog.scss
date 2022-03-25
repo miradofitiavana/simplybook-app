@@ -1,0 +1,20 @@
+.mat-dialog-container {
+  @apply bg-white;
+  padding: 0 !important;
+  min-height: 30vh;
+  min-width: 50vw;
+
+  .mat-dialog {
+    &-title {
+      @apply p-4 bg-gray-800 text-white flex m-0
+    }
+
+    &-content {
+      @apply m-0;
+    }
+
+    &-actions {
+      @apply m-0 px-4;
+    }
+  }
+}
