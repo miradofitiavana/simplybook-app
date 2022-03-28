@@ -61,17 +61,21 @@
     <div>
       <div [ngSwitch]="view">
         <mwl-calendar-month-view
+          (beforeViewRender)="beforeMonthViewRender($event)"
           *ngSwitchCase="'month'"
           [activeDayIsOpen]="activeDayIsOpen"
+          [cellTemplate]="customCellTemplate"
           [events]="events"
           [refresh]="refresh"
-          [viewDate]="viewDate">
+          [viewDate]="viewDate"
+          [weekStartsOn]="1">
+          >
         </mwl-calendar-month-view>
         <!--          (dayClicked)="dayClicked($event.day)"-->
         <!--          (eventClicked)="editEvent('edit', $event.event)"-->
         <!--          (eventTimesChanged)="eventTimesChanged($event)"-->
-        <!--          (beforeViewRender)="beforeMonthViewRender($event)">-->
         <mwl-calendar-week-view
+          (beforeViewRender)="beforeWeekViewRender($event)"
           *ngSwitchCase="'week'"
           [events]="events"
           [refresh]="refresh"
@@ -81,6 +85,7 @@
           <!--          (eventTimesChanged)="eventTimesChanged($event)"-->
         </mwl-calendar-week-view>
         <mwl-calendar-day-view
+          (beforeViewRender)="beforeDayViewRender($event)"
           *ngSwitchCase="'day'"
           [events]="events"
           [refresh]="refresh"
@@ -93,3 +98,16 @@
     </div>
   </div>
 </div>
+
+<ng-template #customCellTemplate let-day="day" let-locale="locale">
+  <div class="cal-cell-top">
+    <!--    <span *ngIf="day.badgeTotal > 0" class="cal-day-badge"-->
+    <!--    >{{ day.badgeTotal }}</span-->
+    <!--    >-->
+    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+  </div>
+
+  <ng-container *ngIf="day.events.length>0">
+    <small style="margin: 5px">There are {{ day.events.length }} events on this day</small>
+  </ng-container>
+</ng-template>

@@ -25,4 +25,8 @@ export class SpecialService {
   updateHoraires(id: string | number, datas: SettingsSpecial): Observable<any> {
     return this._httpClient.put(`${API}/societes-horaires-special/${id}`, datas);
   }
+
+  insertHoraires(datas: SettingsSpecial): Observable<any> {
+    return this._httpClient.post(`${API}/societes-horaires-special`, datas);
+  }
 }

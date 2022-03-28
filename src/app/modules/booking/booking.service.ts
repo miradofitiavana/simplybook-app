@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
 import {addDays, addHours, endOfDay, endOfMonth, startOfDay, subDays} from "date-fns";
+import {Observable} from "rxjs";
+import {API} from "../../core/config/api.config";
+import {HttpClient} from "@angular/common/http";
 
 
 const data = [
@@ -91,10 +94,16 @@ const data = [
 })
 export class BookingService {
 
-  constructor() {
+  constructor(
+    private _httpClient: HttpClient,
+  ) {
   }
 
-  getEvents() {
-    return data[0].data;
+  getEvents(): Observable<any> {
+    return this._httpClient.get(`${API}/events`);
   }
+
+  // getEvents() {
+  //   return data[0].data;
+  // }
 }

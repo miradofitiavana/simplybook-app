@@ -57,14 +57,18 @@ export class SpecialComponent implements OnInit, OnDestroy {
   addSpecial(): void {
     const dialogRef = this._dialog.open(SpecialFormComponent, {
       data: {
-        action: 'add'
+        action: 'add',
+        uuid: this._route.snapshot.params['uuid']
       },
       disableClose: true
     });
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        console.log(`Dialog result: ${result}`);
+        if (result[0] && result[0].length > 0) {
+          this.settings = result[0];
+          this.dataSource = new MatTableDataSource<SettingsSpecial>(this.settings);
+        }
       });
   }
 }

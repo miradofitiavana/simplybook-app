@@ -2,6 +2,7 @@ import {CalendarEventAction} from 'angular-calendar';
 import {endOfDay, startOfDay} from 'date-fns';
 
 export class CalendarEvent {
+  id: number | string;
   start: Date;
   end?: Date;
   title: string;
@@ -29,6 +30,7 @@ export class CalendarEvent {
    */
   constructor(data?) {
     data = data || {};
+    this.id = data.id || null;
     this.start = new Date(data.start) || startOfDay(new Date());
     this.end = new Date(data.end) || endOfDay(new Date());
     this.title = data.title || '';
@@ -42,11 +44,22 @@ export class CalendarEvent {
       afterEnd: data.resizable && data.resizable.afterEnd || true
     };
     this.actions = data.actions || [];
-    this.allDay = data.allDay || false;
+    this.allDay = this.isAllDay(data.allDay);
     this.cssClass = data.cssClass || '';
     this.meta = {
       location: data.meta && data.meta.location || '',
       notes: data.meta && data.meta.notes || ''
     };
+  }
+
+  isAllDay(allDay): boolean {
+    if (typeof allDay == "boolean") {
+      return allDay;
+    } else if (typeof allDay == "number") {
+      return allDay == 1;
+    } else {
+      return false;
+    }
+    return false;
   }
 }

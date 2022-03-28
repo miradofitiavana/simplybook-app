@@ -3,6 +3,8 @@
   padding: 0 !important;
   min-height: 30vh;
   min-width: 50vw;
+  width: 80vw !important;
+  max-width: 80vw !important;
 
   .mat-dialog {
     &-title {
