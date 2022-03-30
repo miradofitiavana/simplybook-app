@@ -14,7 +14,7 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'special';
+  selectedPanel: string = 'design';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -34,6 +34,12 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
         icon: 'today',
         title: 'Planning des jours spéciaux',
         description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
+      },
+      {
+        id: 'design',
+        icon: 'web',
+        title: 'Configuration du design',
+        description: ''
       }
     ];
   }

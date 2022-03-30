@@ -10,6 +10,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
 import {WeekModule} from "./week/week.module";
 import {SpecialModule} from "./special/special.module";
+import {DesignModule} from "./design/design.module";
 
 const routes: Routes = [
   {
@@ -22,17 +23,18 @@ const routes: Routes = [
   declarations: [
     ConfigurationsComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    MatTabsModule,
-    PageHeaderModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    WeekModule,
-    SpecialModule,
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        MatTabsModule,
+        PageHeaderModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        WeekModule,
+        SpecialModule,
+        DesignModule,
+    ],
   providers: [
     ConfigurationsService
   ]
