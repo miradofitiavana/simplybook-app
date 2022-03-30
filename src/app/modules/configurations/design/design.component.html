@@ -16,12 +16,29 @@
 
   <div class="py-5">
     <h2>Paramètres de thèmes supplémentaires</h2>
-    <div>
+    <div class="flex flex-col gap-6">
       <div>
         <span>Image du logo</span>
-        <div (click)="uploadImage()"
-             class="bg-white w-fit p-2 mt-1 rounded-container border border-gray-100 hover:border-white hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
-          <img [src]="logoSelected" class="w-16"/>
+        <div class="flex gap-4 mt-2 items-center">
+          <div (click)="uploadImage('logo_url')"
+               class="bg-white w-fit p-2 mt-1 rounded-container border border-gray-100 hover:border-white hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
+            <img [src]="logoSelected" class="w-16 h-16 object-contain"/>
+          </div>
+          <mat-radio-group class="flex flex-col items-start gap-3" formControlName="logo_preference">
+            <mat-radio-button value="image">Afficher uniquement le logo</mat-radio-button>
+            <mat-radio-button value="name">Afficher uniquement le nom</mat-radio-button>
+            <mat-radio-button value="both">Afficher le logo et le nom</mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
+
+      <div>
+        <span>Image de la bannière</span>
+        <div class="mt-2">
+          <div (click)="uploadImage('banner_url')"
+               class="bg-white w-fit p-2 mt-1 rounded-container border border-gray-100 hover:border-white hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
+            <img [src]="bannerSelected" class="h-40 w-64 object-cover"/>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UtilsService} from "../../../../shared/utils.service";
 
 @Component({
@@ -16,10 +16,14 @@ export class DesignUploadComponent implements OnInit {
   selectedFile: File;
   imageSelected: any = "/assets/img/image-upload.svg";
 
+  type: string = '';
+
   constructor(
     public matDialogRef: MatDialogRef<DesignUploadComponent>,
-    private _utilsService: UtilsService
+    private _utilsService: UtilsService,
+    @Inject(MAT_DIALOG_DATA) private _data: any,
   ) {
+    this.type = _data.typeDialog;
   }
 
   ngOnInit() {
@@ -44,8 +48,6 @@ export class DesignUploadComponent implements OnInit {
     reader.onloadend = () => {
       this.imageSelected = this._utilsService.getSafeUrl(reader.result);
     };
-    // this.fileName = this.fileReupload.name;
-    console.log(this.selectedFile);
   }
 
   onUpload() {

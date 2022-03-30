@@ -29,12 +29,13 @@ export class DesignComponent implements OnInit, OnDestroy {
     }
   ];
 
+  design: SettingsDesign = null;
   designForm: FormGroup;
   saving: boolean = false;
-  logoSelected: any = "/assets/img/image-placeholder.svg";
   progress = 0;
 
-  design: SettingsDesign = null;
+  logoSelected: any = "/assets/img/image-placeholder.svg";
+  bannerSelected: any = "/assets/img/image-placeholder.svg";
 
   private _unsubscribeAll: Subject<any>;
   private uuid: string = "";
@@ -57,6 +58,7 @@ export class DesignComponent implements OnInit, OnDestroy {
           this.design = value;
           this.initForm();
           this.logoSelected = this.design?.logo_url ? `${NORMAL}/storage/${this.design?.logo_url}` : this.logoSelected;
+          this.bannerSelected = this.design?.banner_url ? `${NORMAL}/storage/${this.design?.banner_url}` : this.bannerSelected;
         },
         error => {
         },
@@ -68,7 +70,9 @@ export class DesignComponent implements OnInit, OnDestroy {
   initForm(): void {
     this.designForm = new FormGroup({
       'design_version': new FormControl(this.design.design_version),
-      'logo': new FormControl(null),
+      'logo_url': new FormControl(null),
+      'logo_preference': new FormControl(this.design.logo_preference ? this.design.logo_preference : 'image'),
+      'banner_url': new FormControl(null),
     });
   }
 
@@ -78,10 +82,13 @@ export class DesignComponent implements OnInit, OnDestroy {
   }
 
   saveDesignWeek(): void {
-    const formData = new FormData();
+    let formData = new FormData();
+    // formData = this._utilsService.toFormData(this.designForm.value);
     formData.append("design_version", `${this.designForm.get('design_version').value}`);
     formData.append("uuid", this.uuid);
-    if (this.designForm.get('logo').value) formData.append("logo", this.designForm.get('logo').value, this.designForm.get('logo').value.name);
+    if (this.designForm.get('logo_url').value) formData.append("logo_url", this.designForm.get('logo_url').value, this.designForm.get('logo_url').value.name);
+    formData.append("logo_preference", `${this.designForm.get('logo_preference').value}`);
+    if (this.designForm.get('banner_url').value) formData.append("banner_url", this.designForm.get('banner_url').value, this.designForm.get('banner_url').value.name);
 
     let headers = new Headers();
     headers.append('Content-Type', 'image/png');
@@ -91,20 +98,17 @@ export class DesignComponent implements OnInit, OnDestroy {
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round((100 * event.loaded) / event.total);
-          console.log(this.progress);
         }
         if (event.type === HttpEventType.Response) {
-          console.log(event.body);
-          // this.signup.reset();
+          console.log(event.body); // this.signup.reset();
         }
       });
   }
 
-  uploadImage(): void {
+  uploadImage(type: string): void {
     const dialogRef = this._dialog.open(DesignUploadComponent, {
       data: {
-        // action: 'add',
-        // uuid: this._route.snapshot.params['uuid']
+        typeDialog: type
       },
       disableClose: true
     });
@@ -112,12 +116,16 @@ export class DesignComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result) {
-          console.log(result);
-          this.designForm.get('logo').setValue(result[0]);
+          this.designForm.get(type).setValue(result[0]);
           let reader = new FileReader();
           reader.readAsDataURL(result[0]);
           reader.onloadend = () => {
-            this.logoSelected = this._utilsService.getSafeUrl(reader.result);
+            if (type == 'logo_url') {
+              this.logoSelected = this._utilsService.getSafeUrl(reader.result);
+            }
+            if (type == 'banner_url') {
+              this.bannerSelected = this._utilsService.getSafeUrl(reader.result);
+            }
           };
         }
       });
