@@ -1,9 +1,12 @@
 import {Injectable} from '@angular/core';
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Injectable()
 export class UtilsService {
 
-  constructor() {
+  constructor(
+    private sanitizer: DomSanitizer,
+  ) {
   }
 
   randomId(length: number = 10): string {
@@ -15,5 +18,20 @@ export class UtilsService {
     }
 
     return name;
+  }
+
+  toFormData<T>(formValue: T) {
+    const formData = new FormData();
+
+    for (const key of Object.keys(formValue)) {
+      const value = formValue[key];
+      formData.append(key, value);
+    }
+
+    return formData;
+  }
+
+  getSafeUrl(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 }

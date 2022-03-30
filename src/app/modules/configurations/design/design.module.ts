@@ -7,6 +7,9 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatIconModule} from "@angular/material/icon";
 import {SharedModule} from "../../../shared/shared.module";
 import {MatButtonModule} from "@angular/material/button";
+import {DesignUploadComponent} from "./design-upload/design-upload.component";
+import {MatDialogModule} from "@angular/material/dialog";
+import {LoadingModule} from "../../../components/loading/loading.module";
 
 @NgModule({
     imports: [
@@ -14,13 +17,16 @@ import {MatButtonModule} from "@angular/material/button";
         MatButtonToggleModule,
         MatIconModule,
         SharedModule,
-        MatButtonModule
+        MatButtonModule,
+        MatDialogModule,
+        LoadingModule
     ],
   exports: [
     DesignComponent
   ],
   declarations: [
-    DesignComponent
+    DesignComponent,
+    DesignUploadComponent
   ],
   providers: [
     DesignService
