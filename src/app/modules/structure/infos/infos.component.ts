@@ -57,6 +57,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
   }
 
   handleAddressChange(result: Address) {
+    console.log(result);
     this.societeForm.get('autocomplete').setValue(result.formatted_address);
     this.societeForm.get('adresse').setValue(result.name);
     result.address_components.forEach(value => {
@@ -130,6 +131,8 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       code_postal: new FormControl(this.societe?.code_postal, [Validators.required]),
       autocomplete: new FormControl(""),
       adresse_complement: new FormControl(this.societe?.adresse_complement),
+      lng: new FormControl(this.societe?.lng),
+      lat: new FormControl(this.societe?.lat),
       descr: new FormControl(this.societe?.descr, [Validators.required]),
     });
   }

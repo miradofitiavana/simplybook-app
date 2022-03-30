@@ -8,15 +8,9 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class OrganismeHeaderComponent implements OnInit {
 
-  show: boolean = false
-
   constructor() {
   }
 
   ngOnInit(): void {
-  }
-
-  showMenu() {
-    this.show = !this.show
   }
 }

@@ -5,6 +5,7 @@ import {OrganismeLayoutComponent} from "./organisme.component";
 import {OrganismeHeaderModule} from "../../../components/organisme-header/organisme-header.module";
 import {OrganismeFooterModule} from "../../../components/organisme-footer/organisme-footer.module";
 
+
 @NgModule({
   declarations: [
     OrganismeLayoutComponent

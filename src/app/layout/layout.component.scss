@@ -19,4 +19,10 @@ layout {
     flex: 1 1 auto;
     width: 100%;
   }
+
+  organisme-layout {
+    router-outlet + * {
+      display: block;
+    }
+  }
 }

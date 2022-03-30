@@ -3,6 +3,7 @@ import {BookingComponent} from './booking.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../../shared/shared.module";
 import {BookingService} from "./booking.service";
+import {OrganismesModule} from "../organismes.module";
 
 const routes: Routes = [
   {
@@ -19,9 +20,10 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
+    OrganismesModule
   ],
   providers: [
-    BookingService
+    BookingService,
   ]
 })
 export class BookingModule {

@@ -3,13 +3,16 @@ import {HomeComponent} from './home.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../../shared/shared.module";
 import {HomeService} from "./home.service";
-import {OrganismeFooterModule} from "../../../components/organisme-footer/organisme-footer.module";
+import {GoogleMapsModule} from "@angular/google-maps";
+import {OrganismesModule} from "../organismes.module";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    resolve: {}
+    resolve: {
+      datas: HomeService
+    }
   }
 ];
 
@@ -20,7 +23,8 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    OrganismeFooterModule
+    GoogleMapsModule,
+    OrganismesModule
   ],
   providers: [
     HomeService

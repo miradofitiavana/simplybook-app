@@ -8,6 +8,8 @@ export interface Societe {
   ville: string;
   code_postal: string;
   adresse_complement: string;
+  lng?: number;
+  lat?: number;
   descr: string;
   created_at: Date;
   updated_at: Date;
