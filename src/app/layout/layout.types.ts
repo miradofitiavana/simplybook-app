@@ -1,3 +1,4 @@
 export type Layout =
-	| 'empty'
-	| 'classic';
+  | 'empty'
+  | 'classic'
+  | 'organisme';

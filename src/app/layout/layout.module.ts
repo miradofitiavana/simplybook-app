@@ -4,10 +4,12 @@ import {LayoutComponent} from './layout.component';
 import {SharedModule} from "../shared/shared.module";
 import {EmptyLayoutModule} from "./layouts/empty/empty.module";
 import {ClassicLayoutModule} from "./layouts/classic/classic.module";
+import {OrganismeLayoutModule} from "./layouts/organisme/organisme.module";
 
 const layoutModules = [
   EmptyLayoutModule,
-  ClassicLayoutModule
+  ClassicLayoutModule,
+  OrganismeLayoutModule
 ];
 
 @NgModule({

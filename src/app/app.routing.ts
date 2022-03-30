@@ -82,9 +82,37 @@ export const appRoutes: Routes = [
         path: 'sign-up',
         loadChildren: () => import('app/modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule)
       },
+    ]
+  },
+
+  {
+    path: '',
+    component: LayoutComponent,
+    data: {
+      layout: 'empty'
+    },
+    children: [
       {
         path: 'home',
         loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.HomeModule)
+      },
+    ]
+  },
+
+  {
+    path: 'organismes',
+    component: LayoutComponent,
+    data: {
+      layout: 'organisme'
+    },
+    children: [
+      {
+        path: ':id/home',
+        loadChildren: () => import('app/modules/organismes/home/home.module').then(m => m.HomeModule)
+      },
+      {
+        path: ':id/booking',
+        loadChildren: () => import('app/modules/organismes/booking/booking.module').then(m => m.BookingModule)
       },
     ]
   },

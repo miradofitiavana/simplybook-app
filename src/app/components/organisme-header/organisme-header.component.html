@@ -1,0 +1,68 @@
+<!--<nav class="flex justify-around py-4 bg-white/80-->
+<!--            backdrop-blur-md shadow-md w-full-->
+<!--            fixed top-0 left-0 right-0 z-10">-->
+
+<!--  &lt;!&ndash; Logo Container &ndash;&gt;-->
+<!--  <div class="flex items-center">-->
+<!--    &lt;!&ndash; Logo &ndash;&gt;-->
+<!--    <a class="cursor-pointer">-->
+<!--      <h3 class="text-2xl font-medium text-blue-500">-->
+<!--        <img alt="Store Logo"-->
+<!--             class="h-10 object-cover" src="https://stackoverflow.design/assets/img/logos/so/logo-stackoverflow.svg">-->
+<!--      </h3>-->
+<!--    </a>-->
+<!--  </div>-->
+
+<!--  &lt;!&ndash; Links Section &ndash;&gt;-->
+<!--  <div class="items-center hidden space-x-8 lg:flex">-->
+<!--    <a class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">Home</a>-->
+<!--    <a class="flex text-gray-600 cursor-pointer transition-colors duration-300 font-semibold text-blue-600">Themes</a>-->
+<!--    <a class="flex text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300">Developers</a>-->
+<!--  </div>-->
+
+<!--  <div class="flex items-center space-x-5">-->
+<!--    <button mat-flat-button>-->
+<!--      <mat-icon>today</mat-icon>-->
+<!--      <span class="ml-3 font-bold">Réserver</span>-->
+<!--    </button>-->
+<!--  </div>-->
+<!--</nav>-->
+
+<nav class="w-full bg-gray-100 md:shadow-md sticky top-0 z-50">
+  <div class="app-content mx-auto px-6 flex items-center justify-between">
+    <div aria-label="Home" class="flex items-center" role="img">
+      <img alt="logo"
+           class="cursor-pointer w-8 sm:w-auto"
+           src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg1.svg"/>
+      <p class="ml-2 lg:ml-4 text-base lg:text-2xl font-bold text-gray-800">The North</p>
+    </div>
+    <div>
+      <button (click)="showMenu()"
+              class="sm:block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+        <img alt="show" class="h-8 w-8"
+             src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg4.svg"/>
+
+      </button>
+      <div [ngClass]="(show? 'md:block lg:block':'md:block lg:block hidden')">
+        <button (click)="showMenu()"
+                class="block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 fixed focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white md:bg-transparent z-30 top-0 mt-3">
+          <img alt="hide" class="h-8 w-8"
+               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg5.svg"/>
+
+        </button>
+        <ul
+          class="flex text-3xl md:text-base items-center py-8 md:py-5 md:flex flex-col md:flex-row justify-center fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
+          <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+            <a href="javascript:void(0)">Company</a>
+          </li>
+          <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+            <a href="javascript:void(0)">Features</a>
+          </li>
+          <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+            <a href="javascript:void(0)">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
