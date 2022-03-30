@@ -5,6 +5,10 @@
   transition: .3s all;
   min-height: 48px;
 
+  .mat-button-wrapper {
+    line-height: 48px;
+  }
+
   .mat-button-focus-overlay {
     background-color: rgb(148, 163, 184, .2) !important;
     transition: .3s all;
@@ -42,6 +46,11 @@
     min-width: 0 !important;
     line-height: 1 !important;
     min-height: 0 !important;
+    padding: 0 !important;
+  }
+
+  &.mat-button-width {
+    min-width: 150px !important;
   }
 
   &.mat-icon-button {

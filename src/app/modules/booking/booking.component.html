@@ -10,104 +10,57 @@
       </div>
     </ng-container>
     <ng-container headerRight>
-      <div>
-        <div class="w-full">
-          <button (viewDateChange)="selectedDay = {date:$event}"
-                  [(viewDate)]="viewDate"
-                  aria-label="Today"
-                  mat-icon-button
-                  matTooltip="Today" mwlCalendarToday>
-            <mat-icon>today</mat-icon>
-          </button>
+      <!--      <div>-->
+      <!--        <div class="w-full">-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}"-->
+      <!--                  [(viewDate)]="viewDate"-->
+      <!--                  aria-label="Today"-->
+      <!--                  mat-icon-button-->
+      <!--                  matTooltip="Today" mwlCalendarToday>-->
+      <!--            <mat-icon>today</mat-icon>-->
+      <!--          </button>-->
 
 
-          <button (click)="view=MONTH" aria-label="Vue par mois" mat-icon-button matTooltip="Vue par mois">
-            <mat-icon>view_module</mat-icon>
-          </button>
-          <button (click)="view=WEEK" aria-label="Vue par semaine" mat-icon-button matTooltip="Vue par semaine">
-            <mat-icon>view_week</mat-icon>
-          </button>
-          <button (click)="view=DAY" aria-label="Vue par jour" mat-icon-button matTooltip="Vue par jour">
-            <mat-icon>view_day</mat-icon>
-          </button>
+      <!--          <button (click)="view=MONTH" aria-label="Vue par mois" mat-icon-button matTooltip="Vue par mois">-->
+      <!--            <mat-icon>view_module</mat-icon>-->
+      <!--          </button>-->
+      <!--          <button (click)="view=WEEK" aria-label="Vue par semaine" mat-icon-button matTooltip="Vue par semaine">-->
+      <!--            <mat-icon>view_week</mat-icon>-->
+      <!--          </button>-->
+      <!--          <button (click)="view=DAY" aria-label="Vue par jour" mat-icon-button matTooltip="Vue par jour">-->
+      <!--            <mat-icon>view_day</mat-icon>-->
+      <!--          </button>-->
 
-        </div>
-        <div class="w-full flex items-center justify-center">
-          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"
-                  [view]="view"
-                  aria-label="Previous"
-                  class="arrow"
-                  mat-icon-button
-                  mwlCalendarPreviousView>
-            <mat-icon>chevron_left</mat-icon>
-          </button>
-          <div class="title">
-            {{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}
-          </div>
-          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"
-                  [view]="view"
-                  aria-label="Next"
-                  class="arrow"
-                  mat-icon-button
-                  mwlCalendarNextView>
-            <mat-icon>chevron_right</mat-icon>
-          </button>
-        </div>
-      </div>
+      <!--        </div>-->
+      <!--        <div class="w-full flex items-center justify-center">-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"-->
+      <!--                  [view]="view"-->
+      <!--                  aria-label="Previous"-->
+      <!--                  class="arrow"-->
+      <!--                  mat-icon-button-->
+      <!--                  mwlCalendarPreviousView>-->
+      <!--            <mat-icon>chevron_left</mat-icon>-->
+      <!--          </button>-->
+      <!--          <div class="title">-->
+      <!--            {{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}-->
+      <!--          </div>-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"-->
+      <!--                  [view]="view"-->
+      <!--                  aria-label="Next"-->
+      <!--                  class="arrow"-->
+      <!--                  mat-icon-button-->
+      <!--                  mwlCalendarNextView>-->
+      <!--            <mat-icon>chevron_right</mat-icon>-->
+      <!--          </button>-->
+      <!--        </div>-->
+      <!--      </div>-->
     </ng-container>
   </page-header>
 
   <div class="bg-transparent flex-1 flex flex-col justify-between">
-    <div>
-      <div [ngSwitch]="view">
-        <mwl-calendar-month-view
-          (beforeViewRender)="beforeMonthViewRender($event)"
-          *ngSwitchCase="'month'"
-          [activeDayIsOpen]="activeDayIsOpen"
-          [cellTemplate]="customCellTemplate"
-          [events]="events"
-          [refresh]="refresh"
-          [viewDate]="viewDate"
-          [weekStartsOn]="1">
-          >
-        </mwl-calendar-month-view>
-        <!--          (dayClicked)="dayClicked($event.day)"-->
-        <!--          (eventClicked)="editEvent('edit', $event.event)"-->
-        <!--          (eventTimesChanged)="eventTimesChanged($event)"-->
-        <mwl-calendar-week-view
-          (beforeViewRender)="beforeWeekViewRender($event)"
-          *ngSwitchCase="'week'"
-          [events]="events"
-          [refresh]="refresh"
-          [viewDate]="viewDate"
-        >
-          <!--          (eventClicked)="editEvent('edit', $event.event)"-->
-          <!--          (eventTimesChanged)="eventTimesChanged($event)"-->
-        </mwl-calendar-week-view>
-        <mwl-calendar-day-view
-          (beforeViewRender)="beforeDayViewRender($event)"
-          *ngSwitchCase="'day'"
-          [events]="events"
-          [refresh]="refresh"
-          [viewDate]="viewDate"
-        >
-          <!--          (eventClicked)="editEvent('edit', $event.event)"-->
-          <!--          (eventTimesChanged)="eventTimesChanged($event)"-->
-        </mwl-calendar-day-view>
-      </div>
+    <div class="bg-white">
+      <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+
     </div>
   </div>
 </div>
-
-<ng-template #customCellTemplate let-day="day" let-locale="locale">
-  <div class="cal-cell-top">
-    <!--    <span *ngIf="day.badgeTotal > 0" class="cal-day-badge"-->
-    <!--    >{{ day.badgeTotal }}</span-->
-    <!--    >-->
-    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
-  </div>
-
-  <ng-container *ngIf="day.events.length>0">
-    <small style="margin: 5px">There are {{ day.events.length }} events on this day</small>
-  </ng-container>
-</ng-template>

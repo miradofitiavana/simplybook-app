@@ -2,12 +2,15 @@ import {NgModule} from '@angular/core';
 import {BookingComponent} from "./booking.component";
 import {SharedModule} from "../../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
-import {CalendarModule, DateAdapter} from "angular-calendar";
-import {adapterFactory} from 'angular-calendar/date-adapters/date-fns';
 import {PageHeaderModule} from "../../components/page-header/page-header.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {BookingService} from "./booking.service";
+import {FullCalendarModule} from "@fullcalendar/angular";
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
 
 const routes: Routes = [
   {
@@ -16,6 +19,13 @@ const routes: Routes = [
   }
 ];
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+]);
+
 @NgModule({
   declarations: [
     BookingComponent
@@ -23,13 +33,10 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     SharedModule,
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     PageHeaderModule,
     MatIconModule,
     MatButtonModule,
+    FullCalendarModule
   ],
   providers: [
     BookingService

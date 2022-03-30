@@ -1,14 +1,7 @@
-import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {startOfDay} from 'date-fns';
-import {CalendarEvent} from "../../core/models/calendar-event.model";
-import {Subject} from "rxjs";
+import {ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {BookingService} from "./booking.service";
-import {
-  CalendarDayViewBeforeRenderEvent,
-  CalendarMonthViewBeforeRenderEvent,
-  CalendarView,
-  CalendarWeekViewBeforeRenderEvent
-} from "angular-calendar";
+import {CalendarOptions, FullCalendarComponent} from '@fullcalendar/angular';
+import {ActivatedRoute} from "@angular/router"; // useful for typechecking
 
 @Component({
   selector: 'booking',
@@ -16,87 +9,51 @@ import {
   styleUrls: ['./booking.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: [
-    `
-      .cal-month-view .bg-pink,
-      .cal-week-view .cal-day-columns .bg-pink,
-      .cal-day-view .bg-pink {
-        background-color: hotpink !important;
-      }
-    `,
-  ],
 })
-export class BookingComponent {
-
-  view: CalendarView;
-  viewDate: Date;
-  events: CalendarEvent[];
-  refresh: Subject<any> = new Subject();
-  activeDayIsOpen: boolean;
-  selectedDay: any;
-
-  MONTH: CalendarView = CalendarView.Month;
-  DAY: CalendarView = CalendarView.Day;
-  WEEK: CalendarView = CalendarView.Week;
+export class BookingComponent implements OnInit {
+  @ViewChild('calendar') calendarComponent: FullCalendarComponent;
+  isVisible = false;
+  eventFromApiPush = [];
+  calendarOptions: CalendarOptions = {
+    locale: 'fr',
+    firstDay: 1,
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    },
+    initialView: 'dayGridMonth',
+    events: [],
+    weekends: true,
+    editable: true,
+    selectable: true,
+    dayMaxEvents: true,
+    height: 'auto',
+    businessHours: [],
+    // showNonCurrentDates: false,
+    fixedWeekCount: false
+  };
 
   constructor(
+    private _route: ActivatedRoute,
     private _bookingService: BookingService
   ) {
-    this.selectedDay = {date: startOfDay(new Date())};
 
-    this.view = this.MONTH;
-    this.viewDate = new Date();
-    this.events = [];
-    this._bookingService.getEvents()
-      .subscribe((value => {
-        console.log(value);
-        value.datas.forEach(data => {
-          this.events.push(new CalendarEvent(data));
-          // console.log(data);
-        })
-        this.refresh.next(true);
-        // this.events = as CalendarEvent[];
-        // console.log(this.events);
-        console.log(this.events);
-      }));
   }
 
-  beforeMonthViewRender(renderEvent: CalendarMonthViewBeforeRenderEvent): void {
-    renderEvent.body.forEach((day) => {
-      const dayOfMonth = day.date.getDate();
-      // console.log(dayOfMonth);
-      if (dayOfMonth > 5 && dayOfMonth < 10 && day.inMonth) {
-        day.cssClass = 'disabled-day';
-        // console.log("here");
-      }
-    });
-  }
-
-  beforeWeekViewRender(renderEvent: CalendarWeekViewBeforeRenderEvent) {
-    renderEvent.hourColumns.forEach((hourColumn) => {
-      hourColumn.hours.forEach((hour) => {
-        hour.segments.forEach((segment) => {
-          if (
-            segment.date.getHours() >= 2 &&
-            segment.date.getHours() <= 5 &&
-            segment.date.getDay() === 2
-          ) {
-            segment.cssClass = 'bg-pink';
-          }
-        });
+  ngOnInit(): void {
+    this._bookingService.getEvents(this._route.snapshot.params['uuid'])
+      .subscribe((values) => {
+        let cal = this.calendarComponent.getApi();
+        cal.removeAllEvents();
+        this.eventFromApiPush = values.events;
+        cal.setOption('businessHours', values.indisponibilites);
+        cal.setOption('events', values.events);
       });
-    });
   }
 
-  beforeDayViewRender(renderEvent: CalendarDayViewBeforeRenderEvent) {
-    renderEvent.hourColumns.forEach((hourColumn) => {
-      hourColumn.hours.forEach((hour) => {
-        hour.segments.forEach((segment) => {
-          if (segment.date.getHours() >= 2 && segment.date.getHours() <= 5) {
-            segment.cssClass = 'bg-pink';
-          }
-        });
-      });
-    });
+  handleDateClick(arg) {
+    console.log('date click! ' + arg.dateStr)
   }
+
 }

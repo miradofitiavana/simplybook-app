@@ -5,7 +5,7 @@ import {NoAuthGuard} from './core/auth/guards/noAuth.guard';
 
 export const appRoutes: Routes = [
 
-  {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
+  {path: '', pathMatch: 'full', redirectTo: 'home'},
 
   {path: 'signed-in-redirect', pathMatch: 'full', redirectTo: 'dashboard'},
 
@@ -82,12 +82,12 @@ export const appRoutes: Routes = [
         path: 'sign-up',
         loadChildren: () => import('app/modules/authentication/sign-up/sign-up.module').then(m => m.SignUpModule)
       },
-      // {
-      //   path: 'profile',
-      //   loadChildren: () => import('app/modules/profile/profile.module').then(m => m.ProfileModule)
-      // },
+      {
+        path: 'home',
+        loadChildren: () => import('app/modules/landing/home/home.module').then(m => m.HomeModule)
+      },
     ]
   },
 
-  {path: '**', redirectTo: 'sign-in'},
+  {path: '**', redirectTo: 'home'},
 ];

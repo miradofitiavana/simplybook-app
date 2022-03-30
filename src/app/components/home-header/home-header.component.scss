@@ -1,0 +1,12 @@
+.shadow-box  {
+  height: 96%;
+  position: absolute;
+  z-index: 0;
+  width: 200%;
+  top: 0;
+  left: auto;
+  right: -10%;
+  border-radius: 0 0 90% 50%;
+  -webkit-box-shadow: 18px 25px 46px 0 rgb(86 153 196 / 8%);
+  box-shadow: 18px 25px 46px 0 rgb(86 153 196 / 8%);
+}

@@ -3,7 +3,7 @@
 @use "./assets/styles/theme/light";
 @use "./assets/styles/theme/global";
 
-@import "../node_modules/angular-calendar/css/angular-calendar.css";
+//@import "../node_modules/angular-calendar/css/angular-calendar.css";
 
 @include mat.core(global.$simplybook-app-config);
 @include mat.core-theme(light.$simplybook-app-theme);

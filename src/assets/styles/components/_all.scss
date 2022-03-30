@@ -29,6 +29,10 @@
 
 @layer base {
   .text-primary {
+    @apply text-blue-500;
+  }
+
+  .text-accent {
     @apply text-gray-800;
   }
 
