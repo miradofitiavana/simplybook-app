@@ -9,6 +9,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class BookingComponent implements OnInit {
   permalink: string = "";
+  data: any;
 
   constructor(
     private _route: ActivatedRoute,

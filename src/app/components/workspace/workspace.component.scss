@@ -53,19 +53,20 @@
       top: -4px;
       left: -4px;
       border: 2px solid;
-      @apply border-blue-500;
+      @apply border-gray-100;
       border-radius: 13px;
       opacity: 0;
       transition: all .2s cubic-bezier(.25, .46, .45, .94);
     }
 
-    &--active, &:not(.workspace__item--add) {
+    &--active:not(.workspace__item--add) {
       width: 34px;
       height: 34px;
       margin-bottom: 31px;
 
       &:before {
         opacity: 1;
+        @apply border-blue-500;
       }
     }
 

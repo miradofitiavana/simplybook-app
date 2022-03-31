@@ -28,9 +28,12 @@
 
   <ul class="workspace__list">
     <li (click)="selectWorkspace(societe)" *ngFor="let societe of societes" [matTooltip]="societe.nom"
-        class="workspace__item workspace__item--active" matTooltipClass="workspace__tooltip"
+        [ngClass]="{'workspace__item--active':current_workspace==societe.uuid}"
+        [ngStyle]="{'background-image':'url('+getBgWorkspace(societe)+')'}"
+        class="workspace__item"
+        matTooltipClass="workspace__tooltip"
         matTooltipPosition="right"
-        style="background-image: url('https://app.joinly.com/assets/img/logo-placeholder.png');"></li>
+    ></li>
     <li class="workspace__item workspace__item--add">
       <mat-icon>add</mat-icon>
     </li>

@@ -1,17 +1,15 @@
-<organisme-v1 [permalink]="permalink">
+<organisme-v1>
   <ng-container header>
     <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
       <h1
-        class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center text-white font-bold leading-tight">
-        The Freedom to Create the Pages You Want</h1>
+        class="!text-2xl !sm:text-3xl !md:text-4xl !lg:text-5xl !xl:text-6xl text-center text-white !font-bold leading-tight">{{data?.nom}}</h1>
     </div>
-    <div class="flex justify-center items-center mb-10 sm:mb-20">
-      <a [routerLink]="'/organismes/'+permalink+'/booking'"
-         class="hover:text-white hover:bg-transparent lg:text-xl hover:border-white border bg-white transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700	focus:ring-white rounded text-indigo-700 px-4 sm:px-8 py-1 sm:py-3 text-sm">
+    <div class="flex justify-center items-center mb-10 sm:mb-20 gap-4">
+      <a class="mat-button-width" [routerLink]="'/organismes/'+permalink+'/booking'" color="default" mat-flat-button>
         Réserver
       </a>
-      <button
-        class="hover:bg-white hover:text-indigo-600 lg:text-xl hover:border-indigo-600 ml-3 sm:ml-6 bg-transparent transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 ring-offset-indigo-700 focus:ring-white hover:bg-indigo-700-800 rounded border border-white text-white px-4 sm:px-8 py-1 sm:py-3 text-sm">
+      <button class="mat-button-border mat-button-border--white mat-button-text--white"
+              mat-flat-button>
         Afficher sur la carte
       </button>
     </div>

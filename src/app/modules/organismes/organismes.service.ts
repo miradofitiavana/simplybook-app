@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 
 @Injectable()
 export class OrganismesService {
 
-  viewVersionChanged: Subject<any>;
+  onOrganismeDataChanged: BehaviorSubject<any>;
 
   constructor() {
-    this.viewVersionChanged = new Subject<any>();
-    this.viewVersionChanged.next('v2');
+    this.onOrganismeDataChanged = new BehaviorSubject<any>({});
   }
 }

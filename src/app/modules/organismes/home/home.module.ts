@@ -5,6 +5,7 @@ import {SharedModule} from "../../../shared/shared.module";
 import {HomeService} from "./home.service";
 import {GoogleMapsModule} from "@angular/google-maps";
 import {OrganismesModule} from "../organismes.module";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   {
@@ -24,7 +25,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
     GoogleMapsModule,
-    OrganismesModule
+    OrganismesModule,
+    MatButtonModule
   ],
   providers: [
     HomeService

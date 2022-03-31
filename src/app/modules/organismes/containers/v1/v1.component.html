@@ -2,10 +2,14 @@
   <nav class="w-full bg-gray-100 md:shadow-md sticky top-0 z-50">
     <div class="app-content mx-auto px-6 flex items-center justify-between">
       <div aria-label="Home" class="flex items-center" role="img">
-        <img alt="logo"
-             class="cursor-pointer w-8 sm:w-auto"
-             src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg1.svg"/>
-        <p class="ml-2 lg:ml-4 text-base lg:text-2xl font-bold text-gray-800">The North</p>
+        <img *ngIf="v1Data?.design.logo_preference != 'name' && v1Data?.design.logo_url"
+             [src]="getLogo()"
+             alt="logo" class="cursor-pointer w-8 h-10 sm:w-auto"/>
+        <p *ngIf="v1Data?.design.logo_preference != 'image' && v1Data?.nom"
+           [ngClass]="{'!ml-2 !lg:ml-4':v1Data?.design.logo_preference == 'both'}"
+           class="!mb-0 !text-base !lg:text-2xl font-bold text-gray-800">
+          {{v1Data?.nom}}
+        </p>
       </div>
       <div>
         <button (click)="showMenu()"

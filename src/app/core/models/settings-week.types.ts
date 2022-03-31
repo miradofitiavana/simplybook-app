@@ -1,7 +1,7 @@
 import {SettingsWeekDay} from "./settings-week-day.types";
 
 export interface SettingsWeek {
-  uuid: string;
+  uuid?: string;
   lundi: SettingsWeekDay;
   mardi: SettingsWeekDay;
   mercredi: SettingsWeekDay;

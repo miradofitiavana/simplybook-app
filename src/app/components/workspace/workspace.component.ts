@@ -3,6 +3,7 @@ import {UserService} from "../../core/user/user.service";
 import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../core/models/societe.types";
 import {WorkspaceService} from "../../core/societe/workspace.service";
+import {NORMAL} from "../../core/config/api.config";
 
 @Component({
   selector: 'workspace',
@@ -12,6 +13,7 @@ import {WorkspaceService} from "../../core/societe/workspace.service";
 })
 export class WorkspaceComponent implements OnInit, OnDestroy {
 
+  current_workspace: string = '';
   societes: Societe[] = [];
   private _unsubscribeAll: Subject<any>;
 
@@ -27,6 +29,7 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
         this.societes = value.societes;
+        console.log(this.societes);
         if (!this._workspaceService.currentWorkspace && this.societes.length > 0) {
           this._workspaceService.workspace = this.societes[0].uuid;
           this._workspaceService.currentWorkspace = this.societes[0].uuid;
@@ -39,6 +42,7 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
         console.log(value);
+        this.current_workspace = value;
       });
   }
 
@@ -52,4 +56,7 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
     this._workspaceService.workspace = societe.uuid;
   }
 
+  getBgWorkspace(societe: Societe) {
+    return societe?.design?.logo_url ? `${NORMAL}/storage/${societe?.design?.logo_url}` : 'https://app.joinly.com/assets/img/logo-placeholder.png';
+  }
 }

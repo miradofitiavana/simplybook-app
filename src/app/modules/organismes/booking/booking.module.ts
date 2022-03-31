@@ -4,6 +4,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../../shared/shared.module";
 import {BookingService} from "./booking.service";
 import {OrganismesModule} from "../organismes.module";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   {
@@ -17,11 +18,12 @@ const routes: Routes = [
   declarations: [
     BookingComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    OrganismesModule
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        OrganismesModule,
+        MatButtonModule
+    ],
   providers: [
     BookingService,
   ]

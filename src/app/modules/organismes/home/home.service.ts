@@ -3,6 +3,7 @@ import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/rou
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {API} from "../../../core/config/api.config";
+import {OrganismesService} from "../organismes.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class HomeService implements Resolve<any> {
   onHomeDataChanged: BehaviorSubject<any>;
 
   constructor(
-    private _httpClient: HttpClient
+    private _httpClient: HttpClient,
+    private _organismesService: OrganismesService
   ) {
     this.onHomeDataChanged = new BehaviorSubject<any>({});
   }
@@ -38,6 +40,7 @@ export class HomeService implements Resolve<any> {
         .subscribe((response: any) => {
           this.homeData = response.datas;
           this.onHomeDataChanged.next(this.homeData);
+          this._organismesService.onOrganismeDataChanged.next(this.homeData);
           resolve(response);
         }, reject);
     });

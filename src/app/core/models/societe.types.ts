@@ -1,4 +1,5 @@
 import {Categorie} from "./categorie.types";
+import {SettingsDesign} from "./settings-design.type";
 
 export interface Societe {
   uuid?: string;
@@ -14,4 +15,5 @@ export interface Societe {
   created_at: Date;
   updated_at: Date;
   categories: Categorie[];
+  design?: SettingsDesign;
 }

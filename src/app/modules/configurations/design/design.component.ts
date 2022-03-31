@@ -20,12 +20,14 @@ export class DesignComponent implements OnInit, OnDestroy {
     {
       value: 'v1',
       valueDisplay: 'v1',
-      image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/inspiration/1.png'
+      // image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/inspiration/1.png'
+      image: 'https://fakeimg.pl/250x100/'
     },
     {
       value: 'v2',
       valueDisplay: 'v2',
-      image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/air/1.png'
+      // image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/air/1.png'
+      image: 'https://fakeimg.pl/250x100/'
     }
   ];
 
@@ -83,7 +85,6 @@ export class DesignComponent implements OnInit, OnDestroy {
 
   saveDesignWeek(): void {
     let formData = new FormData();
-    // formData = this._utilsService.toFormData(this.designForm.value);
     formData.append("design_version", `${this.designForm.get('design_version').value}`);
     formData.append("uuid", this.uuid);
     if (this.designForm.get('logo_url').value) formData.append("logo_url", this.designForm.get('logo_url').value, this.designForm.get('logo_url').value.name);
@@ -115,7 +116,7 @@ export class DesignComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result) {
+        if (result && result.length > 0) {
           this.designForm.get(type).setValue(result[0]);
           let reader = new FileReader();
           reader.readAsDataURL(result[0]);
