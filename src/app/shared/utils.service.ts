@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
+import {AbstractControl} from "@angular/forms";
 
 @Injectable()
 export class UtilsService {
@@ -7,6 +8,15 @@ export class UtilsService {
   constructor(
     private sanitizer: DomSanitizer,
   ) {
+  }
+
+  removeFormControlError(control: AbstractControl, errorName: string) {
+    if (control?.errors && control?.errors[errorName]) {
+      delete control.errors[errorName];
+      if (Object.keys(control.errors).length === 0) {
+        control.setErrors(null);
+      }
+    }
   }
 
   randomId(length: number = 10): string {
