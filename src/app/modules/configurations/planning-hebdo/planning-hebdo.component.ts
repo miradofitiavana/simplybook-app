@@ -6,6 +6,7 @@ import {PlanningHebdoService} from "./planning-hebdo.service";
 import {PlanningDay} from "../../../core/models/planning-day.types";
 import {PlanningHebdo} from "../../../core/models/planning-hebdo.types";
 import {UtilsService} from "../../../shared/utils.service";
+import {HttpEventType} from "@angular/common/http";
 
 @Component({
   selector: 'planning-hebdo',
@@ -92,10 +93,12 @@ export class PlanningHebdoComponent implements OnInit, OnDestroy {
   }
 
   savePlanningHebdo(): void {
+
     if (this.planningForm.invalid) {
-      console.log(this.planningForm);
       return;
     }
+
+    this.saving = true;
 
     let formData = [];
     let formValue = this.planningForm.value;
@@ -115,7 +118,22 @@ export class PlanningHebdoComponent implements OnInit, OnDestroy {
         formData.push(planningObject);
       }
     });
-    console.log(formData);
+
+    this._planningHebdoService.updatePlanning(this._route.snapshot.params['uuid'], formData)
+      .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            let progress = Math.round((100 * event.loaded) / event.total);
+          }
+          if (event.type === HttpEventType.Response) {
+            // console.log(event.body); // this.signup.reset();
+          }
+        },
+        (error) => {
+
+        },
+        () => {
+          this.saving = false;
+        });
   }
 
   intervals(day: string): FormArray {

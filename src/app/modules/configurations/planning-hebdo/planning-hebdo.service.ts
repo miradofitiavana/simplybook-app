@@ -14,4 +14,11 @@ export class PlanningHebdoService {
   getPlanning(uuid: string): Observable<any> {
     return this._httpClient.get(`${API}/planning/${uuid}`)
   }
+
+  updatePlanning(uuid: string, datas: any): Observable<any> {
+    return this._httpClient.put(`${API}/planning/${uuid}`, datas, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
 }

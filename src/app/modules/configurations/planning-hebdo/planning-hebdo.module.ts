@@ -10,6 +10,7 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {LoadingModule} from "../../../components/loading/loading.module";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {LoadingModule} from "../../../components/loading/loading.module";
     MatSlideToggleModule,
     MatButtonModule,
     MatIconModule,
-    LoadingModule
+    LoadingModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     PlanningHebdoComponent
