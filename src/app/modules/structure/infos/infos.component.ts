@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {Categorie} from "../../../core/models/categorie.types";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../../core/models/societe.types";
 import {Address} from "ngx-google-places-autocomplete/objects/address";
@@ -113,6 +113,30 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       );
   }
 
+  telephones(): FormArray {
+    return this.societeForm.get('telephones') as FormArray;
+  }
+
+  emails(): FormArray {
+    return this.societeForm.get('emails') as FormArray;
+  }
+
+  addTelephone(): void {
+    this.telephones().push(this.newTelephoneForm());
+  }
+
+  addEmail(): void {
+    this.emails().push(this.newEmailForm());
+  }
+
+  removeTelephone(index: number): void {
+    this.telephones().removeAt(index);
+  }
+
+  removeEmail(index: number): void {
+    this.emails().removeAt(index);
+  }
+
   private removeFirst<T>(array: T[], toRemove: T): void {
     const index = array.indexOf(toRemove);
     if (index !== -1) {
@@ -134,6 +158,38 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       lng: new FormControl(this.societe?.lng),
       lat: new FormControl(this.societe?.lat),
       descr: new FormControl(this.societe?.descr, [Validators.required]),
+      telephones: new FormArray([]),
+      emails: new FormArray([])
     });
+    this.initTelephones(this.societe?.telephones);
+    this.initEmails(this.societe?.emails);
+  }
+
+  private newTelephoneForm(phone?: string): FormControl {
+    return new FormControl(phone ? phone : '');
+  }
+
+  private newEmailForm(email?: string): FormControl {
+    return new FormControl(email ? email : '');
+  }
+
+  private initTelephones(telephones: any) {
+    if (telephones && telephones.length > 0) {
+      telephones.forEach((tel) => {
+        this.telephones().push(this.newTelephoneForm(tel));
+      });
+    } else {
+      this.telephones().push(this.newTelephoneForm());
+    }
+  }
+
+  private initEmails(emails: any) {
+    if (emails && emails.length > 0) {
+      emails.forEach((tel) => {
+        this.emails().push(this.newEmailForm(tel));
+      });
+    } else {
+      this.emails().push(this.newEmailForm());
+    }
   }
 }

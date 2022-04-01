@@ -39,6 +39,40 @@
       </mat-error>
     </mat-form-field>
 
+    <div class="w-1/2">
+      <div class="mat-form-field mb-4">
+        <label class="mb-2 block font-semibold">Téléphones</label>
+        <div class="flex flex-col gap-1.5" formArrayName="telephones">
+          <div *ngFor="let song of telephones().controls; let i=index" class="flex gap-1.5">
+            <input [formControlName]="i" class="mat-form-field-flex" type="text"/>
+            <button (click)="addTelephone()" [disabled]="telephones().controls.length>=4" mat-icon-button>
+              <mat-icon>add</mat-icon>
+            </button>
+            <button (click)="removeTelephone(i)" [disabled]="telephones().controls.length<=1" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w-1/2">
+      <div class="mat-form-field mb-4">
+        <label class="mb-2 block font-semibold">Emails</label>
+        <div class="flex flex-col gap-1.5" formArrayName="emails">
+          <div *ngFor="let song of emails().controls; let i=index" class="flex gap-1.5">
+            <input [formControlName]="i" class="mat-form-field-flex" type="text"/>
+            <button (click)="addEmail()" [disabled]="emails().controls.length>=4" mat-icon-button>
+              <mat-icon>add</mat-icon>
+            </button>
+            <button (click)="removeEmail(i)" [disabled]="emails().controls.length<=1" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <mat-form-field appearance="fill" class="w-full">
       <mat-label>Adresse Autocomplete</mat-label>
       <input #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" [options]='options'

@@ -16,4 +16,6 @@ export interface Societe {
   updated_at: Date;
   categories: Categorie[];
   design?: SettingsDesign;
+  telephones?: Array<string>;
+  emails?: Array<string>;
 }
