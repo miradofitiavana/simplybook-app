@@ -14,7 +14,7 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'planning-hebdo';
+  selectedPanel: string = 'schedule';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -29,23 +29,29 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
         title: 'Planning hebdomadaire',
         description: 'Configurer vos heures hebdomadaires.'
       },
-      {
-        id: 'week',
-        icon: 'event_note',
-        title: 'Planning pour la semaine',
-        description: 'Configurez votre calendrier hebdomadaire par défaut. Définissez les cas exceptionnels dans "Planning des jours spéciaux".'
-      },
-      {
-        id: 'special',
-        icon: 'today',
-        title: 'Planning des jours spéciaux',
-        description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
-      },
+      // {
+      //   id: 'week',
+      //   icon: 'event_note',
+      //   title: 'Planning pour la semaine',
+      //   description: 'Configurez votre calendrier hebdomadaire par défaut. Définissez les cas exceptionnels dans "Planning des jours spéciaux".'
+      // },
+      // {
+      //   id: 'special',
+      //   icon: 'today',
+      //   title: 'Planning des jours spéciaux',
+      //   description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
+      // },
       {
         id: 'design',
         icon: 'web',
         title: 'Configuration du design',
         description: ''
+      },
+      {
+        id: 'schedule',
+        icon: 'view_quilt',
+        title: "Paramètres de l'agenda",
+        description: 'Voulez-vous spécifier des paramètres fixes pour vos rendez-vous ?'
       }
     ];
   }

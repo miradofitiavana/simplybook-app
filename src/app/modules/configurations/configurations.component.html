@@ -43,20 +43,16 @@
 
         <div class="flex-1 pt-8">
           <ng-container [ngSwitch]="selectedPanel">
-            <ng-container *ngSwitchCase="'week'">
-              <settings-week></settings-week>
+            <ng-container *ngSwitchCase="'planning-hebdo'">
+              <planning-hebdo></planning-hebdo>
             </ng-container>
 
-            <ng-container *ngSwitchCase="'special'">
-              <settings-special></settings-special>
+            <ng-container *ngSwitchCase="'schedule'">
+              <schedule></schedule>
             </ng-container>
 
             <ng-container *ngSwitchCase="'design'">
               <settings-design></settings-design>
-            </ng-container>
-
-            <ng-container *ngSwitchCase="'planning-hebdo'">
-              <planning-hebdo></planning-hebdo>
             </ng-container>
           </ng-container>
         </div>

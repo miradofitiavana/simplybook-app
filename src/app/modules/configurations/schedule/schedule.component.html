@@ -1,0 +1,59 @@
+<form *ngIf="loaded; else loading" [formGroup]="scheduleForm" class="form-planning-hebdo flex flex-col gap-4">
+  <div class="flex flex-wrap justify-between">
+    <mat-form-field class="w-full">
+      <mat-label>Durée</mat-label>
+      <input (blur)="controlDuration(scheduleForm.get('duration'),'00:05','12:00')" formControlName="duration" matInput
+             type="time"/>
+      <mat-hint>Définissez la durée de vos créneaux. Celle-ci peut aller jusqu'à 12 heures.</mat-hint>
+      <mat-error *ngIf="scheduleForm.get('duration').hasError('duration_invalid')">
+        La durée de vos créneaux va de 05mn à 12h, merci de corriger.
+      </mat-error>
+    </mat-form-field>
+
+    <div class="w-full mt-4">
+      <div class="font-semibold mb-3">Vous souhaitez ajouter du temps avant ou après vos rendez-vous ?</div>
+      <div formGroupName="break_before">
+        <mat-slide-toggle (change)="toggleIsActive('break_before')" class="mb-2" formControlName="isActive">Avant
+        </mat-slide-toggle>
+        <mat-form-field class="w-full no-padding">
+          <input (blur)="controlDuration(break_before().get('time'),'05:00','03:00')" formControlName="time" matInput
+                 type="time"/>
+          <mat-hint>Définissez la durée de vos créneaux. Celle-ci peut aller jusqu'à 12 heures.</mat-hint>
+          <mat-error *ngIf="break_before().get('time').hasError('duration_invalid')">
+            La durée de vos temps de pause entre créneaux va de 05mn à 03h, merci de corriger.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div formGroupName="break_after">
+        <mat-slide-toggle (change)="toggleIsActive('break_after')" class="mb-2" formControlName="isActive">Avant
+        </mat-slide-toggle>
+        <mat-form-field class="w-full no-padding">
+          <input (blur)="controlDuration(break_after().get('time'),'05:00','03:00')" formControlName="time" matInput
+                 type="time"/>
+          <mat-hint>Définissez la durée de vos créneaux. Celle-ci peut aller jusqu'à 12 heures.</mat-hint>
+          <mat-error *ngIf="break_before().get('time').hasError('duration_invalid')">
+            La durée de vos temps de pause entre créneaux va de 05mn à 03h, merci de corriger.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="w-full text-right mt-4">
+      <button (click)="saveSchedule()" [disabled]="saving" color="primary" mat-raised-button type="submit">
+         <span class="flex items-center">
+          <mat-progress-spinner *ngIf="saving; else showIcon" [diameter]="24" [mode]="'indeterminate'"
+                                class="!flex"></mat-progress-spinner>
+          <ng-template #showIcon>
+            <mat-icon>save</mat-icon>
+          </ng-template>
+          <span class="ml-2">Enregistrer</span>
+           </span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>

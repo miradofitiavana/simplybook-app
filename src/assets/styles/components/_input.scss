@@ -5,6 +5,18 @@
     margin-bottom: 16px;
   }
 
+  &.no-padding {
+    .mat-form-field-wrapper {
+      margin-top: 0;
+    }
+  }
+
+  &.mat-form-field-disabled {
+    .mat-form-field-flex {
+      @apply bg-gray-200 opacity-80;
+    }
+  }
+
   .mat-form-field-flex {
     @apply relative flex items-stretch rounded-menu border-default bg-white;
     min-height: 48px !important;
@@ -80,7 +92,7 @@
     }
   }
 
-  .mat-datepicker-toggle-default-icon{
+  .mat-datepicker-toggle-default-icon {
     width: 100% !important;
   }
 }

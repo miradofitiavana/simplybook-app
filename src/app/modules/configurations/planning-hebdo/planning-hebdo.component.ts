@@ -207,16 +207,7 @@ export class PlanningHebdoComponent implements OnInit, OnDestroy {
     let toInt = parseInt(t[0]) * 60 + parseInt(t[1]);
     let total = fromInt + toInt;
     if (total >= 1440) total -= 1440;
-    return this.timeConvert(total);
-  }
-
-  private timeConvert(n): string {
-    let num = n;
-    let hours = (num / 60);
-    let rhours = Math.floor(hours);
-    let minutes = (hours - rhours) * 60;
-    let rminutes = Math.round(minutes);
-    return `${rhours.toString().padStart(2, "0")}:${rminutes.toString().padStart(2, "0")}`;
+    return this._utilsService.timeConvert(total);
   }
 
   private fromEstInferieurEgalTo(from: string, to: string): boolean {
@@ -227,24 +218,19 @@ export class PlanningHebdoComponent implements OnInit, OnDestroy {
     return fromInt <= toInt;
   }
 
-  private timeToMinutes(time: string): number {
-    let t = time.split(':');
-    return parseInt(t[0]) * 60 + parseInt(t[1]);
-  }
-
   private intervalsEnConflits(day: string, index: number): void {
     let currentIntervals = this.intervals(day);
     let currentGroup = currentIntervals.controls[index];
 
     if (currentGroup) {
       let currentGroupValues = currentGroup.value;
-      let fromI = this.timeToMinutes(currentGroupValues.hourFrom);
-      let toI = this.timeToMinutes(currentGroupValues.hourTo);
+      let fromI = this._utilsService.timeToMinutes(currentGroupValues.hourFrom);
+      let toI = this._utilsService.timeToMinutes(currentGroupValues.hourTo);
 
       for (let ind = 0; ind < currentIntervals.value.length; ind++) {
         let interval = currentIntervals.value[ind];
-        let from = this.timeToMinutes(interval.hourFrom);
-        let to = this.timeToMinutes(interval.hourTo);
+        let from = this._utilsService.timeToMinutes(interval.hourFrom);
+        let to = this._utilsService.timeToMinutes(interval.hourTo);
         if (ind != index) {
           if ((from < fromI && fromI < to) || (from < toI && toI < to)) {
             setTimeout(() => {
@@ -265,13 +251,13 @@ export class PlanningHebdoComponent implements OnInit, OnDestroy {
       let intervalOther = currentIntervals.controls[indOther];
       if (((currentGroup && indOther != index) || !currentGroup) && currentIntervals.controls.length > 1) {
         let currentConflit = intervalOther.value;
-        let fromCc = this.timeToMinutes(currentConflit.hourFrom);
-        let toCc = this.timeToMinutes(currentConflit.hourTo);
+        let fromCc = this._utilsService.timeToMinutes(currentConflit.hourFrom);
+        let toCc = this._utilsService.timeToMinutes(currentConflit.hourTo);
 
         for (let ind = 0; ind < currentIntervals.controls.length; ind++) {
           let interval = currentIntervals.controls[ind].value;
-          let from = this.timeToMinutes(interval.hourFrom);
-          let to = this.timeToMinutes(interval.hourTo);
+          let from = this._utilsService.timeToMinutes(interval.hourFrom);
+          let to = this._utilsService.timeToMinutes(interval.hourTo);
           if (ind != indOther) {
             if ((from < fromCc && fromCc < to) || (from < toCc && toCc < to)) {
               setTimeout(() => {

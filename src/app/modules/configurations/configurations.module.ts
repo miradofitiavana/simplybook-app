@@ -8,10 +8,9 @@ import {PageHeaderModule} from "../../components/page-header/page-header.module"
 import {MatIconModule} from "@angular/material/icon";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatButtonModule} from "@angular/material/button";
-import {WeekModule} from "./week/week.module";
-import {SpecialModule} from "./special/special.module";
 import {DesignModule} from "./design/design.module";
 import {PlanningHebdoModule} from "./planning-hebdo/planning-hebdo.module";
+import {ScheduleModule} from "./schedule/schedule.module";
 
 const routes: Routes = [
   {
@@ -24,19 +23,20 @@ const routes: Routes = [
   declarations: [
     ConfigurationsComponent
   ],
-    imports: [
-        SharedModule,
-        RouterModule.forChild(routes),
-        MatTabsModule,
-        PageHeaderModule,
-        MatIconModule,
-        MatSidenavModule,
-        MatButtonModule,
-        WeekModule,
-        SpecialModule,
-        DesignModule,
-        PlanningHebdoModule,
-    ],
+  imports: [
+    SharedModule,
+    RouterModule.forChild(routes),
+    MatTabsModule,
+    PageHeaderModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatButtonModule,
+    // WeekModule,
+    // SpecialModule,
+    DesignModule,
+    PlanningHebdoModule,
+    ScheduleModule
+  ],
   providers: [
     ConfigurationsService
   ]

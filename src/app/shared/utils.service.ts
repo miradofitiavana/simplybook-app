@@ -44,4 +44,21 @@ export class UtilsService {
   getSafeUrl(url) {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
+
+  /*
+  * TIME
+   */
+  timeToMinutes(time: string): number {
+    let t = time.split(':');
+    return parseInt(t[0]) * 60 + parseInt(t[1]);
+  }
+
+  timeConvert(n): string {
+    let num = n;
+    let hours = (num / 60);
+    let rhours = Math.floor(hours);
+    let minutes = (hours - rhours) * 60;
+    let rminutes = Math.round(minutes);
+    return `${rhours.toString().padStart(2, "0")}:${rminutes.toString().padStart(2, "0")}`;
+  }
 }
