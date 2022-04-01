@@ -1,0 +1,27 @@
+navigation-collapsable {
+  .navigation-item-arrow {
+    height: 20px;
+    line-height: 20px;
+    margin-left: auto;
+    transition: transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1),
+    color 375ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+
+  &.navigation-item-expanded {
+    .navigation-item-arrow {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.navigation-item-children {
+  .basic-item-link {
+    padding-left: 48px;
+
+    .navigation-item-title-wrapper {
+      > div {
+        font-weight: 600 !important;
+      }
+    }
+  }
+}

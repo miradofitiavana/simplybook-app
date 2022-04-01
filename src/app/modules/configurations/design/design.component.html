@@ -1,0 +1,65 @@
+<form *ngIf="designForm; else loading" [formGroup]="designForm">
+
+  <div class="py-5 border-t-2 border-b-2 border-white">
+    <h2>Choisir le modèle</h2>
+    <div>
+      <mat-button-toggle-group formControlName="design_version">
+        <mat-button-toggle *ngFor="let choice of choices" [value]="choice.value" aria-label="Text align left">
+          <img [ngClass]="designForm.get('design_version').value == choice.value ? 'border-4':'border-0'"
+               [src]="choice?.image"
+               class="w-56 h-40 object-cover transition-all duration-300 border-solid border-blue-300"/>
+          <span class="font-bold text-base">Design {{choice.valueDisplay}}</span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+  </div>
+
+  <div class="py-5 flex flex-row flex-wrap">
+    <div class="w-full lg:w-1/2 px-2">
+      <h2>Paramètres de thèmes supplémentaires</h2>
+      <div class="flex flex-col gap-6">
+        <div>
+          <span>Image du logo</span>
+          <div class="flex gap-4 mt-2 items-center">
+            <div (click)="uploadImage('logo_url')"
+                 class="bg-white w-fit p-2 mt-1 rounded-container border border-gray-100 hover:border-white hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
+              <img [src]="logoSelected" class="w-16 h-16 object-contain"/>
+            </div>
+            <mat-radio-group class="flex flex-col items-start gap-3" formControlName="logo_preference">
+              <mat-radio-button value="image">Afficher uniquement le logo</mat-radio-button>
+              <mat-radio-button value="name">Afficher uniquement le nom</mat-radio-button>
+              <mat-radio-button value="both">Afficher le logo et le nom</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+        <div>
+          <span>Image de la bannière</span>
+          <div class="mt-2">
+            <div (click)="uploadImage('banner_url')"
+                 class="bg-white w-fit p-2 mt-1 rounded-container border border-gray-100 hover:border-white hover:bg-gray-100 transition-colors duration-300 cursor-pointer">
+              <img [src]="bannerSelected" class="h-40 w-64 object-cover"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="w-full lg:w-1/2 px-2">
+      <h2>Paramètres de couleurs</h2>
+      <div class="flex flex-col gap-6">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full text-right mt-4">
+    <button (click)="saveDesignWeek()" [disabled]="saving" color="primary" mat-raised-button type="submit">
+      <mat-icon>save</mat-icon>
+      <span class="ml-2">Enregistrer</span>
+    </button>
+  </div>
+</form>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>

@@ -1,0 +1,42 @@
+<div class="navigation-wrapper overflow-hidden">
+  <div class="navigation-header">
+    <ng-content select="[navigationHeader]">
+    </ng-content>
+  </div>
+
+  <div #navigationContent class="navigation-content overflow-auto">
+    <div class="navigation-content-header">
+      <ng-content select="[navigationContentHeader]"></ng-content>
+    </div>
+
+    <ng-container *ngFor="let item of navigation; trackBy: trackByFn">
+      <ng-container *ngIf="!item.hidden">
+        <ng-container *ngIf="item.type === 'group'">
+          <navigation-group
+            [item]="item"
+            [name]="name"
+          ></navigation-group>
+        </ng-container>
+        <ng-container *ngIf="item.type === 'collapsable'">
+          <navigation-collapsable
+            [item]="item"
+            [name]="name"
+          ></navigation-collapsable>
+        </ng-container>
+        <ng-container *ngIf="item.type === 'basic'">
+          <navigation-basic
+            [item]="item"
+            [name]="name"></navigation-basic>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+
+    <div class="navigation-content-footer">
+      <ng-content select="[navigationContentFooter]"></ng-content>
+    </div>
+  </div>
+
+  <div class="navigation-footer">
+    <ng-content select="[navigationFooter]"></ng-content>
+  </div>
+</div>

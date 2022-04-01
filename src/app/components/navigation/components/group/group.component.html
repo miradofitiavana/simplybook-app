@@ -1,0 +1,46 @@
+<div
+  [class.navigation-item-has-subtitle]="!!item.subtitle"
+  [ngClass]="item.classes?.wrapper"
+  class="flex items-center w-full px-3 py-0.5 cursor-default">
+
+  <div class="p-3">
+
+    <ng-container *ngIf="item.icon">
+      <mat-icon [ngClass]="item.classes?.icon" class="navigation-item-icon">{{item.icon}}</mat-icon>
+    </ng-container>
+
+    <div class="navigation-item-title-wrapper">
+      <div class="item-title text-sm uppercase text-blue-300 font-bold">
+        <span [ngClass]="item.classes?.title">{{item.title}}</span>
+      </div>
+      <ng-container *ngIf="item.subtitle">
+        <div class="item-subtitle">
+          <span [ngClass]="item.classes?.subtitle">{{item.subtitle}}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>
+
+<ng-container *ngFor="let item of item.children; trackBy: trackByFn">
+  <ng-container *ngIf="!item.hidden">
+    <ng-container *ngIf="item.type === 'basic'">
+      <navigation-basic
+        [item]="item"
+        [name]="name"></navigation-basic>
+    </ng-container>
+
+    <ng-container *ngIf="item.type === 'collapsable'">
+      <navigation-collapsable
+        [item]="item"
+        [name]="name"></navigation-collapsable>
+    </ng-container>
+
+    <ng-container *ngIf="item.type === 'group'">
+      <navigation-group
+        [item]="item"
+        [name]="name"></navigation-group>
+    </ng-container>
+  </ng-container>
+</ng-container>

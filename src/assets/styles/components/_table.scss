@@ -1,0 +1,37 @@
+table.mat-table {
+  tr {
+    height: 56px !important;
+
+    th {
+      @apply bg-gray-100;
+      font-size: 14px !important;
+      font-weight: 600 !important;
+    }
+
+    td {
+      @apply bg-white;
+    }
+  }
+
+  tbody {
+    tr {
+      @apply cursor-pointer;
+
+      &:hover {
+        td {
+          @apply bg-gray-50 transition-all duration-300;
+        }
+      }
+    }
+  }
+
+  &.table-v2 {
+    th {
+      @apply bg-gray-50;
+    }
+
+    td {
+      @apply bg-gray-100;
+    }
+  }
+}

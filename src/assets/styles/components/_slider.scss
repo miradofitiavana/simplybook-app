@@ -1,0 +1,15 @@
+.ngx-slider {
+  &[disabled] {
+    .ngx-slider-pointer,
+    .ngx-slider-pointer::after,
+    .ngx-slider-model-value,
+    .ngx-slider-model-high{
+      opacity: 0 !important;
+    }
+
+    .ngx-slider-tick.ngx-slider-selected,
+    .ngx-slider-selection {
+      background-color: #d8e0f3 !important;
+    }
+  }
+}

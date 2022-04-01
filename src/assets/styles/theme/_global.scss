@@ -1,0 +1,6 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+$simplybook-app-config: mat.define-typography-config(
+  $font-family: "'Inter', sans-serif",
+);

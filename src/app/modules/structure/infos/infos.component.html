@@ -1,0 +1,81 @@
+<ng-container *ngIf="societeForm">
+  <form [formGroup]="societeForm" class="flex flex-row flex-wrap bg-white rounded-container p-4">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Login société (partie de l'URL, ne peut être modifié)</mat-label>
+      <input formControlName="permalink" matInput
+             placeholder="Login société (partie de l'URL, ne peut être modifié)"/>
+      <mat-error *ngIf="societeForm.get('permalink').hasError('required')">
+        Oups, vous avez oublié de remplir votre login
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Titre de votre page de réservation (nom de l'entreprise, par exemple)</mat-label>
+      <input formControlName="nom" matInput
+             placeholder="Titre de votre page de réservation (nom de l'entreprise, par exemple)"/>
+      <mat-error *ngIf="societeForm.get('nom').hasError('required')">
+        Veuillez entrer le nom de votre entreprise.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="w-full">
+      <mat-label>Veuillez choisir la catégorie de votre entreprise</mat-label>
+      <mat-select [compareWith]="compareCategories" formControlName="categories" multiple>
+        <mat-select-trigger>
+          <mat-chip-list>
+            <mat-chip (removed)="onCategorieRemoved(categorie)"
+                      *ngFor="let categorie of societeForm.get('categories').value" [removable]="true">
+              {{ categorie.categorie }}
+              <mat-icon matChipRemove>cancel</mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+        </mat-select-trigger>
+        <mat-option *ngFor="let categorie of allCategories"
+                    [value]="categorie">{{categorie.categorie}}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="societeForm.get('categories').hasError('required')">
+        Veuillez choisir au moins une catégorie. Si vous n'en trouvez aucune qui ne corresponde, veuillez
+        sélectionner 'Autres'.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Adresse Autocomplete</mat-label>
+      <input #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" [options]='options'
+             formControlName="autocomplete" matInput ngx-google-places-autocomplete
+             placeholder="Saisissez l'adresse de votre société."/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Ligne 1 Adresse</mat-label>
+      <input formControlName="adresse" matInput placeholder="Ligne 1 Adresse"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Ligne 2 Adresse</mat-label>
+      <input formControlName="adresse_complement" matInput placeholder="Ligne 2 Adresse"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full lg:w-1/3 pr-2">
+      <mat-label>Code Postal</mat-label>
+      <input formControlName="code_postal" matInput placeholder="Code Postal"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full lg:w-2/3 outline-offset-1 pl-2">
+      <mat-label>Ville</mat-label>
+      <input formControlName="ville" matInput placeholder="Ville"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Description de vos activités</mat-label>
+      <textarea formControlName="descr" matInput></textarea>
+    </mat-form-field>
+
+    <div class="w-full text-right">
+      <button (click)="saveStructure()" color="primary" mat-raised-button type="submit">
+        <mat-icon>save</mat-icon>
+        <span class="ml-2">Enregistrer</span>
+      </button>
+    </div>
+  </form>
+</ng-container>

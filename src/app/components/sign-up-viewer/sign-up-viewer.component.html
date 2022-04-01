@@ -1,0 +1,27 @@
+<div class="p-4 rounded-container bg-white sign-up-viewer">
+  <div class="border border-default bg-default rounded-container overflow-hidden">
+    <div class="flex flex-row align-middle p-1.5 gap-1.5">
+      <mat-icon>language</mat-icon>
+      <div class="bg-white flex-1 p-1 text-xs text-ellipsis w-full whitespace-nowrap overflow-hidden">{{permalink}}</div>
+      <div class="w-6"></div>
+    </div>
+    <div class="bg-white">
+      <div class="p-1.5">
+        <div class="bg-gray-900 text-xs text-white w-fit p-0.5">LOGO</div>
+        <div
+          class="text-xs uppercase min-h-1 max-h-1 mt-2 text-center font-bold h-2 text-ellipsis overflow-hidden whitespace-nowrap">{{nom}}</div>
+        <div class="my-2 text-center">
+          <button class="mat-button-mini text-xs" color="default" mat-button>Réserver</button>
+        </div>
+      </div>
+      <div class="px-4">
+        <div class="bg-default rounded-t-container py-1 px-2">
+          <div class="text-xs font-semibold underline">A propos de nous</div>
+          <div class="text-xs min-h-2 max-h-2 h-2 text-ellipsis overflow-hidden dynamic-description">
+            {{description}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

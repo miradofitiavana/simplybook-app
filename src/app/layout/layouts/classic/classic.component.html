@@ -1,0 +1,51 @@
+<workspace></workspace>
+<navigation class="dark bg-gray-900 print:hidden">
+  <ng-container navigationHeader>
+    <div class="flex items-center h-16 p-6 pb-0">
+<!--      <img alt="Logo" class="dark:hidden" src=""/>-->
+      <p class="text-white">logo</p>
+    </div>
+  </ng-container>
+  <ng-container navigationFooter>
+    <div class="flex items-center w-full px-3 py-4 border-t text-white">
+      <a [routerLink]="['/sign-out']" class="logout-user" routerLinkActive="router-link-active">
+        <mat-icon class="mr-4">logout</mat-icon>
+        <span>Se déconnecter</span>
+      </a>
+    </div>
+  </ng-container>
+</navigation>
+
+<div class="flex flex-col flex-auto w-full min-w-0 bg-gray-100">
+
+  <!-- Header -->
+  <div
+    class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49  dark:border-b bg-white print:hidden">
+    <!-- Navigation toggle button -->
+    <button (click)="toggleNavigation('mainNavigation')" class="md:hidden" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+
+
+    <div class="md:hidden">
+      <div class="flex items-center h-20">
+<!--        &lt;!&ndash; Light version &ndash;&gt;-->
+<!--        <img alt="AAAEP - Centre National de Test Psychotechnique" class="dark:hidden"-->
+<!--             src="assets/images/logo/logo-aaaep-marianne-large-black.svg">-->
+<!--        &lt;!&ndash; Dark version &ndash;&gt;-->
+<!--        <img alt="AAAEP - Centre National de Test Psychotechnique" class="hidden dark:flex"-->
+<!--             src="assets/images/logo/logo-aaaep-marianne-large-black.svg">-->
+      </div>
+    </div>
+
+    <!-- Components -->
+    <div class="flex items-center pl-2 ml-auto space-x-1 sm:space-x-5">
+      <toolbar></toolbar>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="flex flex-col flex-auto">
+    <router-outlet *ngIf="true"></router-outlet>
+  </div>
+</div>

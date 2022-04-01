@@ -1,0 +1,46 @@
+import {NgModule} from '@angular/core';
+import {BookingComponent} from "./booking.component";
+import {SharedModule} from "../../shared/shared.module";
+import {RouterModule, Routes} from "@angular/router";
+import {PageHeaderModule} from "../../components/page-header/page-header.module";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {BookingService} from "./booking.service";
+import {FullCalendarModule} from "@fullcalendar/angular";
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import timeGridPlugin from '@fullcalendar/timegrid';
+import listPlugin from '@fullcalendar/list';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: BookingComponent,
+  }
+];
+
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  timeGridPlugin,
+  listPlugin,
+  interactionPlugin
+]);
+
+@NgModule({
+  declarations: [
+    BookingComponent
+  ],
+  imports: [
+    RouterModule.forChild(routes),
+    SharedModule,
+    PageHeaderModule,
+    MatIconModule,
+    MatButtonModule,
+    FullCalendarModule
+  ],
+  providers: [
+    BookingService
+  ]
+})
+export class BookingModule {
+}

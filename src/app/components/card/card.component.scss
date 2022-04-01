@@ -1,0 +1,17 @@
+card {
+  background: #FFFFFF;
+  box-shadow: 0px 5px 20px rgb(120 120 120 / 10%);
+  border-radius: 10px;
+  text-align: center;
+  padding: 30px 36px;
+  margin-bottom: 15px;
+  display: block;
+
+  &.card__hover {
+    &:hover {
+      transform: translateX(5px) translateY(3px);
+      transition: ease 0.3s;
+      box-shadow: 0px 2px 20px rgb(120 120 120 / 10%);
+    }
+  }
+}

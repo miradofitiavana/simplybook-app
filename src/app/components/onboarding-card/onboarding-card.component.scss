@@ -1,0 +1,66 @@
+.onboarding-card {
+  @apply rounded-container;
+  background-color: #fff;
+  box-shadow: 0 2px 25px rgb(12 0 133 / 7%);
+  padding: 31px 31px 70px;
+  margin: 0 6px;
+  font-family: Roboto, sans-serif;
+  text-align: center;
+  transition: box-shadow .3s cubic-bezier(.25, .46, .45, .94);
+  cursor: pointer;
+  outline: 0;
+  height: 100%;
+  position: relative;
+
+  &:hover {
+    box-shadow: 0 2px 40px rgb(12 0 133 / 25%);
+  }
+
+  &__number {
+    position: absolute;
+    top: 13px;
+    left: 14px;
+    font-weight: 700;
+    font-size: 23px;
+    line-height: 28px;
+    letter-spacing: -.02em;
+    color: #d8d9ec;
+  }
+
+  &__image {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__title {
+    font-family: Objecktiv, sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: -.01em;
+    color: #002838;
+    margin: 20px 0 10px;
+  }
+
+  &__text {
+    font-size: 18px;
+    line-height: 24px;
+    color: #5e5e7c;
+    margin-bottom: 25px;
+  }
+
+  &__button {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 31px;
+    display: flex;
+    justify-content: center;
+
+    button {
+      &:disabled {
+        color: #355689 !important;
+      }
+    }
+  }
+}

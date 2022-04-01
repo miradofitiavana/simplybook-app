@@ -1,0 +1,57 @@
+<div
+  class="bg-transparent flex-1 flex flex-col justify-between overflow-hidden bg-white w-full h-full">
+
+  <div class="text-right mb-4">
+    <button (click)="addSpecial()" color="primary" mat-flat-button type="submit">
+      <mat-icon>add</mat-icon>
+      <span class="ml-2">Ajouter un jour spécial</span>
+    </button>
+  </div>
+
+  <table *ngIf="!loaded; else loading" [dataSource]="dataSource" class="w-full table-v2" mat-table>
+    <ng-container matColumnDef="id">
+      <th *matHeaderCellDef mat-header-cell> No.</th>
+      <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="special">
+      <th *matHeaderCellDef mat-header-cell>Evènement</th>
+      <td *matCellDef="let element" mat-cell>
+        <div class="py-2">
+          <span>{{element.type}}</span>
+          <span class="block">
+            du <span class="font-bold">{{element.dateFrom | date:'dd MMM yyyy à HH:mm'}}</span> au
+            <span class="font-bold">{{element.dateTo | date:'dd MMM yyyy à HH:mm'}}</span>
+          </span>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="statut">
+      <th *matHeaderCellDef mat-header-cell>Statut</th>
+      <td *matCellDef="let element" mat-cell> {{element.statut}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th *matHeaderCellDef mat-header-cell></th>
+      <td *matCellDef="let element" mat-cell> {{element.statut}} </td>
+    </ng-container>
+
+    <tr *matNoDataRow class="mat-row">
+      <td class="mat-cell text-center" colspan="4">Pas d'horaire spécial à afficher.</td>
+    </tr>
+
+    <tr *matHeaderRowDef="displayedColumns; sticky:true" mat-header-row></tr>
+    <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+  </table>
+
+  <ng-template #loading>
+    <loading></loading>
+  </ng-template>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="20"
+                 class="mat-paginator-sticky paginator-v2">
+  </mat-paginator>
+</div>
+
+

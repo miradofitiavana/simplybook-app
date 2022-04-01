@@ -1,0 +1,67 @@
+<div class="w-full">
+  <nav class="w-full bg-gray-100 md:shadow-md sticky top-0 z-50">
+    <div class="app-content mx-auto px-6 flex items-center justify-between">
+      <div aria-label="Home" class="flex items-center" role="img">
+        <img *ngIf="v1Data?.design.logo_preference != 'name' && v1Data?.design.logo_url"
+             [src]="getLogo()"
+             alt="logo" class="cursor-pointer w-8 h-10 sm:w-auto"/>
+        <p *ngIf="v1Data?.design.logo_preference != 'image' && v1Data?.nom"
+           [ngClass]="{'!ml-2 !lg:ml-4':v1Data?.design.logo_preference == 'both'}"
+           class="!mb-0 !text-base !lg:text-2xl font-bold text-gray-800">
+          {{v1Data?.nom}}
+        </p>
+      </div>
+      <div>
+        <button (click)="showMenu()"
+                class="sm:block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
+          <img alt="show" class="h-8 w-8"
+               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg4.svg"/>
+
+        </button>
+        <div [ngClass]="(show? 'md:block lg:block':'md:block lg:block hidden')">
+          <button (click)="showMenu()"
+                  class="block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 fixed focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white md:bg-transparent z-30 top-0 mt-3">
+            <img alt="hide" class="h-8 w-8"
+                 src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg5.svg"/>
+
+          </button>
+          <ul
+            class="flex text-3xl md:text-base items-center py-8 md:py-5 md:flex flex-col md:flex-row justify-center fixed md:relative top-0 bottom-0 left-0 right-0 bg-white md:bg-transparent z-20">
+            <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+              <a href="javascript:void(0)">Company</a>
+            </li>
+            <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+              <a href="javascript:void(0)">Features</a>
+            </li>
+            <li class="text-gray-600 text-lg hover:text-gray-800 cursor-pointer md:ml-10 pt-10 md:pt-0">
+              <a href="javascript:void(0)">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="flex flex-col flex-auto w-full min-w-0">
+    <div class="flex flex-col flex-auto">
+      <div class="w-full px-6">
+        <div
+          class="mt-8 relative rounded-button bg-indigo-700 container mx-auto flex flex-col items-center pt-12 sm:pt-24 pb-24 sm:pb-32 md:pb-48 lg:pb-56 xl:pb-64">
+          <img alt="bg"
+               class="mr-2 lg:mr-12 mt-2 lg:mt-12 absolute right-0 top-0"
+               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg2.svg"/>
+          <img alt="bg"
+               class="ml-2 lg:ml-12 mb-2 lg:mb-12 absolute bottom-0 left-0"
+               src="https://tuk-cdn.s3.amazonaws.com/can-uploader/center_aligned_with_image-svg3.svg"/>
+
+          <ng-content select="[header]"></ng-content>
+        </div>
+        <div class="mx-auto flex justify-center md:-mt-56 -mt-20 sm:-mt-40  mb-12">
+          <div class="app-content relative sm:w-2/3 w-11/12 bg-white rounded-container shadow-md">
+            <ng-content select="[body]"></ng-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

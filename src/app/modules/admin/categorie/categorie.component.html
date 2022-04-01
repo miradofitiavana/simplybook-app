@@ -1,0 +1,50 @@
+<!--<div class="flex flex-col flex-auto min-w-0">-->
+<div class="absolute inset-0 flex flex-col min-w-0 overflow-hidden">
+  <page-header [withActions]="true">
+    <ng-container headerTitle>
+      Gestion des catégories
+    </ng-container>
+    <ng-container headerSubtitle>
+      <div class="leading-6 truncate text-secondary">Gestion des catégories de société pour les utilisateurs qui
+        s'inscrivent.
+      </div>
+    </ng-container>
+    <ng-container headerRight>
+      <button color="primary" mat-raised-button>
+        <mat-icon>add</mat-icon>
+        <span class="ml-2">Nouvelle catégorie</span>
+      </button>
+    </ng-container>
+  </page-header>
+
+  <div class="bg-transparent flex-1 flex flex-col justify-between overflow-auto bg-white w-full shadow">
+    <table [dataSource]="dataSource" class="w-full" mat-table>
+      <ng-container matColumnDef="id">
+        <th *matHeaderCellDef mat-header-cell> No.</th>
+        <td *matCellDef="let element" mat-cell> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="categorie">
+        <th *matHeaderCellDef mat-header-cell> Catégorie</th>
+        <td *matCellDef="let element" mat-cell>
+          <a [routerLink]="['./', element.id]">
+            {{element.categorie}}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="descr">
+        <th *matHeaderCellDef mat-header-cell> Description</th>
+        <td *matCellDef="let element" mat-cell> {{element.descr}} </td>
+      </ng-container>
+
+      <tr *matHeaderRowDef="displayedColumns; sticky:true" mat-header-row></tr>
+      <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="20"
+                   aria-label="Select page of periodic elements" class="mat-paginator-sticky"
+                   showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>

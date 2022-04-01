@@ -1,0 +1,32 @@
+<form [formGroup]="designUpload">
+  <div class="items-center justify-between" mat-dialog-title>
+    <span>{{title}}</span>
+    <button (click)="closeDialog()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <div>
+      <input
+        #fileInput
+        (change)="onFileChanged($event)" class="hidden"
+        type="file">
+      <div class="text-center py-8 max-w-3xl border-2 border-blue-500 rounded-container border-dotted mx-auto">
+        <img [ngClass]="{'h-44':type=='banner_url' && selectedFile}" [src]="imageSelected"
+             class="mx-auto mb-8 h-20"/>
+        <button (click)="fileInput.click()" class="mat-button-width" color="primary" mat-flat-button>Sélectionner une
+          photo
+        </button>
+      </div>
+      <!--      <button (click)="onUpload()">Upload!</button>-->
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end" mat-dialog-actions>
+    <button (click)="saveUpload()" [disabled]="designUpload.disabled" mat-flat-button>
+      Enregistrer
+    </button>
+  </div>
+
+</form>

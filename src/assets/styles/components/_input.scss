@@ -1,0 +1,90 @@
+.mat-form-field {
+  .mat-form-field-wrapper {
+    margin-top: 24px;
+    padding-bottom: 0;
+    margin-bottom: 16px;
+  }
+
+  .mat-form-field-flex {
+    @apply relative flex items-stretch rounded-menu border-default bg-white;
+    min-height: 48px !important;
+    padding: 0 16px !important;
+    border-width: 1px !important;
+  }
+
+  .mat-form-field-infix {
+    position: static;
+    display: flex;
+    align-items: center;
+    width: 88px;
+    padding: 0;
+    border: 0;
+
+    .mat-input-element {
+      padding: 14px 0;
+      margin-top: 0;
+    }
+
+    .mat-chip-list {
+      padding: 10px 0;
+      display: block;
+
+      .mat-input-element {
+        @apply w-full m-0;
+      }
+    }
+
+    .mat-form-field-label-wrapper {
+      top: -25px;
+      height: auto;
+      padding-top: 0;
+      overflow: visible;
+      pointer-events: auto;
+
+      .mat-form-field-label {
+        width: 100% !important;
+        transform: none !important;
+        position: relative;
+        top: 0;
+        margin-top: 0;
+        backface-visibility: hidden;
+        transition: none;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .mat-form-field-subscript {
+    &-wrapper {
+      position: relative;
+      top: auto;
+      padding: 0;
+      margin-top: 0;
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1;
+
+      .mat-error {
+        @apply text-warning block mt-1;
+      }
+
+      .mat-form-field-hint-wrapper {
+        @apply mt-1;
+      }
+    }
+  }
+
+  &-invalid {
+    .mat-form-field-flex {
+      @apply border-warning;
+    }
+  }
+
+  .mat-datepicker-toggle-default-icon{
+    width: 100% !important;
+  }
+}
+
+.mat-autocomplete-panel, .mat-select-panel {
+  @apply border-default bg-white border shadow-md;
+}

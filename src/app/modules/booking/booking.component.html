@@ -1,0 +1,66 @@
+<div class="flex flex-col flex-auto min-w-0">
+  <page-header [withActions]="true">
+    <ng-container headerTitle>
+      Mes réservations
+    </ng-container>
+    <ng-container headerSubtitle>
+      <mat-icon>notifications</mat-icon>
+      <div class="ml-1.5 leading-6 truncate text-secondary">Vous avez 2 réservations depuis votre dernière
+        visite !
+      </div>
+    </ng-container>
+    <ng-container headerRight>
+      <!--      <div>-->
+      <!--        <div class="w-full">-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}"-->
+      <!--                  [(viewDate)]="viewDate"-->
+      <!--                  aria-label="Today"-->
+      <!--                  mat-icon-button-->
+      <!--                  matTooltip="Today" mwlCalendarToday>-->
+      <!--            <mat-icon>today</mat-icon>-->
+      <!--          </button>-->
+
+
+      <!--          <button (click)="view=MONTH" aria-label="Vue par mois" mat-icon-button matTooltip="Vue par mois">-->
+      <!--            <mat-icon>view_module</mat-icon>-->
+      <!--          </button>-->
+      <!--          <button (click)="view=WEEK" aria-label="Vue par semaine" mat-icon-button matTooltip="Vue par semaine">-->
+      <!--            <mat-icon>view_week</mat-icon>-->
+      <!--          </button>-->
+      <!--          <button (click)="view=DAY" aria-label="Vue par jour" mat-icon-button matTooltip="Vue par jour">-->
+      <!--            <mat-icon>view_day</mat-icon>-->
+      <!--          </button>-->
+
+      <!--        </div>-->
+      <!--        <div class="w-full flex items-center justify-center">-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"-->
+      <!--                  [view]="view"-->
+      <!--                  aria-label="Previous"-->
+      <!--                  class="arrow"-->
+      <!--                  mat-icon-button-->
+      <!--                  mwlCalendarPreviousView>-->
+      <!--            <mat-icon>chevron_left</mat-icon>-->
+      <!--          </button>-->
+      <!--          <div class="title">-->
+      <!--            {{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}-->
+      <!--          </div>-->
+      <!--          <button (viewDateChange)="selectedDay = {date:$event}" [(viewDate)]="viewDate"-->
+      <!--                  [view]="view"-->
+      <!--                  aria-label="Next"-->
+      <!--                  class="arrow"-->
+      <!--                  mat-icon-button-->
+      <!--                  mwlCalendarNextView>-->
+      <!--            <mat-icon>chevron_right</mat-icon>-->
+      <!--          </button>-->
+      <!--        </div>-->
+      <!--      </div>-->
+    </ng-container>
+  </page-header>
+
+  <div class="bg-transparent flex-1 flex flex-col justify-between">
+    <div class="bg-white">
+      <full-calendar #calendar [options]="calendarOptions"></full-calendar>
+
+    </div>
+  </div>
+</div>
