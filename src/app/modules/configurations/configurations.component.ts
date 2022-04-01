@@ -14,7 +14,7 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'design';
+  selectedPanel: string = 'planning-hebdo';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -23,6 +23,12 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.panels = [
+      {
+        id: 'planning-hebdo',
+        icon: 'event_note',
+        title: 'Planning hebdomadaire',
+        description: 'Configurer vos heures hebdomadaires.'
+      },
       {
         id: 'week',
         icon: 'event_note',

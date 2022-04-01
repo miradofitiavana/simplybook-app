@@ -1,11 +1,11 @@
 <organisme-v1>
   <ng-container header>
-    <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
+    <div class="w-11/12 sm:w-2/3 mb-3 sm:mb-10">
       <h1
-        class="!text-2xl !sm:text-3xl !md:text-4xl !lg:text-5xl !xl:text-6xl text-center text-white !font-bold leading-tight">{{data?.nom}}</h1>
+        class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl xl:!text-6xl text-center text-white !font-bold leading-tight">{{data.nom}}</h1>
     </div>
-    <div class="flex justify-center items-center mb-10 sm:mb-20 gap-4">
-      <a class="mat-button-width" [routerLink]="'/organismes/'+permalink+'/booking'" color="default" mat-flat-button>
+    <div class="flex justify-center items-center mb-3 sm:mb-6 gap-4">
+      <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="default" mat-flat-button>
         Réserver
       </a>
       <button class="mat-button-border mat-button-border--white mat-button-text--white"
@@ -16,8 +16,13 @@
   </ng-container>
   <ng-container body>
     <div class="flex flex-wrap">
-      <div class="w-full">
-        <p>centrer</p>
+      <div class="w-7/12">
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
+        </mat-card>
+      </div>
+      <div class="w-5/12">
+        <booking-creneaux [day]="selected"></booking-creneaux>
       </div>
     </div>
   </ng-container>

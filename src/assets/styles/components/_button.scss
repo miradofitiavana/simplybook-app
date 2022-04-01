@@ -60,6 +60,10 @@
     &--white {
       @apply border-white;
     }
+
+    &--primary {
+      @apply border-blue-500;
+    }
   }
 
   &.mat-button-text {
@@ -80,15 +84,15 @@
     }
   }
 
-  &[color="default"] {
+  &[color="default"], &.mat-button--default {
     @apply text-black bg-default hover:bg-gray-200 disabled:bg-gray-100;
   }
 
-  &[color="primary"] {
+  &[color="primary"], &.mat-button--primary {
     @apply text-white bg-blue-500 hover:bg-blue-700 disabled:bg-blue-200;
   }
 
-  &[color="gray"] {
+  &[color="gray"], &.mat-button--gray {
     @apply text-white bg-gray-800 hover:bg-gray-900 disabled:bg-gray-200;
   }
 }

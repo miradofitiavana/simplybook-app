@@ -1,0 +1,96 @@
+<form *ngIf="loaded; else loading" [formGroup]="planningForm" class="form-planning-hebdo">
+  <div class="flex justify-between" formGroupName="monday">
+    <div class="flex gap-4">
+      <div class="max-w-36 w-36 overflow-hidden">
+        <mat-slide-toggle (change)="toggleIsActive('monday')" formControlName="isActive">
+          <span class="font-bold text-lg">Lundi</span>
+        </mat-slide-toggle>
+      </div>
+      <div *ngIf="planningForm.get('monday').get('isActive').value; else indisponible" formArrayName="intervals">
+        <div *ngFor="let dayForm of intervals('monday').controls; let index = index">
+          <div [formGroupName]="index" class="flex gap-4">
+            <div class="flex items-center gap-4">
+              <mat-form-field>
+                <input (blur)="controlChangesCreneaux('monday', index)" formControlName="hourFrom" matInput
+                       type="time"/>
+              </mat-form-field>
+              <div class="mb-6">-</div>
+              <mat-form-field>
+                <input (blur)="controlChangesCreneaux('monday', index)" formControlName="hourTo" matInput
+                       type="time"/>
+              </mat-form-field>
+            </div>
+            <button (click)="removeInterval('monday',index)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="intervals('monday').controls[index].hasError('inferieur')" class="mb-2 text-red-500 text-xs">
+            Sélectionnez une heure de fin plus tardive que l'heure de début.
+          </div>
+          <div *ngIf="intervals('monday').controls[index].hasError('conflit')" class="mb-2 text-red-500 text-xs">
+            Les heures se chevauchent avec une autre période.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button (click)="addInterval('monday')" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="flex justify-between" formGroupName="tuesday">
+    <div class="flex gap-4">
+      <div class="max-w-36 w-36 overflow-hidden">
+        <mat-slide-toggle (change)="toggleIsActive('tuesday')" formControlName="isActive">
+          <span class="font-bold text-lg">Mardi</span>
+        </mat-slide-toggle>
+      </div>
+      <div *ngIf="planningForm.get('tuesday').get('isActive').value; else indisponible" formArrayName="intervals">
+        <div *ngFor="let dayForm of intervals('tuesday').controls; let index = index">
+          <div [formGroupName]="index" class="flex gap-4">
+            <div class="flex items-center gap-4">
+              <mat-form-field>
+                <input (blur)="controlChangesCreneaux('tuesday', index)" formControlName="hourFrom" matInput
+                       type="time"/>
+              </mat-form-field>
+              <div class="mb-6">-</div>
+              <mat-form-field>
+                <input (blur)="controlChangesCreneaux('tuesday', index)" formControlName="hourTo" matInput
+                       type="time"/>
+              </mat-form-field>
+            </div>
+            <button (click)="removeInterval('tuesday',index)" mat-icon-button>
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div *ngIf="intervals('tuesday').controls[index].hasError('inferieur')" class="mb-2 text-red-500 text-xs">
+            Sélectionnez une heure de fin plus tardive que l'heure de début.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button (click)="addInterval('tuesday')" mat-icon-button>
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>content_copy</mat-icon>
+      </button>
+    </div>
+  </div>
+</form>
+
+<ng-template #indisponible>
+  <div class="mb-6">
+    Indisponible
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>

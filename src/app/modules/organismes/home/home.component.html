@@ -1,10 +1,10 @@
 <organisme-v1 *ngIf="viewVersion == 'v1'">
   <ng-container header>
-    <div class="w-11/12 sm:w-2/3 mb-5 sm:mb-10">
+    <div class="w-11/12 sm:w-2/3 mb-3 sm:mb-10">
       <h1
         class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl xl:!text-6xl text-center text-white !font-bold leading-tight">{{data.nom}}</h1>
     </div>
-    <div class="flex justify-center items-center mb-10 sm:mb-20 gap-4">
+    <div class="flex justify-center items-center mb-4 sm:mb-10 gap-4">
       <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="default" mat-flat-button>
         Réserver
       </a>

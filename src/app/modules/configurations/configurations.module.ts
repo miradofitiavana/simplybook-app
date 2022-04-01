@@ -11,6 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {WeekModule} from "./week/week.module";
 import {SpecialModule} from "./special/special.module";
 import {DesignModule} from "./design/design.module";
+import {PlanningHebdoModule} from "./planning-hebdo/planning-hebdo.module";
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
         WeekModule,
         SpecialModule,
         DesignModule,
+        PlanningHebdoModule,
     ],
   providers: [
     ConfigurationsService
