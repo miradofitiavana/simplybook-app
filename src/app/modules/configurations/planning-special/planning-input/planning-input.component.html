@@ -1,0 +1,71 @@
+<form *ngIf="specialForm" [formGroup]="specialForm">
+  <div class="items-center justify-between" mat-dialog-title>
+    <span>{{title}}</span>
+    <button (click)="closeDialog()" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <div>
+      <h3>Sélectionnez les dates auxquelles vous souhaitez attribuer des heures spécifiques</h3>
+    </div>
+    <div class="flex gap-4">
+      <div class="max-w-md flex-1">
+        <mat-calendar #calendar (selectedChange)="select($event,calendar)"
+                      [dateClass]="isSelected"></mat-calendar>
+      </div>
+      <div class="form-planning-special py-8 px-4">
+        <div *ngIf="daysSelected.length>0; else noDaySelected" class="flex justify-between">
+          <div *ngIf="isActive().value; else indisponible" formArrayName="intervals">
+            <div *ngFor="let dayForm of intervals().controls; let index = index">
+              <div [formGroupName]="index" class="flex gap-4">
+                <div class="flex items-center gap-4">
+                  <mat-form-field>
+                    <input (blur)="controlChangesCreneaux( index)" formControlName="hourFrom" matInput
+                           type="time"/>
+                  </mat-form-field>
+                  <div class="mb-6">-</div>
+                  <mat-form-field>
+                    <input (blur)="controlChangesCreneaux( index)" formControlName="hourTo" matInput
+                           type="time"/>
+                  </mat-form-field>
+                </div>
+                <button (click)="removeInterval(index)" mat-icon-button>
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+              <div *ngIf="intervals().controls[index].hasError('inferieur')" class="mb-2 text-red-500 text-xs">
+                Sélectionnez une heure de fin plus tardive que l'heure de début.
+              </div>
+              <div *ngIf="intervals().controls[index].hasError('conflit')" class="mb-2 text-red-500 text-xs">
+                Les heures se chevauchent avec une autre période.
+              </div>
+            </div>
+          </div>
+          <ng-template #indisponible>
+            <div>
+              <div class="mb-6">
+                Indisponible
+              </div>
+            </div>
+          </ng-template>
+          <button (click)="addInterval()" mat-icon-button>
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-end" mat-dialog-actions>
+    <button (click)="savePlanning()" [disabled]="saving" mat-flat-button>
+      Enregistrer
+    </button>
+  </div>
+
+</form>
+
+<ng-template #noDaySelected>
+  <p>Aucune date séléctionnée...</p>
+</ng-template>

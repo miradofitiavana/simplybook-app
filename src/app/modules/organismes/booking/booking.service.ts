@@ -45,4 +45,11 @@ export class BookingService implements Resolve<any> {
         }, reject);
     });
   }
+
+  getHoursDay(uuid: string, date: number): Observable<any> {
+    return this._httpClient.get(`${API}/organisme-creneaux/${uuid}?date=${date}`, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
 }

@@ -1,0 +1,30 @@
+<div *ngIf="loaded; else loading" class="form-planning-special flex flex-col gap-4">
+
+  <div class="w-full text-right mb-4">
+    <button (click)="addPlanningSpecial()" [disabled]="saving" color="primary" mat-raised-button type="submit">
+     <span class="flex items-center">
+       <mat-icon>add</mat-icon>
+       <span class="ml-2">Ajouter une superposition de date</span>
+     </span>
+    </button>
+  </div>
+
+  <div class="w-full">
+    <div class="flex justify-between items-center gap-4 py-2 border-b border-t">
+      <div class="flex-1 flex justify-between items-center">
+        <span>11 avr. 2022</span>
+        <span>09:00 - 17:00</span>
+      </div>
+      <div class="flex-grow-0">
+        <button mat-icon-button>
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>

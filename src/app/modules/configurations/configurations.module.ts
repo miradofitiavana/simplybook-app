@@ -11,6 +11,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {DesignModule} from "./design/design.module";
 import {PlanningHebdoModule} from "./planning-hebdo/planning-hebdo.module";
 import {ScheduleModule} from "./schedule/schedule.module";
+import {PlanningSpecialModule} from "./planning-special/planning-special.module";
 
 const routes: Routes = [
   {
@@ -23,20 +24,21 @@ const routes: Routes = [
   declarations: [
     ConfigurationsComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    MatTabsModule,
-    PageHeaderModule,
-    MatIconModule,
-    MatSidenavModule,
-    MatButtonModule,
-    // WeekModule,
-    // SpecialModule,
-    DesignModule,
-    PlanningHebdoModule,
-    ScheduleModule
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        MatTabsModule,
+        PageHeaderModule,
+        MatIconModule,
+        MatSidenavModule,
+        MatButtonModule,
+        // WeekModule,
+        // SpecialModule,
+        DesignModule,
+        PlanningHebdoModule,
+        ScheduleModule,
+        PlanningSpecialModule
+    ],
   providers: [
     ConfigurationsService
   ]

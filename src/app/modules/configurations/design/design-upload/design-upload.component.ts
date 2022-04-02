@@ -32,7 +32,6 @@ export class DesignUploadComponent implements OnInit {
     });
   }
 
-
   closeDialog() {
     this.matDialogRef.close([]);
   }

@@ -14,7 +14,7 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'schedule';
+  selectedPanel: string = 'planning-special';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -27,7 +27,13 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
         id: 'planning-hebdo',
         icon: 'event_note',
         title: 'Planning hebdomadaire',
-        description: 'Configurer vos heures hebdomadaires.'
+        description: 'Configurer vos heures hebdomadaires par défaut.'
+      },
+      {
+        id: 'planning-special',
+        icon: 'event_note',
+        title: 'Planning spécial',
+        description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
       },
       // {
       //   id: 'week',
@@ -39,19 +45,19 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
       //   id: 'special',
       //   icon: 'today',
       //   title: 'Planning des jours spéciaux',
-      //   description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
+      //   description: '
       // },
-      {
-        id: 'design',
-        icon: 'web',
-        title: 'Configuration du design',
-        description: ''
-      },
       {
         id: 'schedule',
         icon: 'view_quilt',
         title: "Paramètres de l'agenda",
         description: 'Voulez-vous spécifier des paramètres fixes pour vos rendez-vous ?'
+      },
+      {
+        id: 'design',
+        icon: 'web',
+        title: 'Configuration du design',
+        description: ''
       }
     ];
   }

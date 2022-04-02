@@ -12,3 +12,12 @@
     }
   }
 }
+
+.mat-calendar-body-cell {
+  &--selected {
+    .mat-calendar-body-cell-content {
+      @apply bg-blue-500 rounded-full;
+    }
+  }
+}
+

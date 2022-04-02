@@ -3,29 +3,18 @@
     <p class="text-center font-bold text-lg">{{day|date:'fullDate'}}</p>
   </div>
   <div class="flex flex-col gap-y-4">
-    <div [ngClass]="{'gap-4':selectedHour==0}" class="flex">
-      <button (click)="selectHour(0)"
-              [ngClass]="selectedHour==0?'mat-button--gray w-1/2':'w-full mat-button-border--primary'"
-              class="mat-button-border w-full text-base transition-all duration-300"
+    <div *ngFor="let hour of hours; let i=index;" [ngClass]="{'gap-4':selectedHour==hour}" class="flex">
+      <button (click)="selectHour(hour)"
+              [ngClass]="selectedHour==hour?'mat-button--gray w-1/2':'w-full mat-button-border--primary'"
+              class="mat-button-border w-full text-base transition-all duration-300 mat-button-mini"
               mat-flat-button>
-        10:00
+        {{hour}}
       </button>
-      <button [ngClass]="selectedHour==0?'w-1/2':'w-0'"
+      <button (click)="confirmRDV()" [ngClass]="selectedHour==hour?'w-1/2':'w-0'"
               class="!min-w-0 !overflow-hidden mat-button-mini transition-all text-base duration-300" color="primary"
               mat-flat-button>
         Confirmer
       </button>
-    </div>
-    <div class="flex gap-4">
-      <button (click)="selectHour(0)" [ngClass]="selectedHour==1?'w-1/2':'w-full'"
-              class="mat-button-border mat-button-border--primary w-full text-base transition-all duration-300"
-              mat-flat-button>
-        10:00
-      </button>
-    </div>
-    <div>
-      <button mat-flat-button>10:00</button>
-      <button mat-flat-button>Confirmer</button>
     </div>
   </div>
 </div>
