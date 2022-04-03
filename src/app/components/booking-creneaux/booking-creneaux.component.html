@@ -1,20 +1,29 @@
-<div class="px-4 pt-12 pb-6">
-  <div class="pb-4">
+<div class="pt-12 pb-6 absolute inset-0 flex flex-col">
+  <div class="pb-4 px-4">
     <p class="text-center font-bold text-lg">{{day|date:'fullDate'}}</p>
   </div>
-  <div class="flex flex-col gap-y-4">
-    <div *ngFor="let hour of hours; let i=index;" [ngClass]="{'gap-4':selectedHour==hour}" class="flex">
-      <button (click)="selectHour(hour)"
-              [ngClass]="selectedHour==hour?'mat-button--gray w-1/2':'w-full mat-button-border--primary'"
-              class="mat-button-border w-full text-base transition-all duration-300 mat-button-mini"
-              mat-flat-button>
-        {{hour}}
-      </button>
-      <button (click)="confirmRDV()" [ngClass]="selectedHour==hour?'w-1/2':'w-0'"
-              class="!min-w-0 !overflow-hidden mat-button-mini transition-all text-base duration-300" color="primary"
-              mat-flat-button>
-        Confirmer
-      </button>
+  <div class="relative h-full">
+    <div class="flex flex-col gap-y-4 overflow-auto absolute inset-0 creneaux-container pl-6 pr-8">
+      <ng-container *ngIf="loaded; else loading">
+        <div *ngFor="let hour of hours; let i=index;" [ngClass]="{'gap-4':selectedHour==hour}" class="flex">
+          <button (click)="selectHour(hour)"
+                  [ngClass]="selectedHour==hour?'mat-button--gray w-1/2':'w-full mat-button-border--primary'"
+                  class="mat-button-border w-full text-base transition-all duration-300 mat-button-mini"
+                  mat-flat-button>
+            {{hour}}
+          </button>
+          <button (click)="confirmRDV()" [ngClass]="selectedHour==hour?'w-1/2':'w-0'"
+                  class="!min-w-0 !overflow-hidden mat-button-mini transition-all text-base duration-300"
+                  color="primary"
+                  mat-flat-button>
+            Confirmer
+          </button>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
+
+<ng-template #loading>
+  <loading></loading>
+</ng-template>

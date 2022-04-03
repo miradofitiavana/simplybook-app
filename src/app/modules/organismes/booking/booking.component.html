@@ -1,29 +1,55 @@
-<organisme-v1>
-  <ng-container header>
-    <div class="w-11/12 sm:w-2/3 mb-3 sm:mb-10">
-      <h1
-        class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl xl:!text-6xl text-center text-white !font-bold leading-tight">{{data.nom}}</h1>
+<!--<organisme-v1>-->
+<!--  <ng-container header>-->
+<!--    <div class="w-11/12 sm:w-2/3 mb-3 sm:mb-10">-->
+<!--      <h1-->
+<!--        class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl xl:!text-6xl text-center text-white !font-bold leading-tight">{{data.nom}}</h1>-->
+<!--    </div>-->
+<!--    <div class="flex justify-center items-center mb-3 sm:mb-6 gap-4">-->
+<!--      <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="default" mat-flat-button>-->
+<!--        Réserver-->
+<!--      </a>-->
+<!--      <button class="mat-button-border mat-button-border&#45;&#45;white mat-button-text&#45;&#45;white"-->
+<!--              mat-flat-button>-->
+<!--        Afficher sur la carte-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </ng-container>-->
+<!--  <ng-container body>-->
+<!--    <div class="flex flex-wrap">-->
+<!--      &lt;!&ndash;      <div class="">&ndash;&gt;-->
+<!--      <mat-card class="w-7/12 demo-inline-calendar-card">-->
+<!--        <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>-->
+<!--      </mat-card>-->
+<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--      &lt;!&ndash;      <div>&ndash;&gt;-->
+<!--      <booking-creneaux [day]="selected" class="w-5/12"></booking-creneaux>-->
+<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </ng-container>-->
+<!--</organisme-v1>-->
+
+<organisme-v2>
+  <div class="text-color w-full md:w-1/3 pt-16 lg:pt-32 xl:pt-12" left>
+    <h1 class="!text-4xl md:!text-4xl lg:!text-6xl w-11/12 lg:w-11/12 xl:w-full text-gray-900 !font-bold f-f-l">
+      {{data.nom}}
+    </h1>
+    <div class="!text-base lg:!text-base pb-20 sm:pb-0 pt-10 xl:pt-6 mb-4">
+      {{data.descr}}
     </div>
-    <div class="flex justify-center items-center mb-3 sm:mb-6 gap-4">
-      <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="default" mat-flat-button>
-        Réserver
-      </a>
-      <button class="mat-button-border mat-button-border--white mat-button-text--white"
-              mat-flat-button>
-        Afficher sur la carte
+    <div class="lg:flex">
+      <button color="primary" mat-flat-button>
+        Réserver maintenant
       </button>
     </div>
-  </ng-container>
-  <ng-container body>
-    <div class="flex flex-wrap">
-      <!--      <div class="">-->
-      <mat-card class="w-7/12 demo-inline-calendar-card">
-        <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
-      </mat-card>
-      <!--      </div>-->
-      <!--      <div>-->
-      <booking-creneaux [day]="selected" class="w-5/12"></booking-creneaux>
-      <!--      </div>-->
+  </div>
+  <ng-container right>
+    <div class="w-2/3 rounded-container w-full bg-white shadow my-12">
+      <div class="flex h-full overflow-hidden">
+        <mat-card class="w-7/12 demo-inline-calendar-card">
+          <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
+        </mat-card>
+        <booking-creneaux [day]="selected" class="w-5/12 relative"></booking-creneaux>
+      </div>
     </div>
   </ng-container>
-</organisme-v1>
+</organisme-v2>

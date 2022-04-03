@@ -1,1 +1,37 @@
-<p>loading....</p>
+<ng-container *ngIf="type=='ellipsis'">
+  <div class="loading-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='grid'">
+  <div class="loading-grid">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="type=='roller'">
+  <div class="loading-roller">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</ng-container>
+
+<p class="!font-bold !mb-0">Chargement des données...</p>

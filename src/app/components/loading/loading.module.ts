@@ -1,9 +1,12 @@
 import {NgModule} from '@angular/core';
 
 import {LoadingComponent} from './loading.component';
+import {SharedModule} from "../../shared/shared.module";
 
 @NgModule({
-  imports: [],
+    imports: [
+        SharedModule
+    ],
   exports: [
     LoadingComponent
   ],

@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewEncapsulation} from '@angular/core';
 import {BookingService} from "../../modules/organismes/booking/booking.service";
 import {Subject} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpEventType} from "@angular/common/http";
 
 @Component({
@@ -16,10 +16,12 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
   @Input() day: Date;
   selectedHour: any;
   hours: Array<any> = [];
+  loaded: boolean = true;
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     private _route: ActivatedRoute,
+    private _router: Router,
     private _bookingService: BookingService
   ) {
     this._unsubscribeAll = new Subject<any>();
@@ -30,16 +32,14 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!changes['day'].firstChange) {
-      console.log(changes['day'].currentValue);
-      console.log((changes['day'].currentValue as Date).valueOf());
+      this.loaded = false;
+      this.selectedHour = null;
       let timestamp = (changes['day'].currentValue as Date).valueOf();
       this._bookingService.getHoursDay(this._route.snapshot.params['id'], timestamp)
         .subscribe((event) => {
-          if (event.type === HttpEventType.UploadProgress) {
-            let progress = Math.round((100 * event.loaded) / event.total);
-          }
           if (event.type === HttpEventType.Response) {
             this.hours = event.body;
+            this.loaded = true;
           }
         });
     }
@@ -50,6 +50,14 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
   }
 
   confirmRDV() {
-
+    console.log(this.day);
+    const formatDate = (date) => {
+      let formatted_date = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${this.selectedHour}`;
+      // let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+      return formatted_date;
+    }
+    let url = `/organismes/${this._route.snapshot.params['id']}/booking/${formatDate(this.day)}`;
+    console.log(url);
+    this._router.navigateByUrl(url);
   }
 }

@@ -114,6 +114,10 @@ export const appRoutes: Routes = [
         path: ':id/booking',
         loadChildren: () => import('app/modules/organismes/booking/booking.module').then(m => m.BookingModule)
       },
+      {
+        path: ':id/booking/:date',
+        loadChildren: () => import('app/modules/organismes/booking-confirm/booking-confirm.module').then(m => m.BookingConfirmModule)
+      },
     ]
   },
 
