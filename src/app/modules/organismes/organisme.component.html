@@ -1,0 +1,36 @@
+<organisme-v2 *ngIf="organismeData.design.design_version == 'v2'" [v2Data]="organismeData">
+  <ng-container left>
+    <div class="text-color w-full md:w-1/3 pt-16 lg:pt-32 xl:pt-12">
+      <h1 class="!text-4xl md:!text-4xl lg:!text-6xl w-11/12 lg:w-11/12 xl:w-full text-gray-900 !font-bold">
+        {{organismeData.nom}}
+      </h1>
+      <div class="!text-base lg:!text-base py-10 text-justify">
+        {{organismeData.descr}}
+      </div>
+      <div class="lg:flex">
+        <a [routerLink]="'/organismes/'+organismeData.permalink+'/booking'" color="primary" mat-flat-button>
+          Réserver maintenant
+        </a>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container right>
+    <div class="w-2/3 rounded-container w-full bg-white shadow my-12">
+      <div class="flex h-full overflow-hidden force-flex">
+        <router-outlet *ngIf="true"></router-outlet>
+      </div>
+    </div>
+  </ng-container>
+</organisme-v2>
+
+<organisme-v1 *ngIf="organismeData.design.design_version == 'v1'">
+  <ng-container header>
+    {{organismeData.nom}}
+  </ng-container>
+  <ng-container body>
+    <div class="force-flex">
+      <router-outlet *ngIf="true"></router-outlet>
+    </div>
+  </ng-container>
+</organisme-v1>

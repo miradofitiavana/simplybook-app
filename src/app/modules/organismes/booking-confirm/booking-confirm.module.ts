@@ -4,8 +4,6 @@ import {BookingConfirmComponent} from './booking-confirm.component';
 import {BookingConfirmService} from "./booking-confirm.service";
 import {SharedModule} from "../../../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
-import {OrganismesModule} from "../organismes.module";
-import {BookingService} from "../booking/booking.service";
 
 const routes: Routes = [
   {
@@ -20,16 +18,14 @@ const routes: Routes = [
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes),
-    OrganismesModule,
+    RouterModule.forChild(routes)
   ],
   exports: [],
   declarations: [
     BookingConfirmComponent
   ],
   providers: [
-    BookingConfirmService,
-    BookingService
+    BookingConfirmService
   ],
 })
 export class BookingConfirmModule {

@@ -107,17 +107,21 @@ export const appRoutes: Routes = [
     },
     children: [
       {
-        path: ':id/home',
-        loadChildren: () => import('app/modules/organismes/home/home.module').then(m => m.HomeModule)
-      },
-      {
-        path: ':id/booking',
-        loadChildren: () => import('app/modules/organismes/booking/booking.module').then(m => m.BookingModule)
-      },
-      {
-        path: ':id/booking/:date',
-        loadChildren: () => import('app/modules/organismes/booking-confirm/booking-confirm.module').then(m => m.BookingConfirmModule)
-      },
+        path: ':id',
+        loadChildren: () => import('app/modules/organismes/organisme.module').then(m => m.OrganismeModule)
+      }
+      // {
+      //   path: ':id/home',
+      //   loadChildren: () => import('app/modules/organismes/home/home.module').then(m => m.HomeModule)
+      // },
+      // {
+      //   path: ':id/booking',
+      //   loadChildren: () => import('app/modules/organismes/booking/booking.module').then(m => m.BookingModule)
+      // },
+      // {
+      //   path: ':id/booking/:date',
+      //   loadChildren: () => import('app/modules/organismes/booking-confirm/booking-confirm.module').then(m => m.BookingConfirmModule)
+      // },
     ]
   },
 

@@ -1,6 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {OrganismesService} from "../../organismes.service";
+import {OrganismeService} from "../../organisme.service";
 import {NORMAL} from "../../../../core/config/api.config";
 
 @Component({
@@ -11,23 +11,23 @@ import {NORMAL} from "../../../../core/config/api.config";
 
 export class OrganismeV2Component implements OnInit {
 
-  v2Data: any = null;
+  @Input() v2Data: any = null;
   show: boolean = false
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private _organismesService: OrganismesService
+    private _organismesService: OrganismeService
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit() {
-    this._organismesService.onOrganismeDataChanged
-      .pipe(takeUntil(this._unsubscribeAll))
-      .subscribe((value) => {
-        this.v2Data = value;
-      });
+    // this._organismesService.onOrganismeDataChanged
+    //   .pipe(takeUntil(this._unsubscribeAll))
+    //   .subscribe((value) => {
+    //     this.v2Data = value;
+    //   });
   }
 
   ngOnDestroy(): void {

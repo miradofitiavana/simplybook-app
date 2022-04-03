@@ -6,7 +6,7 @@
   <nav class="relative z-10 sticky w-full">
     <div
       class="relative z-10 mx-auto container hidden w-full px-4 xl:px-0 lg:flex justify-between items-center py-11">
-      <div class="flex items-center">
+      <a [routerLink]="'/organismes/'+v2Data?.permalink+'/home'" class="flex items-center">
         <img *ngIf="v2Data?.design.logo_preference != 'name' && v2Data?.design.logo_url"
              [src]="getLogo()"
              alt="logo" class="cursor-pointer w-8 h-10 sm:w-auto"/>
@@ -15,7 +15,7 @@
            class="!mb-0 !text-base !lg:text-2xl font-bold text-gray-800">
           {{v2Data?.nom}}
         </p>
-      </div>
+      </a>
       <div class="flex items-center text-white text-base font-medium">
         <ul class="flex items-center pr-3 xl:pr-12">
           <li class="cursor-pointer hover:text-gray-300 ease-in">

@@ -2,29 +2,28 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from "@angular/router";
 import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {OrganismesService} from "../organismes.service";
 import {API} from "../../../core/config/api.config";
+import {OrganismeService} from "../organisme.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookingService implements Resolve<any> {
 
-  homeData: any = null;
-  onHomeDataChanged: BehaviorSubject<any>;
+  bookingData: any = null;
+  onBookingDataChanged: BehaviorSubject<any>;
 
   constructor(
     private _httpClient: HttpClient,
-    private _organismesService: OrganismesService
+    private _organismeService: OrganismeService
   ) {
-    this.onHomeDataChanged = new BehaviorSubject<any>({});
+    this.onBookingDataChanged = new BehaviorSubject<any>({});
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-    let routeSub = route.params;
     return new Promise((resolve, reject) => {
       Promise.all([
-        this.getHomeData(routeSub['id'])
+        this.getBookingData(this._organismeService.permalink)
       ]).then(
         (datas) => {
           resolve(datas);
@@ -34,13 +33,12 @@ export class BookingService implements Resolve<any> {
     });
   }
 
-  getHomeData(uuid: string): Promise<any> {
+  getBookingData(uuid: string): Promise<any> {
     return new Promise((resolve, reject) => {
       this._httpClient.get(`${API}/organisme-home/${uuid}`)
         .subscribe((response: any) => {
-          this.homeData = response.datas;
-          this.onHomeDataChanged.next(this.homeData);
-          this._organismesService.onOrganismeDataChanged.next(this.homeData);
+          this.bookingData = response.datas;
+          this.onBookingDataChanged.next(this.bookingData);
           resolve(response);
         }, reject);
     });

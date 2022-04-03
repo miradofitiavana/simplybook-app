@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {NORMAL} from 'app/core/config/api.config';
-import {OrganismesService} from "../../organismes.service";
+import {OrganismeService} from "../../organisme.service";
 import {Subject, takeUntil} from "rxjs";
 
 @Component({
@@ -17,7 +17,7 @@ export class OrganismeV1Component implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private _organismesService: OrganismesService
+    private _organismesService: OrganismeService
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
@@ -42,4 +42,6 @@ export class OrganismeV1Component implements OnInit, OnDestroy {
   getLogo(): string {
     return `${NORMAL}/storage/${this.v1Data?.design.logo_url}`;
   }
+
+  isList = false;
 }

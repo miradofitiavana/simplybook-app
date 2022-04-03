@@ -4,6 +4,7 @@ import {MapGeocoder} from "@angular/google-maps";
 import {Subject, takeUntil} from "rxjs";
 import {SettingsWeek} from "../../../core/models/settings-week.types";
 import {SettingsWeekDay} from "../../../core/models/settings-week-day.types";
+import {OrganismeService} from "../organisme.service";
 
 @Component({
   selector: 'home',
@@ -13,29 +14,29 @@ import {SettingsWeekDay} from "../../../core/models/settings-week-day.types";
 })
 export class HomeComponent implements OnInit {
 
-  permalink: string = "";
-  viewVersion: string = 'v1';
   data: any = null;
   location: { lat, lng } = {lat: 0, lng: 0};
   options: google.maps.MapOptions = {};
   horaires: SettingsWeek;
+  design_version: string = '';
 
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     private _homeService: HomeService,
+    private _organismeService: OrganismeService,
     private _geocoder: MapGeocoder
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit(): void {
+    this.design_version = this._organismeService.design_version;
+    
     this._homeService.onHomeDataChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((value) => {
         this.data = value;
-        this.permalink = value.permalink;
-        this.viewVersion = value.design.design_version;
         this.horaires = value.horaire_weeks as SettingsWeek;
         this.horaires.uuid = value.uuid;
 

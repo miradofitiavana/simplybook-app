@@ -19,19 +19,17 @@ export class BookingComponent implements OnInit {
 
   constructor(
     private _route: ActivatedRoute,
-    private _bookingService: BookingService
+    private _bookingService: BookingService,
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit(): void {
-    this._bookingService.onHomeDataChanged
+    this._bookingService.onBookingDataChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((value) => {
-        console.log(value);
         this.data = value;
         this.permalink = value.permalink;
       });
   }
-
 }

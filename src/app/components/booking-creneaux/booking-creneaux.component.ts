@@ -14,6 +14,7 @@ import {HttpEventType} from "@angular/common/http";
 export class BookingCreneauxComponent implements OnInit, OnChanges {
 
   @Input() day: Date;
+  @Input() permalink: string;
   selectedHour: any;
   hours: Array<any> = [];
   loaded: boolean = true;
@@ -35,7 +36,7 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
       this.loaded = false;
       this.selectedHour = null;
       let timestamp = (changes['day'].currentValue as Date).valueOf();
-      this._bookingService.getHoursDay(this._route.snapshot.params['id'], timestamp)
+      this._bookingService.getHoursDay(this.permalink, timestamp)
         .subscribe((event) => {
           if (event.type === HttpEventType.Response) {
             this.hours = event.body;
@@ -56,7 +57,7 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
       // let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
       return formatted_date;
     }
-    let url = `/organismes/${this._route.snapshot.params['id']}/booking/${formatDate(this.day)}`;
+    let url = `/organismes/${this.permalink}/booking/${formatDate(this.day)}`;
     console.log(url);
     this._router.navigateByUrl(url);
   }

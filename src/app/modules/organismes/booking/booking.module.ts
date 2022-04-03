@@ -3,7 +3,6 @@ import {BookingComponent} from './booking.component';
 import {RouterModule, Routes} from "@angular/router";
 import {SharedModule} from "../../../shared/shared.module";
 import {BookingService} from "./booking.service";
-import {OrganismesModule} from "../organismes.module";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -27,7 +26,6 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    OrganismesModule,
     MatButtonModule,
     MatCardModule,
     MatDatepickerModule,

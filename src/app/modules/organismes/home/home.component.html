@@ -1,101 +1,67 @@
-<organisme-v1 *ngIf="viewVersion == 'v1'">
-  <ng-container header>
-    <div class="w-11/12 sm:w-2/3 mb-3 sm:mb-10">
-      <h1
-        class="!text-2xl sm:!text-3xl md:!text-4xl lg:!text-5xl xl:!text-6xl text-center text-white !font-bold leading-tight">{{data.nom}}</h1>
-    </div>
-    <div class="flex justify-center items-center mb-4 sm:mb-10 gap-4">
-      <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="default" mat-flat-button>
-        Réserver
-      </a>
-      <button class="mat-button-border mat-button-border--white mat-button-text--white"
-              mat-flat-button>
-        Afficher sur la carte
-      </button>
-    </div>
-  </ng-container>
-  <ng-container body>
-    <div class="flex flex-wrap">
-      <div class="w-3/12 py-4 pr-4">
-        <div>
-          <h2>Horaires d'ouverture</h2>
-          <ul *ngIf="horaires">
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">LUN</span>
-              <span>{{getDayWeek(horaires.lundi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">MAR</span>
-              <span>{{getDayWeek(horaires.mardi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">MER</span>
-              <span>{{getDayWeek(horaires.mercredi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">JEU</span>
-              <span>{{getDayWeek(horaires.jeudi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">VEN</span>
-              <span>{{getDayWeek(horaires.vendredi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">SAM</span>
-              <span>{{getDayWeek(horaires.samedi)}}</span>
-            </li>
-            <li class="flex justify-between mb-2">
-              <span class="!font-bold">DIM</span>
-              <span>{{getDayWeek(horaires.dimanche)}}</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="w-6/12 py-4 px-4">
-        <div>
-          <h2>La société</h2>
-          <p class="text-justify">{{data.descr}}</p>
-        </div>
-      </div>
-      <div class="w-3/12 py-4 pl-4">
-        <div>
-          <h2>Nous contacter</h2>
-          <p>zaza</p>
-          <p>zaza</p>
-          <p>zaza</p>
-        </div>
-      </div>
-
-      <div class="w-full pb-8">
-        <google-map [options]="options" height="500px"
-                    width="100%">
-          <map-marker [position]="options.center"></map-marker>
-        </google-map>
-      </div>
-    </div>
-  </ng-container>
-</organisme-v1>
-
-<organisme-v2 *ngIf="viewVersion == 'v2'">
-  <div class="text-color w-full md:w-1/3 pt-16 lg:pt-32 xl:pt-12" left>
-    <h1 class="!text-4xl md:!text-4xl lg:!text-6xl w-11/12 lg:w-11/12 xl:w-full text-gray-900 !font-bold f-f-l">
-      {{data.nom}}
-    </h1>
-    <div class="!text-base lg:!text-base pb-20 sm:pb-0 pt-10 xl:pt-6 mb-4">
-      {{data.descr}}
-    </div>
-    <div class="lg:flex">
-      <a [routerLink]="'/organismes/'+permalink+'/booking'" class="mat-button-width" color="primary" mat-flat-button>
-        Réserver maintenant
-      </a>
+<ng-container *ngIf="design_version=='v1'">
+  <div class="w-3/12 py-4 pr-4">
+    <div>
+      <h2>Horaires d'ouverture</h2>
+      <ul *ngIf="horaires">
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">LUN</span>
+          <span>{{getDayWeek(horaires.lundi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">MAR</span>
+          <span>{{getDayWeek(horaires.mardi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">MER</span>
+          <span>{{getDayWeek(horaires.mercredi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">JEU</span>
+          <span>{{getDayWeek(horaires.jeudi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">VEN</span>
+          <span>{{getDayWeek(horaires.vendredi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">SAM</span>
+          <span>{{getDayWeek(horaires.samedi)}}</span>
+        </li>
+        <li class="flex justify-between mb-2">
+          <span class="!font-bold">DIM</span>
+          <span>{{getDayWeek(horaires.dimanche)}}</span>
+        </li>
+      </ul>
     </div>
   </div>
-  <ng-container right>
-    <div class="w-2/3 rounded-container overflow-hidden">
-      <google-map [options]="options" height="500px"
-                  width="100%">
-        <map-marker [position]="options.center"></map-marker>
-      </google-map>
+  <div class="w-6/12 py-4 px-4">
+    <div>
+      <h2>La société</h2>
+      <p class="text-justify">{{data.descr}}</p>
     </div>
-  </ng-container>
-</organisme-v2>
+  </div>
+  <div class="w-3/12 py-4 pl-4">
+    <div>
+      <h2>Nous contacter</h2>
+      <p>zaza</p>
+      <p>zaza</p>
+      <p>zaza</p>
+    </div>
+  </div>
+
+  <div class="w-full h-full">
+    <google-map [options]="options" height="500px"
+                width="100%">
+      <map-marker [position]="options.center"></map-marker>
+    </google-map>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="design_version=='v2'">
+  <div class="flex-1 rounded-container overflow-hidden">
+    <google-map [options]="options" height="100%"
+                width="100%">
+      <map-marker [position]="options.center"></map-marker>
+    </google-map>
+  </div>
+</ng-container>
