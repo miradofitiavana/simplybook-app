@@ -15,11 +15,11 @@
       <div class="flex-1 flex justify-between items-center">
         <span>{{plan.date | date:'d MMM y'}}</span>
         <div>
-          <span class="block" *ngFor="let interval of plan.intervals">{{interval.from}} - {{interval.to}}</span>
+          <span *ngFor="let interval of plan.intervals" class="block">{{interval.from}} - {{interval.to}}</span>
         </div>
       </div>
       <div class="flex-grow-0">
-        <button mat-icon-button>
+        <button (click)="removePlanningSpecial(plan)" mat-icon-button>
           <mat-icon>delete</mat-icon>
         </button>
       </div>

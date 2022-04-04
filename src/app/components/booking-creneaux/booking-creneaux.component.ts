@@ -51,10 +51,8 @@ export class BookingCreneauxComponent implements OnInit, OnChanges {
   }
 
   confirmRDV() {
-    console.log(this.day);
     const formatDate = (date) => {
-      let formatted_date = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}T${this.selectedHour}`;
-      // let formatted_date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+      let formatted_date = `${date.getFullYear()}-${(date.getMonth() + 1).padStart(2, '0')}-${(date.getDate()).padStart(2, '0')}T${this.selectedHour}`;
       return formatted_date;
     }
     let url = `/organismes/${this.permalink}/booking/${formatDate(this.day)}`;

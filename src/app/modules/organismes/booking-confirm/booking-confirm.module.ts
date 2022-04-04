@@ -4,6 +4,10 @@ import {BookingConfirmComponent} from './booking-confirm.component';
 import {BookingConfirmService} from "./booking-confirm.service";
 import {SharedModule} from "../../../shared/shared.module";
 import {RouterModule, Routes} from "@angular/router";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   {
@@ -18,7 +22,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
   ],
   exports: [],
   declarations: [

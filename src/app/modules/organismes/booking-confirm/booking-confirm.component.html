@@ -1,1 +1,56 @@
-<p>aaa</p>
+<div class="flex w-full p-4">
+  <div class="w-1/3 pr-4 border-r">
+    <div class="flex gap-x-4 items-center mb-2">
+      <button mat-icon-button>
+        <mat-icon>keyboard_backspace</mat-icon>
+      </button>
+      <h2 class="!mb-0">Votre rendez-vous</h2>
+    </div>
+    <p class="!flex items-center gap-3 text-base">
+      <mat-icon>today</mat-icon>
+      <span>{{datetime|date:'fullDate'}}</span>
+    </p>
+    <p class="!mb-0 !flex items-center gap-3 text-base">
+      <mat-icon>access_time</mat-icon>
+      <span>{{datetime|date:'HH:mm'}}</span>
+    </p>
+  </div>
+  <form [formGroup]="bookingConfirmGroup" class="w-2/3 pl-4 border-l">
+    <div class="flex items-center !h-10 mb-2">
+      <h2 class="!mb-0">Indiquez vos informations</h2>
+    </div>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Votre nom</mat-label>
+      <input formControlName="name" matInput
+             placeholder="Votre nom"/>
+      <mat-error *ngIf="bookingConfirmGroup.get('name').hasError('required')">
+        Votre nom est requis.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Email</mat-label>
+      <input formControlName="email" matInput
+             placeholder="Email"/>
+      <mat-error *ngIf="bookingConfirmGroup.get('email').hasError('required')">
+        Votre email est requis.
+      </mat-error>
+      <mat-error *ngIf="bookingConfirmGroup.get('email').hasError('email')">
+        Veuillez renseigner un email valide.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Veuillez partager tout ce qui pourra être utile à la préparation de notre réunion.</mat-label>
+      <textarea cdkTextareaAutosize formControlName="infos" matInput></textarea>
+    </mat-form-field>
+
+    <div class="w-full text-right">
+      <button (click)="confirmBooking()" color="primary" mat-raised-button type="submit">
+        <mat-icon>save</mat-icon>
+        <span class="ml-2">Enregistrer</span>
+      </button>
+    </div>
+  </form>
+</div>

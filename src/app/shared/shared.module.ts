@@ -3,6 +3,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {UtilsService} from "./utils.service";
 import {ProgressBarModule} from "../components/progress-bar/progress-bar.module";
+import {ConfirmDialogModule} from "../components/confirm-dialog/confirm-dialog.module";
 
 @NgModule({
 	imports: [
@@ -16,6 +17,7 @@ import {ProgressBarModule} from "../components/progress-bar/progress-bar.module"
 		CommonModule,
 		FormsModule,
 		ReactiveFormsModule,
+    ConfirmDialogModule,
 
     ProgressBarModule
 	],

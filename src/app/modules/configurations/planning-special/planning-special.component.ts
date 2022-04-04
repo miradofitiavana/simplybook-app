@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ActivatedRoute} from "@angular/router";
 import {PlanningSpecialService} from "./planning-special.service";
 import {PlanningHebdo} from "../../../core/models/planning-hebdo.types";
+import {ConfirmDialogService} from "../../../components/confirm-dialog/confirm-dialog.service";
 
 @Component({
   selector: 'planning-special',
@@ -22,7 +23,8 @@ export class PlanningSpecialComponent implements OnInit, OnDestroy {
   constructor(
     public _dialog: MatDialog,
     private _route: ActivatedRoute,
-    private _planningSpecialService: PlanningSpecialService
+    private _planningSpecialService: PlanningSpecialService,
+    private _confirmDialogService: ConfirmDialogService
   ) {
     this.uuid = this._route.snapshot.params['uuid'];
     this._unsubscribeAll = new Subject<any>();
@@ -49,6 +51,10 @@ export class PlanningSpecialComponent implements OnInit, OnDestroy {
       .subscribe(result => {
         this.loadData();
       });
+  }
+
+  removePlanningSpecial(planning): void {
+    this._confirmDialogService.open();
   }
 
   private loadData(): void {

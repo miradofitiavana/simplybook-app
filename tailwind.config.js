@@ -4,7 +4,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      color: {},
       minHeight: {
         1: '1rem',
         2: '2rem',
@@ -22,8 +21,11 @@ module.exports = {
         36: '9rem'
       },
       colors: {
+        'warn': '#dc2626',
         'warning': '#dc2626',
-        'default': '#cbd5e1'
+        'default': '#cbd5e1',
+        'primary': '#2196f3',
+        'accent': '#37474f',
       },
       borderRadius: {
         'container': "15px",
