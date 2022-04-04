@@ -9,7 +9,7 @@ import {Component, HostBinding, Input, OnInit, ViewEncapsulation} from '@angular
 
 export class LoadingComponent implements OnInit {
 
-  @HostBinding('class.text-center') public textCenter: boolean = true;
+  @HostBinding('class') public classes: string = "flex flex-col items-center gap-4 text-center";
   @Input() type: string = 'roller';
 
   constructor() {

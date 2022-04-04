@@ -10,10 +10,13 @@
   </div>
 
   <div class="w-full">
-    <div class="flex justify-between items-center gap-4 py-2 border-b border-t">
+    <div *ngFor="let plan of planning; let index=index" [ngClass]="{'border-t':index==0}"
+         class="flex justify-between items-center gap-4 py-2 border-b">
       <div class="flex-1 flex justify-between items-center">
-        <span>11 avr. 2022</span>
-        <span>09:00 - 17:00</span>
+        <span>{{plan.date | date:'d MMM y'}}</span>
+        <div>
+          <span class="block" *ngFor="let interval of plan.intervals">{{interval.from}} - {{interval.to}}</span>
+        </div>
       </div>
       <div class="flex-grow-0">
         <button mat-icon-button>

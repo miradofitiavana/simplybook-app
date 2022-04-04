@@ -3,6 +3,8 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {UtilsService} from "../../../../shared/utils.service";
 import {PlanningDay} from "../../../../core/models/planning-day.types";
+import {ActivatedRoute} from "@angular/router";
+import {PlanningSpecialService} from "../planning-special.service";
 
 @Component({
   selector: 'planning-special-input',
@@ -19,12 +21,17 @@ export class PlanningSpecialInputComponent implements OnInit {
   selected: any;
   saving: boolean = false;
 
+  id: string = "";
+
   constructor(
+    private _route: ActivatedRoute,
     public matDialogRef: MatDialogRef<PlanningSpecialInputComponent>,
     private _utilsService: UtilsService,
     @Inject(MAT_DIALOG_DATA) private _data: any,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _planningSpecial: PlanningSpecialService
   ) {
+    this.id = _data.id;
   }
 
   ngOnInit() {
@@ -47,7 +54,7 @@ export class PlanningSpecialInputComponent implements OnInit {
 
     let formData = [];
     let formValue = this.specialForm.value;
-    console.log(formValue);
+
     this.daysSelected.forEach((value) => {
       let planningObject: PlanningDay = {
         date: value,
@@ -64,22 +71,17 @@ export class PlanningSpecialInputComponent implements OnInit {
     });
     console.log(formData);
 
-    //
-    // this._planningHebdoService.updatePlanning(this._route.snapshot.params['uuid'], formData)
-    //   .subscribe(event => {
-    //       if (event.type === HttpEventType.UploadProgress) {
-    //         let progress = Math.round((100 * event.loaded) / event.total);
-    //       }
-    //       if (event.type === HttpEventType.Response) {
-    //         // console.log(event.body); // this.signup.reset();
-    //       }
-    //     },
-    //     (error) => {
-    //
-    //     },
-    //     () => {
-    this.saving = false;
-    //     });
+    this._planningSpecial.updatePlanning(this.id, formData)
+      .subscribe(event => {
+          //console.log(event)
+          this.closeDialog();
+        },
+        (error) => {
+
+        },
+        () => {
+          this.saving = false;
+        });
   }
 
   isSelected = (event: any) => {

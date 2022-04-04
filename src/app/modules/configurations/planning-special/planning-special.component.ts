@@ -1,7 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subject} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {PlanningSpecialInputComponent} from "./planning-input/planning-input.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ActivatedRoute} from "@angular/router";
+import {PlanningSpecialService} from "./planning-special.service";
+import {PlanningHebdo} from "../../../core/models/planning-hebdo.types";
 
 @Component({
   selector: 'planning-special',
@@ -12,16 +15,21 @@ export class PlanningSpecialComponent implements OnInit, OnDestroy {
 
   loaded: boolean = true;
   saving: boolean = false;
+  uuid: string = "";
+  planning: any = [];
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     public _dialog: MatDialog,
+    private _route: ActivatedRoute,
+    private _planningSpecialService: PlanningSpecialService
   ) {
+    this.uuid = this._route.snapshot.params['uuid'];
     this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit(): void {
-
+    this.loadData();
   }
 
   ngOnDestroy(): void {
@@ -31,14 +39,27 @@ export class PlanningSpecialComponent implements OnInit, OnDestroy {
 
   addPlanningSpecial() {
     const dialogRef = this._dialog.open(PlanningSpecialInputComponent, {
-      data: {},
+      data: {
+        id: this.uuid
+      },
       disableClose: true
     });
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result && result.length > 0) {
-        }
+        this.loadData();
       });
   }
+
+  private loadData(): void {
+    this.loaded = false;
+    this._planningSpecialService.getPlanning(this.uuid)
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((planningHebdo: PlanningHebdo) => {
+        this.planning = planningHebdo.rules;
+        this.uuid = planningHebdo.uuid;
+        this.loaded = true;
+      });
+  }
+
 }
