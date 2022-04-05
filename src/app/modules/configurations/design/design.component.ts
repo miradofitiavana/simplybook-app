@@ -95,13 +95,16 @@ export class DesignComponent implements OnInit, OnDestroy {
     headers.append('Content-Type', 'image/png');
     headers.append('Accept', 'application/json');
 
+    this.saving = true;
+
     this._designService.updateDesign(this.uuid, formData, headers)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round((100 * event.loaded) / event.total);
         }
         if (event.type === HttpEventType.Response) {
-          console.log(event.body); // this.signup.reset();
+          // console.log(event.body); // this.signup.reset();
+          this.saving = false;
         }
       });
   }

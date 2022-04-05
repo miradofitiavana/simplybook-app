@@ -11,18 +11,20 @@ import {DesignUploadComponent} from "./design-upload/design-upload.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingModule} from "../../../components/loading/loading.module";
 import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
-  imports: [
-    CardRadioModule,
-    MatButtonToggleModule,
-    MatIconModule,
-    SharedModule,
-    MatButtonModule,
-    MatDialogModule,
-    LoadingModule,
-    MatRadioModule
-  ],
+    imports: [
+        CardRadioModule,
+        MatButtonToggleModule,
+        MatIconModule,
+        SharedModule,
+        MatButtonModule,
+        MatDialogModule,
+        LoadingModule,
+        MatRadioModule,
+        MatProgressSpinnerModule
+    ],
   exports: [
     DesignComponent
   ],

@@ -308,7 +308,7 @@
   </div>
 
   <div class="w-full text-right mt-4">
-    <button (click)="savePlanningHebdo()" [disabled]="saving" color="primary" mat-raised-button type="submit">
+    <button (click)="savePlanningHebdo()" [disabled]="saving" color="primary" mat-flat-button type="submit">
      <span class="flex items-center">
       <mat-progress-spinner *ngIf="saving; else showIcon" [diameter]="24" [mode]="'indeterminate'"
                             class="!flex"></mat-progress-spinner>

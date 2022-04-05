@@ -1,7 +1,7 @@
 <div *ngIf="loaded; else loading" class="form-planning-special flex flex-col gap-4">
 
   <div class="w-full text-right mb-4">
-    <button (click)="addPlanningSpecial()" [disabled]="saving" color="primary" mat-raised-button type="submit">
+    <button (click)="addPlanningSpecial()" [disabled]="saving" color="primary" mat-flat-button type="submit">
      <span class="flex items-center">
        <mat-icon>add</mat-icon>
        <span class="ml-2">Ajouter une superposition de date</span>

@@ -53,9 +53,15 @@
   </div>
 
   <div class="w-full text-right mt-4">
-    <button (click)="saveDesignWeek()" [disabled]="saving" color="primary" mat-raised-button type="submit">
-      <mat-icon>save</mat-icon>
+    <button (click)="saveDesignWeek()" [disabled]="saving" color="primary" mat-flat-button type="submit">
+     <span class="flex items-center">
+      <mat-progress-spinner *ngIf="saving; else showIcon" [diameter]="24" [mode]="'indeterminate'"
+                            class="!flex"></mat-progress-spinner>
+      <ng-template #showIcon>
+        <mat-icon>save</mat-icon>
+      </ng-template>
       <span class="ml-2">Enregistrer</span>
+       </span>
     </button>
   </div>
 </form>
