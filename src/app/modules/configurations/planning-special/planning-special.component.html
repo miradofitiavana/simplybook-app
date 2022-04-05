@@ -15,7 +15,12 @@
       <div class="flex-1 flex justify-between items-center">
         <span>{{plan.date | date:'d MMM y'}}</span>
         <div>
-          <span *ngFor="let interval of plan.intervals" class="block">{{interval.from}} - {{interval.to}}</span>
+          <ng-container *ngIf="plan.intervals.length > 0; else intervalsVide">
+            <span *ngFor="let interval of plan.intervals" class="block">{{interval.from}} - {{interval.to}}</span>
+          </ng-container>
+          <ng-template #intervalsVide>
+            <span>Indisponible</span>
+          </ng-template>
         </div>
       </div>
       <div class="flex-grow-0">
