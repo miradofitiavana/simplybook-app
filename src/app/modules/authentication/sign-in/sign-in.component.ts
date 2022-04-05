@@ -14,12 +14,18 @@ export class SignInComponent implements OnInit {
   signInForm: FormGroup;
   showAlert: boolean = false;
 
+  pass: boolean = false;
+
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private _router: Router,
-    private _authService:AuthService
+    private _authService: AuthService
   ) {
+  }
+
+  clickEvent() {
+    this.pass = !this.pass;
   }
 
   ngOnInit(): void {

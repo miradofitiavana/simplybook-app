@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BookingEvent} from "../../../core/models/booking-event.types";
 import {OrganismeService} from "../organisme.service";
@@ -28,7 +28,8 @@ export class BookingConfirmComponent implements OnInit {
     private _organismeService: OrganismeService,
     private _pipe: DatePipe,
     private _utilsService: UtilsService,
-    private _bookingConfirmService: BookingConfirmService
+    private _bookingConfirmService: BookingConfirmService,
+    private _router: Router
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
@@ -59,14 +60,16 @@ export class BookingConfirmComponent implements OnInit {
 
     this.bookingEvent = {
       ...this.bookingEvent,
-      id_societe: 0,
       title: bookValue.name,
       startTime: this.datetime.valueOf(),
+      meta: {
+        email: bookValue.email,
+        infos: bookValue.infos,
+      }
     };
-    console.log(this.bookingEvent);
     this._bookingConfirmService.doBooking(this.permalink, this.bookingEvent)
       .subscribe((value) => {
-        console.log(value);
+        this._router.navigateByUrl('../');
       });
   }
 

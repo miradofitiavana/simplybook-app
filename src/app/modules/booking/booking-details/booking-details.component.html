@@ -1,0 +1,47 @@
+<form *ngIf="event" [formGroup]="bookingDetailsForm">
+  <h1 mat-dialog-title>{{event.title}}</h1>
+  <div mat-dialog-content>
+    <div class="flex">
+      <div class="w-1/3 border-r p-4 flex flex-col gap-4">
+        <button class="w-full" mat-dialog-close mat-flat-button color="default">
+          Replanifier
+        </button>
+        <button class="w-full" mat-dialog-close mat-flat-button color="default">
+          Annuler
+        </button>
+      </div>
+      <div class="w-2/3 border-l p-4 flex flex-col gap-4">
+        <div class="flex gap-4 items-center">
+          <mat-icon class="text-blue-500">today</mat-icon>
+          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.start | date:'mediumDate'}}
+            à {{event.start | date:'HH:mm'}}
+            - {{event.end | date:'mediumDate'}} à {{event.end | date:'HH:mm'}}</p>
+        </div>
+        <div class="flex gap-4 items-center">
+          <mat-icon class="text-blue-500">contact_mail</mat-icon>
+          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta.email || '-'}}</p>
+        </div>
+        <div class="flex gap-4 items-center">
+          <mat-icon class="text-blue-500">comment</mat-icon>
+          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta.infos || '-'}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex items-center justify-between mt-6" mat-dialog-actions>
+    <div>
+      <span class="text-secondary">créé le {{event.created_at | date: "mediumDate"}}</span>
+    </div>
+    <div class="flex">
+      <button mat-dialog-close mat-flat-button>
+        Annuler
+      </button>
+      <button color="primary" mat-flat-button>
+        Enregistrer
+      </button>
+    </div>
+  </div>
+
+</form>
+<loading *ngIf="!event"></loading>

@@ -8,6 +8,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {AuthService} from "../../../core/auth/auth.service";
+import {ConfirmAlertModule} from "../../../components/confirm-alert/confirm-alert.module";
 
 const routes: Routes = [
   {
@@ -20,15 +21,16 @@ const routes: Routes = [
   declarations: [
     SignInComponent
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatProgressSpinnerModule,
-    MatButtonModule,
-    MatInputModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        SharedModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatButtonModule,
+        MatInputModule,
+        ConfirmAlertModule
+    ],
   providers: [
     AuthService
   ]

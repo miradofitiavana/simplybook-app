@@ -7,10 +7,13 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {BookingService} from "./booking.service";
 import {FullCalendarModule} from "@fullcalendar/angular";
-import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import {MatDialogModule} from "@angular/material/dialog";
+import {BookingDetailsComponent} from "./booking-details/booking-details.component";
+import {BookingDetailsModule} from "./booking-details/booking-details.module";
 
 const routes: Routes = [
   {
@@ -36,10 +39,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     PageHeaderModule,
     MatIconModule,
     MatButtonModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatDialogModule,
+    BookingDetailsModule
   ],
   providers: [
-    BookingService
+    BookingService,
   ]
 })
 export class BookingModule {
