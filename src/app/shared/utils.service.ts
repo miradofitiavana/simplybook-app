@@ -61,4 +61,13 @@ export class UtilsService {
     let rminutes = Math.round(minutes);
     return `${rhours.toString().padStart(2, "0")}:${rminutes.toString().padStart(2, "0")}`;
   }
+  addTime(from: string, time: string): string {
+    let f = from.split(':');
+    let t = time.split(':');
+    let fromInt = parseInt(f[0]) * 60 + parseInt(f[1]);
+    let toInt = parseInt(t[0]) * 60 + parseInt(t[1]);
+    let total = fromInt + toInt;
+    if (total >= 1440) total -= 1440;
+    return this.timeConvert(total);
+  }
 }

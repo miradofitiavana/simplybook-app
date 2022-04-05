@@ -1,4 +1,4 @@
 <mat-card class="w-7/12">
-  <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
+  <mat-calendar [(selected)]="selected" [dateFilter]="filterDates" [minDate]="minDate"></mat-calendar>
 </mat-card>
 <booking-creneaux [day]="selected" [permalink]="permalink" class="w-5/12 relative"></booking-creneaux>

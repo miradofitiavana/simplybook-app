@@ -14,7 +14,7 @@ const routes: Routes = [
     path: '',
     component: BookingComponent,
     resolve: {
-      datas: BookingService
+      // datas: BookingService
     }
   }
 ];

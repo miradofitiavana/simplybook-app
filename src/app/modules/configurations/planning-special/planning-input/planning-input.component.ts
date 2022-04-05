@@ -127,7 +127,7 @@ export class PlanningSpecialInputComponent implements OnInit {
     if (this.isActive().value || this.intervals().length == 0) {
       if (this.intervals().length > 0) {
         let from = this.lastHour();
-        let to = this.addTime(from, "01:00");
+        let to = this._utilsService.addTime(from, "01:00");
         this.intervals().push(this.newIntervalForm({from: from, to: to}));
       } else {
         this.intervals().push(this.newIntervalForm());
@@ -178,16 +178,6 @@ export class PlanningSpecialInputComponent implements OnInit {
   private lastHour(): string {
     let intervalsValues = this.intervals().value;
     return intervalsValues[intervalsValues.length - 1].hourTo;
-  }
-
-  private addTime(from: string, time: string): string {
-    let f = from.split(':');
-    let t = time.split(':');
-    let fromInt = parseInt(f[0]) * 60 + parseInt(f[1]);
-    let toInt = parseInt(t[0]) * 60 + parseInt(t[1]);
-    let total = fromInt + toInt;
-    if (total >= 1440) total -= 1440;
-    return this._utilsService.timeConvert(total);
   }
 
   private fromEstInferieurEgalTo(from: string, to: string): boolean {

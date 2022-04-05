@@ -8,11 +8,11 @@
     </div>
     <p class="!flex items-center gap-3 text-base">
       <mat-icon>today</mat-icon>
-      <span>{{datetime|date:'fullDate'}}</span>
+      <span>{{getDateBooking()}}</span>
     </p>
     <p class="!mb-0 !flex items-center gap-3 text-base">
       <mat-icon>access_time</mat-icon>
-      <span>{{datetime|date:'HH:mm'}}</span>
+      <span>{{getHoursBooking()}}</span>
     </p>
   </div>
   <form [formGroup]="bookingConfirmGroup" class="w-2/3 pl-4 border-l">
