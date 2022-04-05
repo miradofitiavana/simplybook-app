@@ -20,7 +20,7 @@ export class PlanningSpecialInputComponent implements OnInit {
   event: any;
   selected: any;
   saving: boolean = false;
-
+  minDate: Date = new Date();
   id: string = "";
 
   constructor(

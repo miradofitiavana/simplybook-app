@@ -8,10 +8,6 @@ import {ConfirmConfig} from "../../core/models/confirm-config.types";
   styles: [
     `
       .confirmation-dialog-panel {
-        @screen md {
-          //@apply w-;
-        }
-
         .mat-dialog-container {
           padding: 0 !important;
         }

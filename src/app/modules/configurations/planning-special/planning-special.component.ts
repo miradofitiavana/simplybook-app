@@ -54,7 +54,12 @@ export class PlanningSpecialComponent implements OnInit, OnDestroy {
   }
 
   removePlanningSpecial(planning): void {
-    this._confirmDialogService.open();
+    this._confirmDialogService.open({
+      title: 'Confirmation',
+      message: 'Voulez-vous vraiment supprimer cette superposition de date ?',
+      dismissible:false,
+
+    });
   }
 
   private loadData(): void {

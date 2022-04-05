@@ -1,6 +1,6 @@
 <form *ngIf="specialForm" [formGroup]="specialForm">
-  <div class="items-center justify-between" mat-dialog-title>
-    <span>{{title}}</span>
+  <div class="!flex items-center justify-between" mat-dialog-title>
+    <span>Ajouter une superposition de date</span>
     <button (click)="closeDialog()" mat-icon-button>
       <mat-icon>close</mat-icon>
     </button>
@@ -13,7 +13,7 @@
     <div class="flex gap-4">
       <div class="max-w-md flex-1">
         <mat-calendar #calendar (selectedChange)="select($event,calendar)"
-                      [dateClass]="isSelected"></mat-calendar>
+                      [dateClass]="isSelected" [minDate]="minDate"></mat-calendar>
       </div>
       <div class="form-planning-special py-8 px-4">
         <div *ngIf="daysSelected.length>0; else noDaySelected" class="flex justify-between">
@@ -59,7 +59,7 @@
   </div>
 
   <div class="flex items-center justify-end" mat-dialog-actions>
-    <button (click)="savePlanning()" [disabled]="saving" mat-flat-button>
+    <button (click)="savePlanning()" [disabled]="saving" color="primary" mat-flat-button>
       Enregistrer
     </button>
   </div>
