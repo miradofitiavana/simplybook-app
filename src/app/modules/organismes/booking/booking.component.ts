@@ -17,7 +17,8 @@ export class BookingComponent implements OnInit {
   data: any;
 
   openingDays: any = [];
-  closingDays: any = [];
+  openingExtraDays: any = [];
+  closingExtraDays: any = [];
 
   selected: Date | null;
   minDate: Date = new Date();
@@ -42,27 +43,17 @@ export class BookingComponent implements OnInit {
     let d = this._pipe.transform(date, 'yyyy-MM-dd');
 
     let isa = 0;
-    if (this.openingDays.length > 0) {
-      if (this.openingDays.includes(this.dates_matches[day])) {
-        isa = 1;
-      } else {
-        isa = 0;
-      }
-    } else {
+    if (this.openingDays.length > 0 && !this.openingDays.includes(this.dates_matches[day])) {
+      isa = 1;
+    }
+    if (this.closingExtraDays.length > 0 && this.closingExtraDays.includes(d)) {
+      isa = 1;
+    }
+    if (this.openingExtraDays.length > 0 && this.openingExtraDays.includes(d)) {
       isa = 0;
     }
 
-    if (this.closingDays.length > 0 && isa == 1) {
-      if (!this.closingDays.includes(d)) {
-        isa = 1;
-      } else {
-        isa = 0;
-      }
-    } else {
-      isa = 0;
-    }
-
-    return isa == 1;
+    return isa == 0;
   }
 
   ngOnInit(): void {
@@ -74,16 +65,13 @@ export class BookingComponent implements OnInit {
           if (value.type == 'wday') {
             this.openingDays.push(value.wday);
           }
-          if (value.type == 'date') {
-            this.closingDays.push(value.date)
+          if (value.type == 'date' && value.intervals.length == 0) {
+            this.closingExtraDays.push(value.date)
+          }
+          if (value.type == 'date' && value.intervals.length > 0) {
+            this.openingExtraDays.push(value.date)
           }
         });
       });
-    // this._bookingService.onBookingDataChanged
-    //   .pipe(takeUntil(this._unsubscribeAll))
-    //   .subscribe((value) => {
-    //     this.data = value;
-    //
-    //   });
   }
 }
