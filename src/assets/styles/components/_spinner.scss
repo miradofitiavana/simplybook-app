@@ -3,3 +3,22 @@
     @apply stroke-blue-500;
   }
 }
+
+.mat-button,
+.mat-fab,
+.mat-flat-button,
+.mat-icon-button,
+.mat-fab,
+.mat-mini-fab,
+.mat-raised-button,
+.mat-stroked-button {
+
+  .mat-progress-spinner {
+    &.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+      circle {
+        stroke: currentColor !important;
+        animation-duration: 6000ms;
+      }
+    }
+  }
+}

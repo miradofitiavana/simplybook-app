@@ -32,8 +32,6 @@ const routes: Routes = [
         MatIconModule,
         MatSidenavModule,
         MatButtonModule,
-        // WeekModule,
-        // SpecialModule,
         DesignModule,
         PlanningHebdoModule,
         ScheduleModule,

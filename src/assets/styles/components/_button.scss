@@ -1,98 +1,168 @@
-.mat-button-base {
-  @apply rounded-button #{!important};
-  @apply py-1 #{!important};
-  @apply px-4 #{!important};
-  transition: .3s all;
-  min-height: 48px;
+.mat-button,
+.mat-fab,
+.mat-flat-button,
+.mat-icon-button,
+.mat-mini-fab,
+.mat-raised-button,
+.mat-stroked-button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-height: 40px;
+  max-height: 40px;
+  line-height: 1 !important;
 
   .mat-button-wrapper {
-    line-height: 48px;
+    position: relative;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    z-index: 2;
   }
 
-  .mat-button-focus-overlay {
-    background-color: rgb(148, 163, 184, .2) !important;
-    transition: .3s all;
+  .mat-button-focus-overlay,
+  .mat-button-ripple {
+    z-index: 1;
   }
 
-  &:not(.mat-icon-button) {
-    .mat-icon {
-      font-size: 20px;
-      height: 20px;
-      width: 20px;
-    }
-  }
-
-  /*
-  * Variations
-   */
-  &.mat-flat-button {
-
-  }
-
-  &.mat-stroked-button {
-    @apply border-gray-500;
-  }
-
-  &.mat-raised-button {
-    @apply shadow;
+  /* Large button */
+  &.mat-button-large {
+    height: 48px;
+    min-height: 48px;
+    max-height: 48px;
   }
 
   &.mat-button-disabled {
-    color: #00000042;
-    background: #0000;
-  }
-
-  &.mat-button-mini {
-    min-width: 0 !important;
-    line-height: 1 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-  }
-
-  &.mat-button-width {
-    min-width: 150px !important;
-  }
-
-  &.mat-button-border {
-    border: 1px solid;
-    @apply border-gray-800;
-
-    &--white {
-      @apply border-white;
-    }
-
-    &--primary {
-      @apply border-blue-500;
+    .mat-icon {
+      opacity: 0.38 !important;
     }
   }
 
-  &.mat-button-text {
-    &--white {
-      @apply text-white;
+  &.mat-button-bordered {
+    @apply border border-gray-500 border-solid
+  }
+}
+
+.mat-fab {
+  max-height: 56px;
+}
+
+.mat-button,
+.mat-flat-button,
+.mat-raised-button,
+.mat-stroked-button {
+  padding: 0 20px !important;
+  border-radius: 9999px !important;
+}
+
+.mat-flat-button,
+.mat-raised-button,
+.mat-fab,
+.mat-mini-fab {
+  .mat-icon {
+    color: currentColor !important;
+  }
+
+  .mat-button-focus-overlay {
+    @apply bg-gray-400 bg-opacity-20;
+  }
+
+  &.mat-primary,
+  &.mat-accent,
+  &.mat-warn {
+    .mat-button-focus-overlay {
+      background-color: rgba(0, 0, 0, 0.1) !important;
     }
   }
 
-  &.mat-icon-button {
-    padding: 0 !important;
+  &:hover {
+    .mat-button-focus-overlay {
+      opacity: 1 !important;
+    }
   }
 
-  &:not([color]):not(.mat-button-disabled) {
+  &.mat-button-disabled {
+    .mat-button-focus-overlay {
+      opacity: 0 !important;
+    }
+  }
+}
+
+.mat-button,
+.mat-icon-button,
+.mat-stroked-button {
+  &.mat-primary:not(.mat-button-disabled) {
+    .mat-icon {
+      @apply text-primary #{'!important'};
+    }
+  }
+
+  &.mat-accent:not(.mat-button-disabled) {
+    .mat-icon {
+      @apply text-accent #{'!important'};
+    }
+  }
+
+  &.mat-warn:not(.mat-button-disabled) {
+    .mat-icon {
+      @apply text-warn #{'!important'};
+    }
+  }
+
+  .mat-button-focus-overlay {
+    @apply bg-gray-400 bg-opacity-20;
+  }
+
+  &.mat-primary:not(.mat-button-disabled) {
+    .mat-button-focus-overlay {
+      @apply bg-primary #{'!important'};
+    }
+  }
+
+  &.mat-accent:not(.mat-button-disabled) {
+    .mat-button-focus-overlay {
+      @apply bg-accent #{'!important'};
+    }
+  }
+
+  &.mat-warn:not(.mat-button-disabled) {
+
+    .mat-button-focus-overlay {
+      @apply bg-warn #{'!important'};
+    }
+  }
+
+  &.mat-primary:not(.mat-button-disabled),
+  &.mat-accent:not(.mat-button-disabled),
+  &.mat-warn:not(.mat-button-disabled) {
     &:hover {
       .mat-button-focus-overlay {
-        opacity: 1 !important;
+        opacity: 0.1 !important;
       }
     }
   }
 
-  &[color="default"], &.mat-button--default {
-    @apply text-black bg-default hover:bg-gray-200 disabled:bg-gray-100;
+  &:hover {
+    .mat-button-focus-overlay {
+      opacity: 1 !important;
+    }
   }
 
-  &[color="primary"], &.mat-button--primary {
-    @apply text-white bg-blue-500 hover:bg-blue-700 disabled:bg-blue-200;
+  &.mat-button-disabled {
+    .mat-button-focus-overlay {
+      opacity: 0 !important;
+    }
+  }
+}
+
+.mat-stroked-button {
+  &:not(.mat-button-disabled) {
+    @apply border-gray-300 #{'!important'};
   }
 
-  &[color="gray"], &.mat-button--gray {
-    @apply text-white bg-gray-800 hover:bg-gray-900 disabled:bg-gray-200;
+  &.mat-button-disabled {
+    @apply border-gray-200 #{'!important'};
   }
 }

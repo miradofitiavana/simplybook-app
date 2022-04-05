@@ -23,7 +23,8 @@
         @apply gap-4 px-8 py-4 app-content;
 
         .mat-tab-label {
-          @apply mat-button-base bg-gray-800 text-white h-12;
+          @apply mat-button;
+          @apply text-white bg-gray-800 #{'!important'};
         }
       }
     }

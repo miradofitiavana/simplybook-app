@@ -106,9 +106,16 @@
     </mat-form-field>
 
     <div class="w-full text-right">
-      <button (click)="saveStructure()" color="primary" mat-raised-button type="submit">
+      <button (click)="saveStructure()" [disabled]="saving" color="primary" mat-raised-button
+              type="submit">
+     <span class="flex items-center">
+      <mat-progress-spinner *ngIf="saving; else showIcon" [diameter]="24" [mode]="'indeterminate'"
+                            class="!flex"></mat-progress-spinner>
+      <ng-template #showIcon>
         <mat-icon>save</mat-icon>
-        <span class="ml-2">Enregistrer</span>
+      </ng-template>
+      <span class="ml-2">Enregistrer</span>
+       </span>
       </button>
     </div>
   </form>

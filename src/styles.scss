@@ -3,16 +3,13 @@
 @use "./assets/styles/theme/light";
 @use "./assets/styles/theme/global";
 
-//@import "../node_modules/angular-calendar/css/angular-calendar.css";
-
 @include mat.core(global.$simplybook-app-config);
 @include mat.core-theme(light.$simplybook-app-theme);
-//@include mat.progress-spinner-theme(light.$simplybook-app-theme);
 @include mat.chips-theme(light.$simplybook-app-theme);
 @include mat.slide-toggle-theme(light.$simplybook-app-theme);
 @include mat.datepicker-theme(light.$simplybook-app-theme);
 @include mat.radio-theme(light.$simplybook-app-theme);
-//@include mat.button-theme(light.$simplybook-app-theme);
+@include mat.button-color(light.$simplybook-app-theme);
 
 @tailwind base;
 @tailwind components;
@@ -24,7 +21,6 @@ html, body {
   flex: 1 1 auto;
   width: 100%;
   min-height: 100%;
-  //-webkit-font-smoothing: auto;
   height: 100%;
 }
 

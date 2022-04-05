@@ -14,7 +14,7 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
   drawerMode: 'over' | 'side' = 'side';
 
   panels: any[] = [];
-  selectedPanel: string = 'planning-special';
+  selectedPanel: string = 'planning-hebdo';
 
   private _unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -35,18 +35,6 @@ export class ConfigurationsComponent implements OnInit, OnDestroy {
         title: 'Planning spécial',
         description: 'Configurez ici vos disponibilité ou indisponibilités exceptionnelles.'
       },
-      // {
-      //   id: 'week',
-      //   icon: 'event_note',
-      //   title: 'Planning pour la semaine',
-      //   description: 'Configurez votre calendrier hebdomadaire par défaut. Définissez les cas exceptionnels dans "Planning des jours spéciaux".'
-      // },
-      // {
-      //   id: 'special',
-      //   icon: 'today',
-      //   title: 'Planning des jours spéciaux',
-      //   description: '
-      // },
       {
         id: 'schedule',
         icon: 'view_quilt',

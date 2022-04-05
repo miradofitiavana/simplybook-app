@@ -3,14 +3,12 @@
     class="bg-white md:flex md:items-center md:justify-end w-full sm:w-auto md:h-full md:w-1/2 xl:w-1/2 py-8 px-4 sm:p-12 md:p-16 sm:rounded-2xl md:rounded-none sm:shadow md:shadow-none sm:bg-card">
     <div class="w-full max-w-96 sm:w-96 mx-auto sm:mx-0">
       <!-- Title -->
-      <div class="mt-8 text-4xl font-extrabold tracking-tight leading-tight">Inscrire votre entreprise</div>
-      <div class="flex items-baseline mt-0.5 font-medium">
-        <div>Vous avez déjà votre Espace ?</div>
-        <a
-          [routerLink]="['/sign-in']"
-          class="ml-1 text-primary-500 hover:underline transition-all duration-300 font-bold">Connectez-vous
-        </a>
-      </div>
+      <p class="focus:outline-none !text-2xl font-extrabold leading-6 text-gray-800">Inscrivez votre entreprise</p>
+      <p class="focus:outline-none !text-sm mt-4 !mb-12 font-medium leading-none text-gray-500">
+        Vous avez déjà votre Espace ? <a [routerLink]="['/sign-in']"
+                                         class="text-md font-bold text-primary hover:underline cursor-pointer">Identifiez-vous
+      </a>
+      </p>
 
       <!-- Sign Up form -->
       <form

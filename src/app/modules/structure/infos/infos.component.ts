@@ -29,6 +29,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
     origin: null,
     componentRestrictions: {country: 'FR'}
   };
+  saving: boolean = false;
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -57,7 +58,6 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
   }
 
   handleAddressChange(result: Address) {
-    console.log(result);
     this.societeForm.get('autocomplete').setValue(result.formatted_address);
     this.societeForm.get('adresse').setValue(result.name);
     result.address_components.forEach(value => {
@@ -87,7 +87,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.societeForm.disable();
+    this.saving = true;
 
     let formValue = this.societeForm.value;
     if (formValue?.categories) {
@@ -103,6 +103,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       .subscribe((value => {
           this.societe = value.datas;
           this.initForm();
+          this.saving = false;
         }),
         (err => {
           console.log(err);

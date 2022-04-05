@@ -14,6 +14,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {StructureResolver} from "./structure.resolver";
 import {MatTabsModule} from "@angular/material/tabs";
 import {StructureInfosComponent} from "./infos/infos.component";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const routes: Routes = [
   {
@@ -31,19 +32,20 @@ const routes: Routes = [
     StructureComponent,
     StructureInfosComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    PageHeaderModule,
-    MatIconModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    GooglePlaceModule,
-    MatSelectModule,
-    MatChipsModule,
-    MatTabsModule
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        PageHeaderModule,
+        MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        GooglePlaceModule,
+        MatSelectModule,
+        MatChipsModule,
+        MatTabsModule,
+        MatProgressSpinnerModule
+    ],
   providers: [
     StructureService
   ]
