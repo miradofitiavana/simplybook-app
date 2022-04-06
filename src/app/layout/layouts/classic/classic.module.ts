@@ -11,6 +11,7 @@ import {ToolbarComponent} from "../../../components/toolbar/toolbar.component";
 import {ProgressBarModule} from "../../../components/progress-bar/progress-bar.module";
 import {NavigationModule} from "../../../components/navigation/navigation.module";
 import {WorkspaceModule} from "../../../components/workspace/workspace.module";
+import {UserDropdownModule} from "../../../components/user-dropdown/user-dropdown.module";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {WorkspaceModule} from "../../../components/workspace/workspace.module";
         SharedModule,
         NavigationModule,
         WorkspaceModule,
+        UserDropdownModule,
     ],
   exports: [
     ClassicLayoutComponent

@@ -106,8 +106,17 @@ export class AuthService {
     );
   }
 
-  signOut(): void {
+  signOut(): Observable<any> {
+    this._httpClient.get(`${API}/logout`)
+      .toPromise().then((value) => {
+    }).finally(() => {
+      this._cookieService.delete('accessToken');
+      this._cookieService.delete('typeToken');
+      this._cookieService.delete('simplyWorkspace');
 
+      this._authenticated = false;
+    });
+    return of(true);
   }
 
   check(): Observable<boolean> {

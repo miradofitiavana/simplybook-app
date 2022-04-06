@@ -67,6 +67,22 @@ export const appRoutes: Routes = [
 
   {
     path: '',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    component: LayoutComponent,
+    data: {
+      layout: 'empty'
+    },
+    children: [
+      {
+        path: 'sign-out',
+        loadChildren: () => import('app/modules/authentication/sign-out/sign-out.module').then(m => m.SignOutModule)
+      },
+    ]
+  },
+
+  {
+    path: '',
     canActivate: [NoAuthGuard],
     canActivateChild: [NoAuthGuard],
     component: LayoutComponent,

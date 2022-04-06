@@ -6,6 +6,7 @@ import frLocale from '@fullcalendar/core/locales/fr';
 import {Subject} from "rxjs";
 import {BookingDetailsComponent} from "./booking-details/booking-details.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogService} from "../../components/confirm-dialog/confirm-dialog.service";
 
 @Component({
   selector: 'booking',
@@ -18,6 +19,8 @@ export class BookingComponent implements OnInit {
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   isVisible = false;
   eventFromApiPush = [];
+  hoursClosing = [];
+  hoursBusiness = [];
   calendarOptions: CalendarOptions = {
     locale: frLocale,
     firstDay: 1,
@@ -30,7 +33,7 @@ export class BookingComponent implements OnInit {
     events: [],
     weekends: true,
     editable: true,
-    selectable: true,
+    selectable: false,
     dayMaxEvents: true,
     height: "auto",
     businessHours: [],
@@ -38,8 +41,11 @@ export class BookingComponent implements OnInit {
     fixedWeekCount: false,
     eventClick: this.handleEventClick.bind(this),
     eventDrop: this.handleEventDrop.bind(this),
-    eventResize: this.handleEventResize.bind(this)
+    eventResize: this.handleEventResize.bind(this),
+    dateClick: this.handleDateClick.bind(this),
+    viewDidMount: this.handleViewRender.bind(this),
   };
+  currentView: string = 'dayGridMonth';
 
   private _unsubscribeAll: Subject<any>;
 
@@ -47,9 +53,9 @@ export class BookingComponent implements OnInit {
     private _route: ActivatedRoute,
     private _bookingService: BookingService,
     private _dialog: MatDialog,
+    private _confirmDialogService: ConfirmDialogService
   ) {
     this._unsubscribeAll = new Subject<any>();
-
   }
 
   ngOnInit(): void {
@@ -58,7 +64,9 @@ export class BookingComponent implements OnInit {
         let cal = this.calendarComponent.getApi();
         cal.removeAllEvents();
         this.eventFromApiPush = values.events;
-        cal.setOption('businessHours', values.indisponibilites);
+        this.hoursClosing = values.hoursClosing;
+        this.hoursBusiness = values.hoursBusiness;
+        cal.setOption('businessHours', this.hoursBusiness);
         cal.setOption('events', values.events);
       }, (err) => {
 
@@ -67,9 +75,7 @@ export class BookingComponent implements OnInit {
       });
   }
 
-  handleDateClick(arg) {
-    console.log('date click! ' + arg.dateStr)
-  }
+
 
   handleEventClick({event, el, jsEvent, view}) {
     const dialogRef = this._dialog.open(BookingDetailsComponent, {
@@ -94,5 +100,40 @@ export class BookingComponent implements OnInit {
 
   handleEventResize(event) {
     console.log(event);
+  }
+
+  handleViewRender(event) {
+    if (this.currentView == 'timeGridDay' && event.view.type !== "timeGridDay") {
+      let cal = this.calendarComponent.getApi();
+      cal.setOption('slotMinTime', '00:00:00');
+      cal.setOption('slotMaxTime', '24:00:00');
+    }
+    console.log(event);
+  }
+
+  handleDateClick(arg) {
+    let cal = this.calendarComponent.getApi();
+    let index = this.hoursBusiness.filter(value => value.daysOfWeek.includes(arg.date.getDay()));
+    if (index.length > 0) {
+      this.currentView = 'timeGridDay';
+      cal.changeView('timeGridDay', arg.dateStr);
+      // let currentDay = this.hoursClosing.filter(value => value.date == arg.dateStr);
+      // if(currentDay.length>0){
+      //   cal.setOption('slotMinTime',currentDay[0].intervals[0])
+      // }
+      cal.setOption('slotMinTime', index[0].startTime);
+      cal.setOption('slotMaxTime', index[0].endTime);
+    } else {
+      this._confirmDialogService.open({
+        title: 'Erreur',
+        message: "Ce jour de la semaine n'est pas ouvert, changez vos disponibilités pour l'utiliser.",
+        dismissible: false,
+        actions: {
+          confirm: {
+            show: false
+          }
+        }
+      });
+    }
   }
 }
