@@ -14,6 +14,7 @@ import listPlugin from '@fullcalendar/list';
 import {MatDialogModule} from "@angular/material/dialog";
 import {BookingDetailsComponent} from "./booking-details/booking-details.component";
 import {BookingDetailsModule} from "./booking-details/booking-details.module";
+import {LoadingModule} from "../../components/loading/loading.module";
 
 const routes: Routes = [
   {
@@ -33,16 +34,17 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   declarations: [
     BookingComponent
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    SharedModule,
-    PageHeaderModule,
-    MatIconModule,
-    MatButtonModule,
-    FullCalendarModule,
-    MatDialogModule,
-    BookingDetailsModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        SharedModule,
+        PageHeaderModule,
+        MatIconModule,
+        MatButtonModule,
+        FullCalendarModule,
+        MatDialogModule,
+        BookingDetailsModule,
+        LoadingModule
+    ],
   providers: [
     BookingService,
   ]

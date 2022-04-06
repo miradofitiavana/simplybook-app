@@ -166,3 +166,34 @@
     @apply border-gray-200 #{'!important'};
   }
 }
+
+/**
+* Fullcalendar buttons
+ */
+full-calendar {
+  .fc-toolbar {
+    .fc-button {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      min-height: 40px;
+      max-height: 40px;
+      line-height: 1 !important;
+      padding: 0 20px !important;
+      border-radius: 9999px !important;
+    }
+
+    .fc-button-group {
+      .fc-button {
+        &:not(&:first-child) {
+          @apply rounded-l-none #{'!important'};
+        }
+
+        &:not(&:last-child) {
+          @apply rounded-r-none #{'!important'};
+        }
+      }
+    }
+  }
+}

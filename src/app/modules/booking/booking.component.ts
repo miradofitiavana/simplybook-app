@@ -32,11 +32,13 @@ export class BookingComponent implements OnInit {
     editable: true,
     selectable: true,
     dayMaxEvents: true,
-    height: 'auto',
+    height: "auto",
     businessHours: [],
     // showNonCurrentDates: false,
     fixedWeekCount: false,
-    eventClick: this.handleEventClick.bind(this)
+    eventClick: this.handleEventClick.bind(this),
+    eventDrop: this.handleEventDrop.bind(this),
+    eventResize: this.handleEventResize.bind(this)
   };
 
   private _unsubscribeAll: Subject<any>;
@@ -58,6 +60,10 @@ export class BookingComponent implements OnInit {
         this.eventFromApiPush = values.events;
         cal.setOption('businessHours', values.indisponibilites);
         cal.setOption('events', values.events);
+      }, (err) => {
+
+      }, () => {
+
       });
   }
 
@@ -78,5 +84,15 @@ export class BookingComponent implements OnInit {
         if (result) {
         }
       });
+  }
+
+  handleEventDrop(event) {
+    let oldEvent = event.oldEvent;
+    let currentEvent = event.event;
+    console.log(event);
+  }
+
+  handleEventResize(event) {
+    console.log(event);
   }
 }
