@@ -8,12 +8,12 @@
         <div *ngFor="let hour of hours; let i=index;" [ngClass]="{'gap-4':selectedHour==hour}" class="flex">
           <button (click)="selectHour(hour)"
                   [ngClass]="selectedHour==hour?'mat-button--gray w-1/2':'w-full mat-button-border--primary'"
-                  class="mat-button-border w-full text-base transition-all duration-300 mat-button-mini"
+                  class="mat-button-bordered w-full text-base transition-all duration-300"
                   mat-flat-button>
             {{hour}}
           </button>
-          <button (click)="confirmRDV()" [ngClass]="selectedHour==hour?'w-1/2':'w-0'"
-                  class="!min-w-0 !overflow-hidden mat-button-mini transition-all text-base duration-300"
+          <button (click)="confirmRDV()" [ngClass]="selectedHour==hour?'w-1/2':'w-0 mat-button-no-padding'"
+                  class="!min-w-0 !overflow-hidden transition-all text-base duration-300"
                   color="primary"
                   mat-flat-button>
             Confirmer

@@ -3,11 +3,13 @@
   <div mat-dialog-content>
     <div class="flex">
       <div class="w-1/3 border-r p-4 flex flex-col gap-4">
-        <button class="w-full mat-button-bordered" mat-dialog-close mat-flat-button>
-          Replanifier
+        <button (click)="replanifier()" class="w-full mat-button-bordered" mat-flat-button>
+          <mat-icon>sync</mat-icon>
+          <span class="ml-4">Replanifier</span>
         </button>
-        <button class="w-full mat-button-bordered" mat-dialog-close mat-flat-button>
-          Annuler
+        <button (click)="annuler()" class="w-full mat-button-bordered" mat-flat-button>
+          <mat-icon>cancel</mat-icon>
+          <span class="ml-4">Annuler</span>
         </button>
       </div>
       <div class="w-2/3 border-l p-4 flex flex-col gap-4">
@@ -19,11 +21,11 @@
         </div>
         <div class="flex gap-4 items-center">
           <mat-icon class="text-blue-500">contact_mail</mat-icon>
-          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta.email || '-'}}</p>
+          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta?.email || '-'}}</p>
         </div>
         <div class="flex gap-4 items-center">
           <mat-icon class="text-blue-500">comment</mat-icon>
-          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta.infos || '-'}}</p>
+          <p class="!mb-0 flex gap-4 items-center !text-base">{{event.meta?.infos || '-'}}</p>
         </div>
       </div>
     </div>
@@ -34,7 +36,7 @@
       <span class="text-secondary">créé le {{event.created_at | date: "mediumDate"}}</span>
     </div>
     <div class="flex">
-      <button mat-dialog-close mat-flat-button>
+      <button [mat-dialog-close]="undefined" mat-flat-button>
         Annuler
       </button>
       <button color="primary" mat-flat-button>

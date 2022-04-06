@@ -8,6 +8,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const routes: Routes = [
   {
@@ -20,14 +21,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatButtonModule
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        MatInputModule,
+        MatIconModule,
+        MatButtonModule,
+        MatProgressSpinnerModule
+    ],
   exports: [],
   declarations: [
     BookingConfirmComponent

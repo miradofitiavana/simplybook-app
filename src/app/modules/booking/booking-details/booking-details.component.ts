@@ -29,4 +29,12 @@ export class BookingDetailsComponent implements OnInit {
       });
     this.bookingDetailsForm = new FormGroup({});
   }
+
+  annuler() {
+    console.log(this.event);
+  }
+
+  replanifier() {
+    console.log(this.event);
+  }
 }

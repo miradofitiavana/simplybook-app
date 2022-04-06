@@ -4,9 +4,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {BookingEvent} from "../../../core/models/booking-event.types";
 import {OrganismeService} from "../organisme.service";
-import {DatePipe} from "@angular/common";
+import {DatePipe, Location} from "@angular/common";
 import {UtilsService} from "../../../shared/utils.service";
 import {BookingConfirmService} from "./booking-confirm.service";
+import {ProgressBarService} from "../../../components/progress-bar/progress-bar.service";
 
 @Component({
   selector: 'booking-confirm',
@@ -21,6 +22,9 @@ export class BookingConfirmComponent implements OnInit {
   schedule: any;
   permalink: string = "";
   bookingEvent: BookingEvent = null;
+  saving: boolean = false;
+  booked: boolean = false;
+  confirmation: any;
   private _unsubscribeAll: Subject<any>;
 
   constructor(
@@ -29,7 +33,9 @@ export class BookingConfirmComponent implements OnInit {
     private _pipe: DatePipe,
     private _utilsService: UtilsService,
     private _bookingConfirmService: BookingConfirmService,
-    private _router: Router
+    private _router: Router,
+    private _location: Location,
+    private _progressBarService: ProgressBarService
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
@@ -56,6 +62,7 @@ export class BookingConfirmComponent implements OnInit {
       return;
     }
 
+    this.saving = true;
     let bookValue = this.bookingConfirmGroup.value;
 
     this.bookingEvent = {
@@ -69,7 +76,15 @@ export class BookingConfirmComponent implements OnInit {
     };
     this._bookingConfirmService.doBooking(this.permalink, this.bookingEvent)
       .subscribe((value) => {
-        this._router.navigateByUrl('../');
+        this._progressBarService.show();
+        console.log(value);
+        this.confirmation = value.datas;
+        this.booked = true;
+        this._progressBarService.hide();
+      }, (error) => {
+        this.saving = false;
+      }, () => {
+        this.saving = false;
       });
   }
 
@@ -85,5 +100,10 @@ export class BookingConfirmComponent implements OnInit {
       endTime: (Date.parse(this._pipe.transform(this.datetime, 'yyyy-MM-dd') + 'T' + to + ":00")).valueOf()
     }
     return `${from} à ${to}`;
+  }
+
+  goBack(): void {
+    let url = this._router.url.substring(0, this._router.url.length - this._route.snapshot.params['date'].length - 1);
+    this._router.navigateByUrl(url);
   }
 }
