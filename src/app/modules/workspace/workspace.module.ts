@@ -8,6 +8,7 @@ import {PageHeaderModule} from "../../components/page-header/page-header.module"
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatIconModule} from "@angular/material/icon";
 import {WorkspaceInfosModule} from "./workspace-infos/workspace-infos.module";
+import {WorkspaceDroitsModule} from "./workspace-droits/workspace-droits.module";
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
     PageHeaderModule,
     MatTabsModule,
     MatIconModule,
-    WorkspaceInfosModule
+    WorkspaceInfosModule,
+    WorkspaceDroitsModule
   ],
   exports: [],
   declarations: [

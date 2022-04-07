@@ -20,7 +20,7 @@ export const navigations: NavigationItem[] = [
       {
         id: 'booking',
         title: 'Mes Réservations',
-        subtitle: '3 rendez-vous à venir',
+        // subtitle: '3 rendez-vous à venir',
         type: 'basic',
         icon: 'today',
         link: '/booking',
@@ -54,15 +54,15 @@ export const navigations: NavigationItem[] = [
         hidden: false,
         by_society: false,
       },
-      {
-        id: 'profile',
-        title: 'Mon Profil',
-        type: 'basic',
-        icon: 'account_circle',
-        link: '/profile',
-        hidden: false,
-        by_society: false,
-      }
+      // {
+      //   id: 'profile',
+      //   title: 'Mon Profil',
+      //   type: 'basic',
+      //   icon: 'account_circle',
+      //   link: '/profile',
+      //   hidden: false,
+      //   by_society: false,
+      // }
     ]
   },
   {
