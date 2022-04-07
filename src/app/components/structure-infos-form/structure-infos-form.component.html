@@ -112,7 +112,7 @@
 
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Description de vos activités</mat-label>
-        <textarea formControlName="descr" matInput></textarea>
+        <textarea cdkTextareaAutosize rows="3" formControlName="descr" matInput></textarea>
         <mat-error *ngIf="form.get('societeForm').get('descr').hasError('required')">
           Veuillez entrer la description de votre entreprise.
         </mat-error>
