@@ -5,7 +5,9 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {API} from "../../core/config/api.config";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class WorkspaceService implements Resolve<any> {
 
   structureData: Societe = null;

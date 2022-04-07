@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.design_version = this._organismeService.design_version;
-    
+
     this._homeService.onHomeDataChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((value) => {
         this.data = value;
         this.horaires = value.horaire_weeks as SettingsWeek;
-        this.horaires.uuid = value.uuid;
+        // this.horaires.uuid = value.uuid;
 
         this.getGoogleMap();
       });

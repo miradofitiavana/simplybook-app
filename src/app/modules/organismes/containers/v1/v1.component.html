@@ -12,88 +12,13 @@
         </p>
       </a>
       <div class="hidden lg:flex items-center">
-        <p class="text-base !mb-0 focus:outline-none focus:ring-1 p-2 focus:ring-offset-1 focus:ring-white hover:text-gray-300 font-medium mr-10 leading-4 cursor-pointer text-white" role="button"
-           tabindex="0">
-          Home</p>
-        <p class="text-base !mb-0 focus:outline-none focus:ring-1 p-2 focus:ring-offset-1 focus:ring-white hover:text-gray-300 font-medium mr-10 leading-4 text-white" role="button"
-           tabindex="0">
-          About</p>
-        <p class="text-base !mb-0 focus:outline-none focus:ring-1 p-2 focus:ring-offset-1 focus:ring-white hover:text-gray-300 font-medium mr-10 leading-4 text-white" role="button"
-           tabindex="0">
-          Pages</p>
-        <p class="text-base !mb-0 focus:outline-none focus:ring-1 p-2 focus:ring-offset-1 focus:ring-white hover:text-gray-300 font-medium mr-10 leading-4 text-white" role="button"
-           tabindex="0">
-          Doc</p>
-        <p class="text-base !mb-0 focus:outline-none focus:ring-1 p-2 focus:ring-offset-1 focus:ring-white hover:text-gray-300 font-medium mr-10 leading-4 text-white" role="button"
-           tabindex="0">
-          Contact</p>
-
         <a [routerLink]="'/organismes/'+v1Data.permalink+'/booking'" color="primary" mat-flat-button>
           Réserver maintenant
         </a>
       </div>
-      <div class="lg:hidden text-white">
-        <svg (click)="isList = true" *ngIf="!isList" aria-haspopup="true" aria-label="Main Menu"
-             class="show-m-menu icon icon-tabler icon-tabler-menu" fill="none" height="28"
-             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
-             width="28"
-             xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 0h24v24H0z" stroke="none"></path>
-          <line x1="4" x2="20" y1="8" y2="8"></line>
-          <line x1="4" x2="20" y1="16" y2="16"></line>
-        </svg>
-        <div (click)="isList = false" *ngIf="isList" class="close-m-menu">
-          <svg aria-label="Close" fill="none" height="24" stroke="currentColor" stroke-linecap="round"
-               stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24" width="24"
-               xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 0h24v24H0z" stroke="none"/>
-            <line x1="18" x2="6" y1="6" y2="18"/>
-            <line x1="6" x2="18" y1="6" y2="18"/>
-          </svg>
-        </div>
-      </div>
+
     </div>
-    <nav class="lg:hidden relative z-50">
-      <div class="w-full">
-        <div class="visible flex items-center">
-          <ul *ngIf="isList" class="p-2 bg-white absolute rounded top-0 left-0 right-0 shadow mt-6">
-            <li
-              class="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-2 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
-              <a href="javascript:void(0)">
-                <span class="ml-2 font-bold">Home</span>
-              </a>
-            </li>
-            <li
-              class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
-              onclick="dropdownHandler(this)">
-              <a href="javascript:void(0)">
-                <span class="ml-2 font-bold">About</span>
-              </a>
-            </li>
-            <li
-              class="flex cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 flex items-center focus:text-indigo-700 focus:outline-none">
-              <a href="javascript:void(0)">
-                <span class="ml-2 font-bold">Page</span>
-              </a>
-            </li>
-            <li
-              class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
-              onclick="dropdownHandler(this)">
-              <a href="javascript:void(0)">
-                <span class="ml-2 font-bold">Doc</span>
-              </a>
-            </li>
-            <li
-              class="flex flex-col cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none flex justify-center"
-              onclick="dropdownHandler(this)">
-              <a href="javascript:void(0)">
-                <span class="ml-2 font-bold">Contact</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+
   </div>
   <div class="w-full flex items-center justify-center relative h-full -mt-56 z-50 w-10/12 mx-auto">
     <div
@@ -101,7 +26,7 @@
       <h1 class="md:!text-3xl !text-xl !font-bold !leading-7 text-center text-gray-700 lg:px-20 px-8">
         <ng-content select="[header]"></ng-content>
       </h1>
-      <div class="overflow-auto lg:px-20 px-8 v1-container">
+      <div class="lg:px-20 px-8 v1-container">
         <ng-content select="[body]"></ng-content>
       </div>
     </div>

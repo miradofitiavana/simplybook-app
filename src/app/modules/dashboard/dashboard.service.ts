@@ -34,7 +34,7 @@ export class DashboardService {
     return new Promise((resolve, reject) => {
       this._httpClient.get(`${API}/dashboard`)
         .subscribe((response: any) => {
-          this.dashboardData = response.datas;
+          this.dashboardData = response;
           this.onDashboardDataChanged.next(this.dashboardData);
           resolve(response);
         }, reject);

@@ -1,51 +1,8 @@
 <ng-container *ngIf="design_version=='v1'">
-  <div class="w-3/12 py-4 pr-4">
-    <div>
-      <h2>Horaires d'ouverture</h2>
-      <ul *ngIf="horaires">
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">LUN</span>
-          <span>{{getDayWeek(horaires.lundi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">MAR</span>
-          <span>{{getDayWeek(horaires.mardi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">MER</span>
-          <span>{{getDayWeek(horaires.mercredi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">JEU</span>
-          <span>{{getDayWeek(horaires.jeudi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">VEN</span>
-          <span>{{getDayWeek(horaires.vendredi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">SAM</span>
-          <span>{{getDayWeek(horaires.samedi)}}</span>
-        </li>
-        <li class="flex justify-between mb-2">
-          <span class="!font-bold">DIM</span>
-          <span>{{getDayWeek(horaires.dimanche)}}</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="w-6/12 py-4 px-4">
+  <div class="w-full py-4 px-4">
     <div>
       <h2>La société</h2>
       <p class="text-justify">{{data.descr}}</p>
-    </div>
-  </div>
-  <div class="w-3/12 py-4 pl-4">
-    <div>
-      <h2>Nous contacter</h2>
-      <p>zaza</p>
-      <p>zaza</p>
-      <p>zaza</p>
     </div>
   </div>
 

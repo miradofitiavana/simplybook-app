@@ -20,14 +20,12 @@ export class DesignComponent implements OnInit, OnDestroy {
     {
       value: 'v1',
       valueDisplay: 'v1',
-      // image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/inspiration/1.png'
-      image: 'https://fakeimg.pl/250x100/'
+      image: '/assets/img/design-v1.png'
     },
     {
       value: 'v2',
       valueDisplay: 'v2',
-      // image: 'https://ramira.secure.simplybook.it/v2/images/admin/themes/preview-image/air/1.png'
-      image: 'https://fakeimg.pl/250x100/'
+      image: '/assets/img/design-v2.png'
     }
   ];
 

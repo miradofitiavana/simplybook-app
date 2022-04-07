@@ -7,7 +7,7 @@
         <mat-button-toggle *ngFor="let choice of choices" [value]="choice.value" aria-label="Text align left">
           <img [ngClass]="designForm.get('design_version').value == choice.value ? 'border-4':'border-0'"
                [src]="choice?.image"
-               class="w-56 h-40 object-cover transition-all duration-300 border-solid border-blue-300"/>
+               class="w-56 h-40 object-contain bg-white transition-all duration-300 border-solid border-blue-300"/>
           <span class="font-bold text-base">Design {{choice.valueDisplay}}</span>
         </mat-button-toggle>
       </mat-button-toggle-group>

@@ -6,6 +6,7 @@ import {StructureInfosFormModule} from "../../../components/structure-infos-form
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {WorkspaceService} from "../workspace.service";
 
 @NgModule({
   imports: [
@@ -21,7 +22,9 @@ import {MatButtonModule} from "@angular/material/button";
   declarations: [
     WorkspaceInfosComponent
   ],
-  providers: [],
+  providers: [
+    WorkspaceService
+  ],
 })
 export class WorkspaceInfosModule {
 }

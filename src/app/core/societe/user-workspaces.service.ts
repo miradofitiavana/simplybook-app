@@ -56,7 +56,7 @@ export class UserWorkspacesService {
   }
 
   set currentWorkspace(uuid: string) {
-    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid));//, 30, "/", environment.cookies.domain, true, 'None');
+    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid), 30, "/");//, environment.cookies.domain, true, 'None');
   }
 
   getParamsRecurse(route: ActivatedRouteSnapshot) {

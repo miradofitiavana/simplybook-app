@@ -32,7 +32,7 @@ export class AuthService {
   }
 
   set typeToken(type_token: string) {
-    this._cookieService.set("typeToken", JSON.stringify(type_token));//, 30, "/", environment.cookies.domain, true, 'None');
+    this._cookieService.set("typeToken", JSON.stringify(type_token), 30, "/");//, environment.cookies.domain, true, 'None');
   }
 
   get accessToken(): string {
@@ -46,7 +46,7 @@ export class AuthService {
   }
 
   set accessToken(token: string) {
-    this._cookieService.set("accessToken", JSON.stringify(token));//, 30, "/", environment.cookies.domain, true, 'None');
+    this._cookieService.set("accessToken", JSON.stringify(token), 30, "/");//, environment.cookies.domain, true, 'None');
   }
 
   signIn(credentials: { email: string; password: string }): Observable<any> {

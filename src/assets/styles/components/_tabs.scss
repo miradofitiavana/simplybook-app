@@ -12,6 +12,10 @@
       &-active {
         @apply bg-gray-100 opacity-100;
       }
+
+      &.mat-tab-disabled {
+        @apply cursor-not-allowed;
+      }
     }
   }
 

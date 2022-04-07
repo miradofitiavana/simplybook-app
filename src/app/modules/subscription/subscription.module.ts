@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {SubscriptionService} from "./subscription.service";
 import {MatTabsModule} from "@angular/material/tabs";
+import {SubscriptionAbonnementModule} from "./abonnement/abonnement.module";
 
 const routes: Routes = [
   {
@@ -19,14 +20,15 @@ const routes: Routes = [
   declarations: [
     SubscriptionComponent
   ],
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    PageHeaderModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTabsModule,
-  ],
+    imports: [
+        SharedModule,
+        RouterModule.forChild(routes),
+        PageHeaderModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTabsModule,
+        SubscriptionAbonnementModule,
+    ],
   providers: [
     SubscriptionService
   ]

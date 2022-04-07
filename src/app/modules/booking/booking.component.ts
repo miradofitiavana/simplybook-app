@@ -14,7 +14,7 @@ import {UserWorkspacesService} from "../../core/societe/user-workspaces.service"
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BookingComponent implements OnInit, OnDestroy {
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
