@@ -5,7 +5,7 @@ import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../../core/models/societe.types";
 import {StructureService} from "../structure.service";
 import {ActivatedRoute} from "@angular/router";
-import {StructureInfosService} from "./infos.service";
+import {UserWorkspacesService} from "../../../core/societe/user-workspaces.service";
 
 @Component({
   selector: 'structure-infos',
@@ -24,7 +24,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
 
   constructor(
     private _structureService: StructureService,
-    private _structureInfosService: StructureInfosService,
+    private _userWorkspacesService: UserWorkspacesService,
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder
   ) {
@@ -63,7 +63,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       formValue.categories = ids_categories;
     }
 
-    this._structureInfosService.updateStructure(this.societe.uuid, formValue)
+    this._userWorkspacesService.updateStructure(this.societe.uuid, formValue)
       .subscribe((value => {
           this.societe = value.datas;
           this.saving = false;

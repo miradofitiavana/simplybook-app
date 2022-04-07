@@ -1,6 +1,4 @@
 import {NgModule} from '@angular/core';
-
-import {StructureInfosService} from "./infos.service";
 import {GooglePlaceModule} from "ngx-google-places-autocomplete";
 import {SharedModule} from "../../../shared/shared.module";
 import {MatIconModule} from "@angular/material/icon";
@@ -12,6 +10,7 @@ import {StructureInfosComponent} from "./infos.component";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatChipsModule} from "@angular/material/chips";
 import {StructureInfosFormModule} from "../../../components/structure-infos-form/structure-infos-form.module";
+import {UserWorkspacesService} from "../../../core/societe/user-workspaces.service";
 
 @NgModule({
   imports: [
@@ -33,7 +32,7 @@ import {StructureInfosFormModule} from "../../../components/structure-infos-form
     StructureInfosComponent
   ],
   providers: [
-    StructureInfosService
+    UserWorkspacesService
   ],
 })
 export class StructureInfosModule {

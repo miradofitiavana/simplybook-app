@@ -9,6 +9,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {StructureModule} from "../../structure/structure.module";
 import {StructureInfosModule} from "../../structure/infos/infos.module";
 import {StructureInfosFormModule} from "../../../components/structure-infos-form/structure-infos-form.module";
+import {UserWorkspacesService} from "../../../core/societe/user-workspaces.service";
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import {StructureInfosFormModule} from "../../../components/structure-infos-form
     WorkspaceDialogComponent
   ],
   providers: [
-    WorkspaceDialogService
+    UserWorkspacesService
   ],
 })
 export class WorkspaceDialogModule {

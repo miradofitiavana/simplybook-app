@@ -60,6 +60,7 @@ export class UserWorkspacesComponent implements OnInit, OnDestroy {
   selectWorkspace(societe: Societe): void {
     console.log(societe);
     this._workspaceService.workspace = societe.uuid;
+    this._workspaceService.currentWorkspace = societe.uuid;
   }
 
   getBgWorkspace(societe: Societe) {

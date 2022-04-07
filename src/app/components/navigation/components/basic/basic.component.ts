@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Subject, takeUntil} from 'rxjs';
 import {NavigationItem} from "../../navigation-item.types";
 import {NavigationService} from "../../navigation.service";
@@ -17,7 +9,7 @@ import {UserWorkspacesService} from "../../../../core/societe/user-workspaces.se
   selector: 'navigation-basic',
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class NavigationBasicComponent implements OnInit, OnDestroy {
@@ -48,6 +40,7 @@ export class NavigationBasicComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
         this.uuid = value;
+        this._navigationComponent.onRefreshed.next(true);
         console.log(value);
       });
   }

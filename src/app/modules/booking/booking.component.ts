@@ -1,12 +1,13 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {BookingService} from "./booking.service";
 import {CalendarOptions, FullCalendarComponent} from '@fullcalendar/angular';
 import {ActivatedRoute} from "@angular/router"; // useful for typechecking
 import frLocale from '@fullcalendar/core/locales/fr';
-import {Subject} from "rxjs";
+import {Subject, takeUntil} from "rxjs";
 import {BookingDetailsComponent} from "./booking-details/booking-details.component";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmDialogService} from "../../components/confirm-dialog/confirm-dialog.service";
+import {UserWorkspacesService} from "../../core/societe/user-workspaces.service";
 
 @Component({
   selector: 'booking',
@@ -15,7 +16,7 @@ import {ConfirmDialogService} from "../../components/confirm-dialog/confirm-dial
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookingComponent implements OnInit {
+export class BookingComponent implements OnInit ,OnDestroy{
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   isVisible = false;
   eventFromApiPush = [];
@@ -53,26 +54,36 @@ export class BookingComponent implements OnInit {
     private _route: ActivatedRoute,
     private _bookingService: BookingService,
     private _dialog: MatDialog,
-    private _confirmDialogService: ConfirmDialogService
+    private _confirmDialogService: ConfirmDialogService,
+    private _userWorkspacesService: UserWorkspacesService
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
 
+  ngOnDestroy(): void {
+      this._unsubscribeAll.next(null);
+      this._unsubscribeAll.complete();
+    }
+
   ngOnInit(): void {
-    this._bookingService.getEvents(this._route.snapshot.params['uuid'])
-      .subscribe((values) => {
-        let cal = this.calendarComponent.getApi();
-        cal.removeAllEvents();
-        this.eventFromApiPush = values.events;
-        this.hoursClosing = values.hoursClosing;
-        this.hoursBusiness = values.hoursBusiness;
-        cal.setOption('businessHours', this.hoursBusiness);
-        cal.setOption('events', values.events);
-      }, (err) => {
+    this._userWorkspacesService.workspace$
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((uuid) => {
+        this._bookingService.getEvents(uuid)
+          .subscribe((values) => {
+            let cal = this.calendarComponent.getApi();
+            cal.removeAllEvents();
+            this.eventFromApiPush = values.events;
+            this.hoursClosing = values.hoursClosing;
+            this.hoursBusiness = values.hoursBusiness;
+            cal.setOption('businessHours', this.hoursBusiness);
+            cal.setOption('events', values.events);
+          }, (err) => {
 
-      }, () => {
+          }, () => {
 
-      });
+          });
+      })
   }
 
 
