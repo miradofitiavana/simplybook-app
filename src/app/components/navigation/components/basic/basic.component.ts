@@ -11,7 +11,7 @@ import {Subject, takeUntil} from 'rxjs';
 import {NavigationItem} from "../../navigation-item.types";
 import {NavigationService} from "../../navigation.service";
 import {NavigationComponent} from "../../navigation.component";
-import {WorkspaceService} from "../../../../core/societe/workspace.service";
+import {UserWorkspacesService} from "../../../../core/societe/user-workspaces.service";
 
 @Component({
   selector: 'navigation-basic',
@@ -32,7 +32,7 @@ export class NavigationBasicComponent implements OnInit, OnDestroy {
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
     private _navigationService: NavigationService,
-    private _workspaceService: WorkspaceService
+    private _workspaceService: UserWorkspacesService
   ) {
   }
 

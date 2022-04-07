@@ -44,12 +44,4 @@ export class StructureService implements Resolve<any> {
         }, reject);
     });
   }
-
-  saveStructure(uuid: string, formValue: any): Observable<any> {
-    return this._httpClient.put(`${API}/structures/${uuid}`, formValue).pipe(
-      switchMap((response: Login) => {
-        return of(response);
-      })
-    );
-  }
 }

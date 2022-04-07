@@ -1,13 +1,11 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {Categorie} from "../../../core/models/categorie.types";
-import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup} from "@angular/forms";
 import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../../core/models/societe.types";
-import {Address} from "ngx-google-places-autocomplete/objects/address";
 import {StructureService} from "../structure.service";
 import {ActivatedRoute} from "@angular/router";
-import {GooglePlaceDirective} from "ngx-google-places-autocomplete";
-import {Options} from "ngx-google-places-autocomplete/objects/options/options";
+import {StructureInfosService} from "./infos.service";
 
 @Component({
   selector: 'structure-infos',
@@ -17,39 +15,30 @@ import {Options} from "ngx-google-places-autocomplete/objects/options/options";
 
 export class StructureInfosComponent implements OnInit, OnDestroy {
 
-  public allCategories: Categorie[] = [];
-  societeForm: FormGroup;
+  societeFormContainer: FormGroup;
   societe: Societe = null;
-  @ViewChild("placesRef") placesRef: GooglePlaceDirective;
-  options: Options = {
-    bounds: null,
-    types: [],
-    fields: null,
-    strictBounds: false,
-    origin: null,
-    componentRestrictions: {country: 'FR'}
-  };
   saving: boolean = false;
+  loaded: boolean = false;
+
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     private _structureService: StructureService,
+    private _structureInfosService: StructureInfosService,
     private _activatedRoute: ActivatedRoute,
+    private _formBuilder: FormBuilder
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
 
   ngOnInit() {
-    let datas = this._activatedRoute.snapshot.data;
-    this.allCategories = datas['categories'];
-
     this._structureService.onStructureDataChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((value: Societe) => {
         this.societe = value;
-      });
 
-    this.initForm();
+        this.societeFormContainer = this._formBuilder.group({});
+      });
   }
 
   ngOnDestroy(): void {
@@ -57,39 +46,14 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
     this._unsubscribeAll.complete();
   }
 
-  handleAddressChange(result: Address) {
-    this.societeForm.get('autocomplete').setValue(result.formatted_address);
-    this.societeForm.get('adresse').setValue(result.name);
-    result.address_components.forEach(value => {
-      if (value.types.indexOf('postal_code') > -1) {
-        this.societeForm.get('code_postal').setValue(value.long_name);
-      }
-      if (value.types.indexOf('locality') > -1) {
-        this.societeForm.get('ville').setValue(value.long_name);
-      }
-    });
-    this.societeForm.get('autocomplete').reset();
-  }
-
-
-  onCategorieRemoved(categorie: Categorie): void {
-    const categories = this.societeForm.get('categories').value as Categorie[];
-    this.removeFirst(categories, categorie);
-    this.societeForm.get('categories').setValue(categories);
-  }
-
-  compareCategories(c1: Categorie, c2: Categorie): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
-  }
-
-  saveStructure(): void {
-    if (this.societeForm.invalid) {
+  updateStructure(): void {
+    if (this.societeFormContainer.invalid) {
       return;
     }
 
     this.saving = true;
 
-    let formValue = this.societeForm.value;
+    let formValue = this.societeFormContainer.value['societeForm'];
     if (formValue?.categories) {
       let formCategories = formValue?.categories;
       let ids_categories = [];
@@ -99,98 +63,23 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
       formValue.categories = ids_categories;
     }
 
-    this._structureService.saveStructure(this.societe.uuid, formValue)
+    this._structureInfosService.updateStructure(this.societe.uuid, formValue)
       .subscribe((value => {
           this.societe = value.datas;
-          this.initForm();
           this.saving = false;
         }),
         (err => {
           console.log(err);
         }),
         () => {
-          this.societeForm.enable();
+          this.societeFormContainer.enable();
         }
       );
   }
 
-  telephones(): FormArray {
-    return this.societeForm.get('telephones') as FormArray;
-  }
-
-  emails(): FormArray {
-    return this.societeForm.get('emails') as FormArray;
-  }
-
-  addTelephone(): void {
-    this.telephones().push(this.newTelephoneForm());
-  }
-
-  addEmail(): void {
-    this.emails().push(this.newEmailForm());
-  }
-
-  removeTelephone(index: number): void {
-    this.telephones().removeAt(index);
-  }
-
-  removeEmail(index: number): void {
-    this.emails().removeAt(index);
-  }
-
-  private removeFirst<T>(array: T[], toRemove: T): void {
-    const index = array.indexOf(toRemove);
-    if (index !== -1) {
-      array.splice(index, 1);
-    }
-  }
-
-  private initForm(): void {
-    this.societeForm = new FormGroup({
-      uuid: new FormControl({value: this.societe?.uuid, disabled: true}),
-      permalink: new FormControl(this.societe?.permalink, [Validators.required]),
-      nom: new FormControl(this.societe?.nom, [Validators.required]),
-      adresse: new FormControl(this.societe?.adresse, [Validators.required]),
-      ville: new FormControl(this.societe?.ville, [Validators.required]),
-      categories: new FormControl(this.societe?.categories, [Validators.required]),
-      code_postal: new FormControl(this.societe?.code_postal, [Validators.required]),
-      autocomplete: new FormControl(""),
-      adresse_complement: new FormControl(this.societe?.adresse_complement),
-      lng: new FormControl(this.societe?.lng),
-      lat: new FormControl(this.societe?.lat),
-      descr: new FormControl(this.societe?.descr, [Validators.required]),
-      telephones: new FormArray([]),
-      emails: new FormArray([])
-    });
-    this.initTelephones(this.societe?.telephones);
-    this.initEmails(this.societe?.emails);
-  }
-
-  private newTelephoneForm(phone?: string): FormControl {
-    return new FormControl(phone ? phone : '');
-  }
-
-  private newEmailForm(email?: string): FormControl {
-    return new FormControl(email ? email : '');
-  }
-
-  private initTelephones(telephones: any) {
-    if (telephones && telephones.length > 0) {
-      telephones.forEach((tel) => {
-        this.telephones().push(this.newTelephoneForm(tel));
-      });
-    } else {
-      this.telephones().push(this.newTelephoneForm());
-    }
-  }
-
-  private initEmails(emails: any) {
-    if (emails && emails.length > 0) {
-      emails.forEach((tel) => {
-        this.emails().push(this.newEmailForm(tel));
-      });
-    } else {
-      this.emails().push(this.newEmailForm());
+  handleLoading(event: boolean) {
+    if (event) {
+      this.loaded = event;
     }
   }
 }

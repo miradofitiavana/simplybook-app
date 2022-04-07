@@ -6,7 +6,6 @@ import {AuthService} from "../../../core/auth/auth.service";
 @Component({
   selector: 'sign-in',
   templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class SignInComponent implements OnInit {
@@ -51,20 +50,10 @@ export class SignInComponent implements OnInit {
     this._authService.signIn(this.signInForm.value)
       .subscribe(
         () => {
-
-          // Set the redirect url.
-          // The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-          // to the correct page after a successful sign in. This way, that url can be set via
-          // routing file and we don't have to touch here.
           const redirectURL = this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
-
-          // Navigate to the redirect url
           this._router.navigateByUrl(redirectURL);
-
         },
         (response) => {
-          console.log(response);
-          // Re-enable the form
           this.signInForm.enable();
 
           // Reset the form

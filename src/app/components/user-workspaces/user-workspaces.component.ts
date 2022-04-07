@@ -2,24 +2,30 @@ import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {UserService} from "../../core/user/user.service";
 import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../core/models/societe.types";
-import {WorkspaceService} from "../../core/societe/workspace.service";
+import {UserWorkspacesService} from "../../core/societe/user-workspaces.service";
 import {NORMAL} from "../../core/config/api.config";
+import {MatDialog} from "@angular/material/dialog";
+import {WorkspaceDialogComponent} from "../../modules/workspace/workspace-dialog/workspace-dialog.component";
+import {Categorie} from "../../core/models/categorie.types";
 
 @Component({
-  selector: 'workspace',
-  templateUrl: './workspace.component.html',
-  styleUrls: ['./workspace.component.scss'],
+  selector: 'user-workspaces',
+  templateUrl: './user-workspaces.component.html',
+  styleUrls: ['./user-workspaces.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class WorkspaceComponent implements OnInit, OnDestroy {
+export class UserWorkspacesComponent implements OnInit, OnDestroy {
 
   current_workspace: string = '';
   societes: Societe[] = [];
+  allCategories: Categorie[] = [];
+
   private _unsubscribeAll: Subject<any>;
 
   constructor(
     private _userService: UserService,
-    private _workspaceService: WorkspaceService
+    private _workspaceService: UserWorkspacesService,
+    public _dialog: MatDialog,
   ) {
     this._unsubscribeAll = new Subject<any>();
   }
@@ -29,7 +35,6 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
         this.societes = value.societes;
-        console.log(this.societes);
         if (!this._workspaceService.currentWorkspace && this.societes.length > 0) {
           this._workspaceService.workspace = this.societes[0].uuid;
           this._workspaceService.currentWorkspace = this.societes[0].uuid;
@@ -41,9 +46,10 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
     this._workspaceService.workspace$
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
-        console.log(value);
         this.current_workspace = value;
       });
+
+    // this.
   }
 
   ngOnDestroy(): void {
@@ -58,5 +64,17 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
 
   getBgWorkspace(societe: Societe) {
     return societe?.design?.logo_url ? `${NORMAL}/storage/${societe?.design?.logo_url}` : 'https://app.joinly.com/assets/img/logo-placeholder.png';
+  }
+
+  addWorkspace(): void {
+    const dialogRef = this._dialog.open(WorkspaceDialogComponent, {
+      data: {},
+      disableClose: true
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        // this.loadData();
+      });
   }
 }

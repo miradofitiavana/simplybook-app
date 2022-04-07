@@ -1,12 +1,15 @@
 import {Injectable} from '@angular/core';
-import {Observable, ReplaySubject} from "rxjs";
+import {Observable, of, ReplaySubject} from "rxjs";
 import {CookieService} from "ngx-cookie-service";
+import {CategorieService} from "../../modules/admin/categorie/categorie.service";
+import {catchError} from "rxjs/operators";
 
 @Injectable({providedIn: 'root'})
-export class WorkspaceService {
+export class UserWorkspacesService {
 
   constructor(
     private _cookieService: CookieService,
+    private _categorieService: CategorieService
   ) {
   }
 
@@ -20,10 +23,6 @@ export class WorkspaceService {
     return this._workspace.asObservable();
   }
 
-  set currentWorkspace(uuid: string) {
-    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid));//, 30, "/", environment.cookies.domain, true, 'None');
-  }
-
   get currentWorkspace(): string | null {
     let uuid = null;
     let cookieExists = this._cookieService.check("simplyWorkspace");
@@ -32,5 +31,16 @@ export class WorkspaceService {
       uuid = <string>cookie_token;
     }
     return uuid;
+  }
+
+  set currentWorkspace(uuid: string) {
+    this._cookieService.set("simplyWorkspace", JSON.stringify(uuid));//, 30, "/", environment.cookies.domain, true, 'None');
+  }
+
+  getCategories(): Observable<any> {
+    return this._categorieService.getCategoriesIDOnly()
+      .pipe(catchError(() => {
+        return of('data not available at this time');
+      }));
   }
 }

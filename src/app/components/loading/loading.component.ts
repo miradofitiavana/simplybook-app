@@ -11,6 +11,7 @@ export class LoadingComponent implements OnInit {
 
   @HostBinding('class') public classes: string = "flex flex-col items-center gap-4 text-center";
   @Input() type: string = 'roller';
+  @Input() text: string = 'Chargement des données...';
 
   constructor() {
   }

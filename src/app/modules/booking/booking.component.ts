@@ -76,7 +76,6 @@ export class BookingComponent implements OnInit {
   }
 
 
-
   handleEventClick({event, el, jsEvent, view}) {
     const dialogRef = this._dialog.open(BookingDetailsComponent, {
       data: {
@@ -128,6 +127,10 @@ export class BookingComponent implements OnInit {
         title: 'Erreur',
         message: "Ce jour de la semaine n'est pas ouvert, changez vos disponibilités pour l'utiliser.",
         dismissible: false,
+        icon: {
+          name: 'close',
+          color: 'error'
+        },
         actions: {
           confirm: {
             show: false

@@ -1,0 +1,18 @@
+<form *ngIf="workspaceFormContainer" [formGroup]="workspaceFormContainer">
+  <div *ngIf="loaded" class="!flex items-center justify-between" mat-dialog-title>
+    <span>Ajouter un nouveau workspace</span>
+    <button [mat-dialog-close]="undefined" mat-icon-button>
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div mat-dialog-content>
+    <structure-infos-form [societe]="societe" (isLoaded)="handleLoading($event)"></structure-infos-form>
+  </div>
+
+  <div *ngIf="loaded" class="flex items-center justify-end" mat-dialog-actions>
+    <button (click)="saveWorkspace()" [disabled]="saving" color="primary" mat-flat-button>
+      Enregistrer
+    </button>
+  </div>
+</form>

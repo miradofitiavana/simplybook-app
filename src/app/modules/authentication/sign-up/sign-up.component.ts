@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, HostBinding, OnDestroy, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Categorie} from "../../../core/models/categorie.types";
@@ -7,11 +7,11 @@ import {AuthService} from "../../../core/auth/auth.service";
 @Component({
   selector: 'sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class SignUpComponent implements OnInit, OnDestroy {
 
+  @HostBinding('class') classes: string = "flex h-full items-stretch rounded-container";
   @ViewChild('signUpNgForm') signUpNgForm: NgForm;
   signUpForm: FormGroup;
   showAlert: boolean = false;
