@@ -21,6 +21,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
+      },
+      {
         path: 'home',
         loadChildren: () => import('app/modules/organismes/home/home.module').then(m => m.HomeModule)
       },
@@ -31,6 +36,10 @@ const routes: Routes = [
       {
         path: 'booking/:date',
         loadChildren: () => import('app/modules/organismes/booking-confirm/booking-confirm.module').then(m => m.BookingConfirmModule)
+      },
+      {
+        path: '**',
+        redirectTo: 'home'
       },
     ]
   }

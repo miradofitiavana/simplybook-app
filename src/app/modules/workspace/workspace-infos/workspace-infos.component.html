@@ -1,10 +1,10 @@
 <form *ngIf="societeFormContainer" [formGroup]="societeFormContainer"
       class="flex flex-row flex-wrap bg-white rounded-container p-4">
   <div class="flex flex-wrap w-full justify-center">
-    <structure-infos-form [societe]="societe" (isLoaded)="handleLoading($event)"></structure-infos-form>
+    <structure-infos-form (isLoaded)="handleLoading($event)" [societe]="societe"></structure-infos-form>
   </div>
 
-  <div class="w-full text-right" *ngIf="loaded">
+  <div *ngIf="loaded" class="w-full text-right">
     <button (click)="updateStructure()" [disabled]="saving" color="primary" mat-flat-button
             type="submit">
      <span class="flex items-center">

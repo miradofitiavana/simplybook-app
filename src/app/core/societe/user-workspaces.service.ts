@@ -23,22 +23,22 @@ export class UserWorkspacesService {
   private _workspace: ReplaySubject<string> = new ReplaySubject<string>(1);
 
   set workspace(uuid: string) {
-    let activeWorkspace = '';
-    this.workspace$.subscribe((wor) => {
-      activeWorkspace = wor;
-    });
+    // let activeWorkspace = '';
+    // this.workspace$.subscribe((wor) => {
+    //   activeWorkspace = wor;
+    // });
 
-    console.log(activeWorkspace);
-    if (activeWorkspace != uuid ||!activeWorkspace) {
-      this._workspace.next(uuid);
-      let currentUuid = this.getParamsRecurse(this._route.snapshot)['uuid'];
-      if (currentUuid && currentUuid != uuid) {
-        let uri = this._router.url.replace(currentUuid, uuid);
-        this._router.navigateByUrl(uri).then(() => {
-          this._router.navigate([uri]);
-        });
-      }
-    }
+    // console.log(activeWorkspace);
+    // if (activeWorkspace != uuid ||!activeWorkspace) {
+    this._workspace.next(uuid);
+    // let currentUuid = this.getParamsRecurse(this._route.snapshot)['uuid'];
+    // if (currentUuid && currentUuid != uuid) {
+    //   let uri = this._router.url.replace(currentUuid, uuid);
+    //   this._router.navigateByUrl(uri).then(() => {
+    //     this._router.navigate([uri]);
+    //   });
+    // }
+    // }
   }
 
   get workspace$(): Observable<string> {

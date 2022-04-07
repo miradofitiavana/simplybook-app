@@ -17,6 +17,10 @@ export class BookingService {
     return this._httpClient.get(`${API}/events/${uuid}`);
   }
 
+  moveEvent(uuid: string, datas: any): Observable<any> {
+    return this._httpClient.put(`${API}/event-move/${uuid}`, datas);
+  }
+
   // getEvents() {
   //   return data[0].data;
   // }

@@ -2,15 +2,20 @@ import {NgModule} from '@angular/core';
 
 import {WorkspaceComponent} from './workspace.component';
 import {RouterModule, Routes} from "@angular/router";
-import {SubscriptionComponent} from "../subscription/subscription.component";
 import {SharedModule} from "../../shared/shared.module";
 import {WorkspaceService} from "./workspace.service";
-import {StructureInfosModule} from "../structure/infos/infos.module";
+import {PageHeaderModule} from "../../components/page-header/page-header.module";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatIconModule} from "@angular/material/icon";
+import {WorkspaceInfosModule} from "./workspace-infos/workspace-infos.module";
 
 const routes: Routes = [
   {
     path: '',
-    component: SubscriptionComponent,
+    component: WorkspaceComponent,
+    resolve: {
+      data: WorkspaceService
+    }
   }
 ];
 
@@ -18,7 +23,10 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
-    StructureInfosModule
+    PageHeaderModule,
+    MatTabsModule,
+    MatIconModule,
+    WorkspaceInfosModule
   ],
   exports: [],
   declarations: [

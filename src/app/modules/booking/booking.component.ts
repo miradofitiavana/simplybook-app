@@ -16,7 +16,7 @@ import {UserWorkspacesService} from "../../core/societe/user-workspaces.service"
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BookingComponent implements OnInit ,OnDestroy{
+export class BookingComponent implements OnInit, OnDestroy {
   @ViewChild('calendar') calendarComponent: FullCalendarComponent;
   isVisible = false;
   eventFromApiPush = [];
@@ -61,9 +61,9 @@ export class BookingComponent implements OnInit ,OnDestroy{
   }
 
   ngOnDestroy(): void {
-      this._unsubscribeAll.next(null);
-      this._unsubscribeAll.complete();
-    }
+    this._unsubscribeAll.next(null);
+    this._unsubscribeAll.complete();
+  }
 
   ngOnInit(): void {
     this._userWorkspacesService.workspace$
@@ -86,7 +86,6 @@ export class BookingComponent implements OnInit ,OnDestroy{
       })
   }
 
-
   handleEventClick({event, el, jsEvent, view}) {
     const dialogRef = this._dialog.open(BookingDetailsComponent, {
       data: {
@@ -103,13 +102,43 @@ export class BookingComponent implements OnInit ,OnDestroy{
   }
 
   handleEventDrop(event) {
-    let oldEvent = event.oldEvent;
-    let currentEvent = event.event;
-    console.log(event);
+    let data = {
+      old_from: event.oldEvent.start.valueOf(),
+      old_to: event.oldEvent.end.valueOf(),
+      new_from: event.event.start.valueOf(),
+      new_to: event.event.end.valueOf()
+    }
+
+    const dialogRef = this._confirmDialogService.open({
+      title: 'Confirmation',
+      message: "Êtes-vous sûr de vouloir modifier cette réservation ?",
+      dismissible: false,
+      icon: {
+        name: 'info_outline',
+        color: 'info'
+      },
+      actions: {
+        confirm: {
+          color: 'primary'
+        }
+      }
+    });
+    dialogRef.afterClosed()
+      .subscribe((value) => {
+        if (value && value == 'confirmed') {
+          this._bookingService.moveEvent(event.oldEvent.id, data)
+            .subscribe((value) => {
+            }, (error) => {
+              event.revert();
+            });
+        } else {
+          event.revert();
+        }
+      });
   }
 
   handleEventResize(event) {
-    console.log(event);
+    this.handleEventDrop(event);
   }
 
   handleViewRender(event) {

@@ -40,7 +40,7 @@ export class NoAuthGuard implements CanActivate, CanActivateChild, CanLoad {
       .pipe(
         switchMap((authenticated) => {
           if (authenticated) {
-            this._router.navigate(['']);
+            this._router.navigate(['/dashboard']);
 
             return of(false);
           }

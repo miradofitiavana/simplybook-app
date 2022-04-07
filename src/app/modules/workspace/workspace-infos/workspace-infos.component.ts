@@ -1,19 +1,18 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {Categorie} from "../../../core/models/categorie.types";
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {Subject, takeUntil} from "rxjs";
 import {Societe} from "../../../core/models/societe.types";
-import {StructureService} from "../structure.service";
-import {ActivatedRoute} from "@angular/router";
+import {Subject, takeUntil} from "rxjs";
 import {UserWorkspacesService} from "../../../core/societe/user-workspaces.service";
+import {ActivatedRoute} from "@angular/router";
+import {Categorie} from "../../../core/models/categorie.types";
+import {WorkspaceService} from "../workspace.service";
 
 @Component({
-  selector: 'structure-infos',
-  templateUrl: 'infos.component.html',
-  encapsulation: ViewEncapsulation.None
+  selector: 'workspace-infos',
+  templateUrl: 'workspace-infos.component.html'
 })
 
-export class StructureInfosComponent implements OnInit, OnDestroy {
+export class WorkspaceInfosComponent implements OnInit, OnDestroy {
 
   societeFormContainer: FormGroup;
   societe: Societe = null;
@@ -23,7 +22,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private _structureService: StructureService,
+    private _workspaceService: WorkspaceService,
     private _userWorkspacesService: UserWorkspacesService,
     private _activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder
@@ -32,7 +31,7 @@ export class StructureInfosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._structureService.onStructureDataChanged
+    this._workspaceService.onStructureDataChanged
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe((value: Societe) => {
         this.societe = value;

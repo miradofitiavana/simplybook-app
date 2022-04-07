@@ -40,8 +40,8 @@ export class NavigationBasicComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._unsubscribeAll))
       .subscribe(value => {
         this.uuid = value;
-        this._navigationComponent.onRefreshed.next(true);
-        console.log(value);
+        // this._navigationComponent.onRefreshed.next(true);
+        // console.log(value);
       });
   }
 

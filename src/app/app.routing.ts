@@ -32,7 +32,7 @@ export const appRoutes: Routes = [
       },
       {
         path: 'structure/:uuid',
-        loadChildren: () => import('app/modules/structure/structure.module').then(m => m.StructureModule)
+        loadChildren: () => import('app/modules/workspace/workspace.module').then(m => m.WorkspaceModule)
       },
       {
         path: 'configurations/:uuid',

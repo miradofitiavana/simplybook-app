@@ -1,26 +1,21 @@
 import {NgModule} from '@angular/core';
 
 import {WorkspaceDialogComponent} from './workspace-dialog.component';
-import {WorkspaceDialogService} from "./workspace-dialog.service";
 import {SharedModule} from "../../../shared/shared.module";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
-import {StructureModule} from "../../structure/structure.module";
-import {StructureInfosModule} from "../../structure/infos/infos.module";
 import {StructureInfosFormModule} from "../../../components/structure-infos-form/structure-infos-form.module";
 import {UserWorkspacesService} from "../../../core/societe/user-workspaces.service";
 
 @NgModule({
-    imports: [
-        SharedModule,
-        MatIconModule,
-        MatDialogModule,
-        MatButtonModule,
-        StructureModule,
-        StructureInfosModule,
-        StructureInfosFormModule
-    ],
+  imports: [
+    SharedModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule,
+    StructureInfosFormModule
+  ],
   exports: [],
   declarations: [
     WorkspaceDialogComponent
