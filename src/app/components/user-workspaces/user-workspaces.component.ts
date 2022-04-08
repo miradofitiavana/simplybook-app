@@ -64,7 +64,7 @@ export class UserWorkspacesComponent implements OnInit, OnDestroy {
   }
 
   getBgWorkspace(societe: Societe) {
-    return societe?.design?.logo_url ? `${NORMAL}/storage/${societe?.design?.logo_url}` : 'https://app.joinly.com/assets/img/logo-placeholder.png';
+    return societe?.design?.logo_url ? `${NORMAL}/storage/${societe?.design?.logo_url}` : '/assets/img/logo-placeholder.png';
   }
 
   addWorkspace(): void {

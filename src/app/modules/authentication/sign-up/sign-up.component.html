@@ -61,7 +61,7 @@
         <mat-form-field class="w-full">
           <mat-label>Mot de passe</mat-label>
           <input
-            [formControlName]="'password'"
+            [formControlName]="'password'" type="password"
             autocomplete="new-password" id="password" matInput
             placeholder="******">
           <mat-error *ngIf="signUpForm.get('password').hasError('required')">
@@ -101,7 +101,7 @@
     class="relative hidden md:flex flex-auto items-center justify-center w-1/2 xl:w-1/2 h-full p-16 lg:px-28 overflow-hidden bg-gray-800 dark:border-l">
     <div class="w-full mx-auto sm:mx-0">
       <div class="w-12 mb-4 mx-auto">
-        <img alt="Simplybook" src="https://fakeimg.pl/350x200/ff0000/000">
+        <img alt="Planify" src="/assets/img/logo-white.svg">
       </div>
       <div class="max-w-md mx-auto">
 
